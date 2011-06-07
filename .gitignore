@@ -1,0 +1,8 @@
+*.suo
+TestResults
+Expl.Itinerary/bin
+Expl.Itinerary/obj
+Expl.Itinerary.Parser/bin
+Expl.Itinerary.Parser/obj
+Itinerary unit tests/bin
+Itinerary unit tests/obj

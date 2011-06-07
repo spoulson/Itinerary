@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97994680-666D-43C6-882C-276CBD5B0671}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Expl.Itinerary</RootNamespace>
+    <AssemblyName>Expl.Itinerary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auxiliary\Calendar.cs" />
+    <Compile Include="Auxiliary\EnumerableExtensions.cs" />
+    <Compile Include="Auxiliary\IntSpec.cs" />
+    <Compile Include="Auxiliary\SequenceExtensions.cs" />
+    <Compile Include="Auxiliary\SpyEnumerator.cs" />
+    <Compile Include="Common\ItineraryConvert.cs" />
+    <Compile Include="Common\TimedEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schedule\Composite\BoolIntersectionSchedule.cs" />
+    <Compile Include="Schedule\Composite\BoolNonIntersectionSchedule.cs" />
+    <Compile Include="Schedule\Composite\DifferenceSchedule.cs" />
+    <Compile Include="Schedule\Composite\IntersectionAllSchedule.cs" />
+    <Compile Include="Schedule\Composite\IntersectionSchedule.cs" />
+    <Compile Include="Schedule\Composite\ListSchedule.cs" />
+    <Compile Include="Schedule\Composite\UnionSchedule.cs" />
+    <Compile Include="Schedule\Filter\IndexSchedule.cs" />
+    <Compile Include="Schedule\Filter\LastingSchedule.cs" />
+    <Compile Include="Schedule\Filter\LimitSchedule.cs" />
+    <Compile Include="Schedule\Filter\OffsetSchedule.cs" />
+    <Compile Include="Schedule\Filter\RepeatSchedule.cs" />
+    <Compile Include="Schedule\Filter\WeekSchedule.cs" />
+    <Compile Include="Schedule\ISchedule.cs" />
+    <Compile Include="Schedule\Primitive\CronSchedule.cs" />
+    <Compile Include="Schedule\Primitive\DayOfWeekSchedule.cs" />
+    <Compile Include="Schedule\Primitive\IntervalSchedule.cs" />
+    <Compile Include="Schedule\Primitive\OneTimeSchedule.cs" />
+    <Compile Include="Schedule\Primitive\VoidSchedule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
