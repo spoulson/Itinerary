@@ -2,7 +2,8 @@ Itinerary: Fluent time scheduling library for .NET
 Shawn Poulson, http://explodingcoder.com
 
 * What does Itinerary do?
-  - Describe a schedule of date/time ranges as a TDL expression, such as the equivalent of: Every Friday at 5:30 pm for 1 hour, except on holidays.
+  - Describe a schedule of date/time ranges as a TDL expression, such as the equivalent of:
+    Every Friday at 5:30 pm for 1 hour, except on holidays.
   - Perform complex boolean set math on date/time ranges.
   - Parse TDL to enumerate events in the schedule.
   - Change schedule properties programmatically, then reserialize back to TDL expression.
@@ -16,6 +17,7 @@ Shawn Poulson, http://explodingcoder.com
   - You need to store this description (not the events) for later reuse.
 
 * How do I get started using Itinrary?
-  - Learn TDL expression syntax from the Itinerary Wiki on GitHub: https://github.com/spoulson/Itinerary/wiki
+  - Learn TDL expression syntax from the Itinerary Wiki on GitHub:
+    https://github.com/spoulson/Itinerary/wiki
   - Test TDL expression syntax using the TDL Explorer tool in the solution.
   - See the Example1 project for a rudimentary working example.
