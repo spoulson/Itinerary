@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Expl.Auxiliary;
+using Expl.Itinerary.Parser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Expl.Itinerary.Tests {

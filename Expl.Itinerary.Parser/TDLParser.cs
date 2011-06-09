@@ -1,7 +1,7 @@
 using System;
 using Antlr.Runtime;
 
-namespace Expl.Itinerary {
+namespace Expl.Itinerary.Parser {
    /// <summary>
    /// Helper class for calling parser to generate an ISchedule object from TDL string.
    /// </summary>
