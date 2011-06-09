@@ -3,7 +3,7 @@ Shawn Poulson, http://explodingcoder.com
 
 * What does Itinerary do?
   - Describe a schedule of date/time ranges as a TDL expression, such as the equivalent of:
-    Every Friday at 5:30 pm for 1 hour, except on holidays.
+    "Every Friday at 5:30 pm for 1 hour, except on holidays."
   - Perform complex boolean set math on date/time ranges.
   - Parse TDL to enumerate events in the schedule.
   - Change schedule properties programmatically, then reserialize back to TDL expression.
