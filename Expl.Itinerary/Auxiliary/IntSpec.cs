@@ -38,7 +38,7 @@ namespace Expl.Auxiliary {
       /// <param name="SpecString">IntSpec string.</param>
       /// <returns>Integer enumeration.</returns>
       public static IEnumerable<int> Parse(string SpecString) {
-         return Parse(SpecString, 1, int.MaxValue);
+         return Parse(SpecString, 0, int.MaxValue);
       }
 
       /// <summary>

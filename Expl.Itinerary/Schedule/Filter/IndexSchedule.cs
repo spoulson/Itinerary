@@ -35,7 +35,7 @@ namespace Expl.Itinerary {
       }
 
       public IEnumerable<TimedEvent> GetRange(DateTime RangeStart, DateTime RangeEnd) {
-         int Index = 1;
+         int Index = 0;
          IEnumerator<int> IndicesIter = IntSpec.Parse(_IndexSpec).GetEnumerator();
 
          // If no indices, return

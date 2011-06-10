@@ -820,13 +820,22 @@ namespace Expl.Itinerary.Test {
       [TestMethod]
       public void IndexTest() {
          ScheduleUnitTest[] tests = {
+            new ScheduleUnitTest("Test index #0",
+               new IndexSchedule("0",
+                  new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
+               ),
+               new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 9, 3, 10, 0, 0), new TimeSpan(0, 10, 0))
+               }
+            ),
             new ScheduleUnitTest("Test index #1",
                new IndexSchedule("1",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
                new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 3, 10, 0, 0), new TimeSpan(0, 10, 0))
+                  new TimedEvent(new DateTime(2008, 9, 3, 11, 0, 0), new TimeSpan(0, 10, 0))
                }
             ),
             new ScheduleUnitTest("Test index #2",
@@ -835,27 +844,18 @@ namespace Expl.Itinerary.Test {
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
                new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 3, 11, 0, 0), new TimeSpan(0, 10, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test index #3",
-               new IndexSchedule("3",
-                  new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
-               ),
-               new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
-               new TimedEvent[] {
                   new TimedEvent(new DateTime(2008, 9, 3, 12, 0, 0), new TimeSpan(0, 10, 0))
                }
             ),
-            new ScheduleUnitTest("Test index out of range #5",
-               new IndexSchedule("5",
+            new ScheduleUnitTest("Test index out of range #4",
+               new IndexSchedule("4",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
                new TimedEvent[] { }
             ),
             new ScheduleUnitTest("Test multiple indicies",
-               new IndexSchedule("1,2,4",
+               new IndexSchedule("0,1,3",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -866,7 +866,7 @@ namespace Expl.Itinerary.Test {
                }
             ),
             new ScheduleUnitTest("Test index range",
-               new IndexSchedule("2-4",
+               new IndexSchedule("1-3",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -877,7 +877,7 @@ namespace Expl.Itinerary.Test {
                }
             ),
             new ScheduleUnitTest("Test index range and not single",
-               new IndexSchedule("2-4,!3",
+               new IndexSchedule("1-3,!2",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -887,7 +887,7 @@ namespace Expl.Itinerary.Test {
                }
             ),
             new ScheduleUnitTest("Test index range, out of range",
-               new IndexSchedule("2-99",
+               new IndexSchedule("1-98",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
