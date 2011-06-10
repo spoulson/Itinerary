@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Expl.Auxiliary.Sequence;
+using System;
 
 namespace Expl.Auxiliary {
    /// <summary>
@@ -130,7 +131,8 @@ namespace Expl.Auxiliary {
          else if (RangeEnd < MinValue) RangeEnd = MinValue;
 
          // Generate counter
-         IEnumerable<int> Counter = System.Linq.Enumerable.Range(RangeStart, RangeEnd - RangeStart + 1);
+         int Count = Math.Min(RangeEnd - RangeStart, int.MaxValue - 1) + 1;
+         IEnumerable<int> Counter = System.Linq.Enumerable.Range(RangeStart, Count);
          int Index = 0;
          foreach (int i in Counter.Where(x => (Index++ % Step == 0)))
             yield return i;

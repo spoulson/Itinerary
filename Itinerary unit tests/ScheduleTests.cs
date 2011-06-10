@@ -896,6 +896,17 @@ namespace Expl.Itinerary.Test {
                   new TimedEvent(new DateTime(2008, 9, 3, 12, 0, 0), new TimeSpan(0, 10, 0)),
                   new TimedEvent(new DateTime(2008, 9, 3, 13, 0, 0), new TimeSpan(0, 10, 0))
                }
+            ),
+            new ScheduleUnitTest("Test exclusive index",
+               new IndexSchedule("*,!0",
+                  new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(1, 0, 0), DateTime.MinValue)
+               ),
+               new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 9, 3, 11, 0, 0), new TimeSpan(1, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 9, 3, 12, 0, 0), new TimeSpan(1, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 9, 3, 13, 0, 0), new TimeSpan(1, 0, 0))
+               }
             )
          };
 
