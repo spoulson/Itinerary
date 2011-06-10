@@ -140,16 +140,6 @@ namespace Expl.Itinerary.Tests {
       }
 
       [TestMethod]
-      public void LimitScheduleParseTest() {
-         TDLUnitTest[] tests = {
-            new TDLUnitTest("2008-09-02 10:37 <= every T1:0:0 < 2008-09-03 10:37"),
-            new TDLUnitTest("2008-09-02 10:37<= every T1:0:0< 2008-09-03 10:37", "2008-09-02 10:37 <= every T1:0:0 < 2008-09-03 10:37"),
-            new TDLUnitTest("2008-09-02 10:37 <=every T1:0:0 <2008-09-03 10:37", "2008-09-02 10:37 <= every T1:0:0 < 2008-09-03 10:37"),
-            new TDLUnitTest("2008-09-02 10:37<=every T1:0:0<2008-09-03 10:37", "2008-09-02 10:37 <= every T1:0:0 < 2008-09-03 10:37")
-         };
-      }
-
-      [TestMethod]
       public void RepeatScheduleParseTest() {
          TDLUnitTest[] tests = {
             new TDLUnitTest("2008-09-02 10:37 x 4"),
@@ -289,7 +279,6 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("(every T10 & every T30) lasting T1:0"),
             new TDLUnitTest("every T10 & (every T30 + T1:0)", "every T10 & every T30 + T1:0"),
             new TDLUnitTest("(every T10 & every T30) + T1:0"),
-            new TDLUnitTest("every T10 & (2008-09-15 00:00 <= every T30 < 2008-09-16 00:00)", "every T10 & 2008-09-15 00:00 <= every T30 < 2008-09-16 00:00"),
             new TDLUnitTest("every T10 & every T30 & every T1:0"),
             new TDLUnitTest("(every T10 & every T30) & every T1:0", "every T10 & every T30 & every T1:0"),
             new TDLUnitTest("every T10 & (every T30 & every T1:0)"),
@@ -312,7 +301,6 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("(every T10 !& every T30) lasting T1:0"),
             new TDLUnitTest("every T10 !& (every T30 + T1:0)", "every T10 !& every T30 + T1:0"),
             new TDLUnitTest("(every T10 !& every T30) + T1:0"),
-            new TDLUnitTest("every T10 !& (2008-09-15 00:00 <= every T30 < 2008-09-16 00:00)", "every T10 !& 2008-09-15 00:00 <= every T30 < 2008-09-16 00:00"),
             new TDLUnitTest("every T10 !& (every T30 & every T1:0)", "every T10 !& every T30 & every T1:0"),
             new TDLUnitTest("(every T10 !& every T30) & every T1:0"),
             new TDLUnitTest("every T10 !& every T30 !& every T1:0"),
@@ -333,7 +321,6 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("(every T10 | every T30) lasting T1:0"),
             new TDLUnitTest("every T10 | (every T30 + T1:0)", "every T10 | every T30 + T1:0"),
             new TDLUnitTest("(every T10 | every T30) + T1:0"),
-            new TDLUnitTest("every T10 | (2008-09-15 00:00 <= every T30 < 2008-09-16 00:00)", "every T10 | 2008-09-15 00:00 <= every T30 < 2008-09-16 00:00"),
             new TDLUnitTest("every T10 | (every T30 & every T1:0)", "every T10 | every T30 & every T1:0"),
             new TDLUnitTest("(every T10 | every T30) & every T1:0"),
             new TDLUnitTest("every T10 | (every T30 !& every T1:0)", "every T10 | every T30 !& every T1:0"),
@@ -356,7 +343,6 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("(every T10 && every T30) lasting T1:0"),
             new TDLUnitTest("every T10 && (every T30 + T1:0)", "every T10 && every T30 + T1:0"),
             new TDLUnitTest("(every T10 && every T30) + T1:0"),
-            new TDLUnitTest("every T10 && (2008-09-15 00:00 <= every T30 < 2008-09-16 00:00)", "every T10 && 2008-09-15 00:00 <= every T30 < 2008-09-16 00:00"),
             new TDLUnitTest("every T10 && (every T30 & every T1:0)", "every T10 && every T30 & every T1:0"),
             new TDLUnitTest("(every T10 && every T30) & every T1:0"),
             new TDLUnitTest("every T10 && (every T30 !& every T1:0)", "every T10 && every T30 !& every T1:0"),
@@ -379,7 +365,6 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("(every T10 !&& every T30) lasting T1:0"),
             new TDLUnitTest("every T10 !&& (every T30 + T1:0)", "every T10 !&& every T30 + T1:0"),
             new TDLUnitTest("(every T10 !&& every T30) + T1:0"),
-            new TDLUnitTest("every T10 !&& (2008-09-15 00:00 <= every T30 < 2008-09-16 00:00)", "every T10 !&& 2008-09-15 00:00 <= every T30 < 2008-09-16 00:00"),
             new TDLUnitTest("every T10 !&& (every T30 & every T1:0)", "every T10 !&& every T30 & every T1:0"),
             new TDLUnitTest("(every T10 !&& every T30) & every T1:0"),
             new TDLUnitTest("every T10 !&& (every T30 !& every T1:0)", "every T10 !&& every T30 !& every T1:0"),
@@ -402,7 +387,6 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("(every T10, every T30) lasting T1:0"),
             new TDLUnitTest("every T10, (every T30 + T1:0)", "every T10, every T30 + T1:0"),
             new TDLUnitTest("(every T10, every T30) + T1:0"),
-            new TDLUnitTest("every T10, (2008-09-15 00:00 <= every T30 < 2008-09-16 00:00)", "every T10, 2008-09-15 00:00 <= every T30 < 2008-09-16 00:00"),
             new TDLUnitTest("every T10, (every T30 & every T1:0)", "every T10, every T30 & every T1:0"),
             new TDLUnitTest("(every T10, every T30) & every T1:0"),
             new TDLUnitTest("every T10, (every T30 !& every T1:0)", "every T10, every T30 !& every T1:0"),

@@ -52,7 +52,6 @@
     <Compile Include="Schedule\Composite\UnionSchedule.cs" />
     <Compile Include="Schedule\Filter\IndexSchedule.cs" />
     <Compile Include="Schedule\Filter\LastingSchedule.cs" />
-    <Compile Include="Schedule\Filter\LimitSchedule.cs" />
     <Compile Include="Schedule\Filter\OffsetSchedule.cs" />
     <Compile Include="Schedule\Filter\RepeatSchedule.cs" />
     <Compile Include="Schedule\Filter\WeekSchedule.cs" />

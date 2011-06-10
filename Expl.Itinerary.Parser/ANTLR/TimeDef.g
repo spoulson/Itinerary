@@ -32,7 +32,6 @@ prog returns [ISchedule value]:
 // Filters: (all same precedence)
 //  Lasting 'lasting'/'to'
 //  Offset +/-
-//  Limit <= <
 //  Repeat x
 //  Index #
 // Atoms: (all highest precedence)
@@ -89,13 +88,8 @@ paren_p returns [ISchedule value]: (
 // Expression computations
 //
 
-limit_p returns [ISchedule value]:
-   (limit_start=datetime_p WS* '<=' WS* A=filter_p WS* '<' WS* limit_end=datetime_p) { $value = new LimitSchedule($limit_start.value, $limit_end.value, $A.value); } |
-   B=atom { $value = $B.value; };
-
-// Filter expression
 filter_p returns [ISchedule value]:
-   A=limit_p { $value = $A.value; } (
+   A=atom { $value = $A.value; } (
       (WS* '#' WS* index_intspec=intspec_p { $value = new IndexSchedule($index_intspec.text, $value); } ) |
       (WS* 'x' WS* repeatcount=UINT { $value = new RepeatSchedule(int.Parse($repeatcount.text), $value); } ) |
       (WS* op=('+'|'-') WS* offset_timespan=timespan_p { $value = new OffsetSchedule($op.Text == "+" ? $offset_timespan.value : $offset_timespan.value.Negate(), $value); } ) |
