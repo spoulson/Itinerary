@@ -2091,36 +2091,6 @@ namespace Expl.Itinerary.Test {
          foreach (var t in tests) t.Run();
       }
 
-      [TestMethod]
-      public void CalculateDOWTest() {
-         // Calendar.GetDOW() has been refactored
-         // TODO: Refactor this unit test
-
-         //int[] DOWLookup = { 0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5 };
-         //int[] DOWLookupLY = { 6, 2, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5 };
-
-         //for (int Month = 1; Month <= 12; Month++) {
-         //   int DOW = Calendar.fm(Month, false);
-         //   int DOWCheck = DOWLookup[Month - 1];
-         //   Debug.WriteLine(string.Format("{0:d} <=> {1:d}", DOW, DOWCheck));
-         //   Assert.AreEqual<int>(DOW, DOWCheck, string.Format("DOW failed at month {0:d}", Month));
-         //}
-
-         //for (int Month = 1; Month <= 12; Month++) {
-         //   int DOW = Calendar.fm(Month, true);
-         //   int DOWCheck = DOWLookupLY[Month - 1];
-         //   Debug.WriteLine(string.Format("{0:d} <=> {1:d}", DOW, DOWCheck));
-         //   Assert.AreEqual<int>(DOW, DOWCheck, string.Format("DOW failed at leapyear month {0:d}", Month));
-         //}
-
-      }
-
-      private void DumpEvents(IList<TimedEvent> EventList) {
-         foreach (TimedEvent e in EventList) {
-            Debug.WriteLine("Event: " + e.ToString());
-         }
-      }
-
       public class CronFieldTester {
          private string _Name;
          private CronField _Field;

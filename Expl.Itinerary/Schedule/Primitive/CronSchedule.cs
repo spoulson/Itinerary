@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 using Expl.Auxiliary;
 
 namespace Expl.Itinerary {
+   /// <summary>
+   /// Cron schedule.
+   /// </summary>
    public class CronSchedule : IPrimitiveSchedule {
       protected CronField _MinuteLookup;
       protected CronField _HourLookup;
@@ -38,14 +41,6 @@ namespace Expl.Itinerary {
          _Duration = Duration;
       }
 
-      public void Dispose() {
-         _MinuteLookup = null;
-         _HourLookup = null;
-         _DayLookup = null;
-         _MonthLookup = null;
-         _DayOfWeekLookup = null;
-      }
-
       public int OperatorPrecedence { get { return 1; } }
 
       public override string ToString() {
@@ -71,12 +66,6 @@ namespace Expl.Itinerary {
          int? DayStart = IterateStart.Day;
          int? HourStart = IterateStart.Hour;
          int? MinuteStart = IterateStart.Minute;
-
-         // Change flags indicate when range is no longer restricted to the starting DateTime
-         //bool MonthChanged = false;
-         //bool DayChanged = false;
-         //bool HourChanged = false;
-         //bool MinuteChanged = false;
 
          for (int Year = IterateStart.Year; Year <= RangeEnd.Year; Year++) {
 
@@ -122,6 +111,12 @@ namespace Expl.Itinerary {
       }
    }
 
+   /// <summary>
+   /// Cron numeric field parser.
+   /// </summary>
+   /// <remarks>
+   /// TODO: Consider migrating numeric parser to IntSpec?
+   /// </remarks>
    public class CronField {
       private int _Min, _Max;
       private string _CronSpec;
@@ -258,9 +253,6 @@ namespace Expl.Itinerary {
             int Index = _Min;
             _PickList = new List<int>(
                _Lookup.Where<bool>(x => { Index++; return x; }).Select<bool, int>(x => Index - 1)
-               //Enumerable.Map<bool, int>(
-               //   _Lookup.Where(x => { Index++; return x; }),
-               //   x => Index - 1)
             );
          }
       }

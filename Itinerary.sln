@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expl.Itinerary.Parser", "Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDL Explorer", "TDL Explorer\TDL Explorer.csproj", "{D9437514-8767-4B34-947A-31473EF92BBC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4599C19F-FE55-4892-9A15-501A5F3FC58E}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Itinerary.vsmdi

@@ -6,8 +6,6 @@ namespace Expl.Itinerary {
    /// Void schedule
    /// </summary>
    public class VoidSchedule : IPrimitiveSchedule {
-      public void Dispose() { }
-
       public int OperatorPrecedence { get { return 1; } }
 
       public override string ToString() {

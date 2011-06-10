@@ -4,6 +4,13 @@ using System.Linq;
 using Expl.Auxiliary;
 
 namespace Expl.Itinerary {
+   /// <summary>
+   /// Day of week schedule.
+   /// </summary>
+   /// <remarks>
+   /// TODO: Merge this concept into CronSchedule as '#' markup.  Eliminate syntax from ANTLR grammar.  Update unit tests.
+   /// See http://en.wikipedia.org/wiki/Cron
+   /// </remarks>
    public class DayOfWeekSchedule : IPrimitiveSchedule {
       protected string _DayOfWeekSpec;
       protected string _OrdinalSpec;
@@ -24,11 +31,6 @@ namespace Expl.Itinerary {
          _DayOfWeekEnum = IntSpec.Parse(_DayOfWeekSpec, 0, 6);
          _OrdinalSpec = OrdinalSpec;
          _OrdinalEnum = IntSpec.Parse(_OrdinalSpec, -5, 5);
-      }
-
-      public void Dispose() {
-         _DayOfWeekSpec = null;
-         _OrdinalSpec = null;
       }
 
       public int OperatorPrecedence { get { return 1; } }

@@ -17,6 +17,8 @@ namespace Expl.Auxiliary {
    ///
    /// Index values much be greater than zero.
    /// Throw exception on invalid format or number range.
+   /// 
+   /// TODO: Consider converting to ANTLR parser?
    /// </remarks>
    public static class IntSpec {
       private static readonly Regex _RegexStep = new Regex("/(-?\\d+)$");

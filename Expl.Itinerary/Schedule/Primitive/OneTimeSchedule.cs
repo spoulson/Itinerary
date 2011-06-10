@@ -33,10 +33,6 @@ namespace Expl.Itinerary {
          _Event = new TimedEvent(StartTime, EndTime);
       }
 
-      public void Dispose() {
-         _Event = null;
-      }
-
       public int OperatorPrecedence { get { return 1; } }
 
       public TimedEvent Event { get { return _Event; } }

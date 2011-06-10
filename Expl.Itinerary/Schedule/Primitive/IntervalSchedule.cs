@@ -29,9 +29,6 @@ namespace Expl.Itinerary {
          _SyncTime = SynchronizeTime;
       }
 
-      public void Dispose() {
-      }
-
       public int OperatorPrecedence { get { return 1; } }
 
       public override string ToString() {
