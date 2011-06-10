@@ -12,14 +12,43 @@ namespace TDL_Explorer {
 
       private void Form1_Load(object sender, EventArgs e) {
          textBox_StartRange.Text = DateTime.Now.Date.ToString();
-         textBox_EndRange.Text = DateTime.Now.Date.AddDays(1).ToString();
+         textBox_EndRange.Text = DateTime.Now.Date.AddDays(100).ToString();
 
-         // Get examples, populate menu.
+         // Populate Insert Example dropdown menu.
+         PopulateExamplesMenu();
+      }
+
+      private void PopulateExamplesMenu() {
          insertExamplesToolStripDropDownButton.DropDownItems.Clear();
-         var ExampleMenuItems = Examples.GetExampleList()
-            .Select(x => new ToolStripMenuItem(x.Name, null, new EventHandler((a, b) => InsertTDL(x.Schedule.ToString()))));
-         foreach (var item in ExampleMenuItems) {
-            insertExamplesToolStripDropDownButton.DropDownItems.Add(item);
+
+         // Recursive procedure for traversing IExampleItem tree.
+         Action<ToolStripDropDownItem, IExampleItem> funcAddExampleItem = null;
+         funcAddExampleItem = new Action<ToolStripDropDownItem, IExampleItem>((menu, exampleItem) => {
+            ToolStripMenuItem newMenu = null;
+
+            if (exampleItem is ExampleSchedule) {
+               // Add schedule item.
+               var exampleSchedule = (ExampleSchedule)exampleItem;
+               newMenu = new ToolStripMenuItem(exampleSchedule.Name, null,
+                  new EventHandler((a, b) => InsertTDL(exampleSchedule.Schedule.ToString())));
+            }
+            else if (exampleItem is ExampleGroup) {
+               // Add group item.
+               var exampleGroup = (ExampleGroup)exampleItem;
+               newMenu = new ToolStripMenuItem(exampleGroup.Name, null);
+
+               // Recurse into ExampleGroup items to populate the new menu item.
+               foreach (var subItem in exampleGroup.Items) {
+                  funcAddExampleItem(newMenu, subItem);
+               }
+            }
+
+            // Attach the new menu item to the menu.
+            menu.DropDownItems.Add(newMenu);
+         });
+
+         foreach (var item in Examples.GetExampleList()) {
+            funcAddExampleItem(insertExamplesToolStripDropDownButton, item);
          }
       }
 

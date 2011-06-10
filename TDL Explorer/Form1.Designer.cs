@@ -69,7 +69,7 @@ namespace TDL_Explorer {
          // textBox_TDL
          // 
          this.textBox_TDL.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.textBox_TDL.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+         this.textBox_TDL.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this.textBox_TDL.Location = new System.Drawing.Point(0, 25);
          this.textBox_TDL.Multiline = true;
          this.textBox_TDL.Name = "textBox_TDL";
