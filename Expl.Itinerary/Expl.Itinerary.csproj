@@ -48,7 +48,6 @@
     <Compile Include="Schedule\Composite\BoolIntersectionSchedule.cs" />
     <Compile Include="Schedule\Composite\BoolNonIntersectionSchedule.cs" />
     <Compile Include="Schedule\Composite\DifferenceSchedule.cs" />
-    <Compile Include="Schedule\Composite\IntersectionAllSchedule.cs" />
     <Compile Include="Schedule\Composite\IntersectionSchedule.cs" />
     <Compile Include="Schedule\Composite\ListSchedule.cs" />
     <Compile Include="Schedule\Composite\UnionSchedule.cs" />
@@ -56,7 +55,6 @@
     <Compile Include="Schedule\Filter\LastingSchedule.cs" />
     <Compile Include="Schedule\Filter\OffsetSchedule.cs" />
     <Compile Include="Schedule\Filter\RepeatSchedule.cs" />
-    <Compile Include="Schedule\Filter\WeekSchedule.cs" />
     <Compile Include="Schedule\ISchedule.cs" />
     <Compile Include="Schedule\Primitive\CronSchedule.cs" />
     <Compile Include="Schedule\Primitive\DayOfWeekSchedule.cs" />
