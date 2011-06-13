@@ -1,5 +1,6 @@
 Itinerary: Time scheduling toolset for .NET
 Pre-release, 2011-06-06
+GitHub repo: https://github.com/spoulson/Itinerary
 Shawn Poulson, http://explodingcoder.com
 
 1. INTRODUCTION
@@ -14,7 +15,7 @@ Shawn Poulson, http://explodingcoder.com
 * What doesn't Itinerary do?
   - Does not actively run tasks on a schedule.  That's your job.
     For that, check out http://quartznet.sf.net
-  - Does not perform timezone computation.  All date/times are timezone agnostic.
+  - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 * Why use Itinerary?
   - You need to describe complex recurrance patterns and/or arbitrary schedules of date/times.
@@ -36,12 +37,13 @@ Runtime requirements:
 
 3. KNOWN ISSUES
 ========================================
-None reported.
+None reported at time of release.
+See GitHub repo for issue tracking.
 
 4. LICENSING
 ========================================
-Itinerary is an open source project licensed under the Creative Commons Attribution license.
-http://creativecommons.org/licenses/by/3.0/legalcode
+Itinerary is an open source project licensed under the Creative Commons Attribution license:
+http://creativecommons.org/licenses/by/3.0/legalcode.
 
 ANTLR 3.2 http://antlr.org binary tools and .NET runtime are included in the Expl.Itinerary.Parser
 project, allowable under ANTLR's BSD license terms: http://antlr.org/license.html.
