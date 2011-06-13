@@ -4,6 +4,9 @@ namespace Expl.Itinerary {
    /// <summary>
    /// Class encapsulating a timed event.
    /// </summary>
+   /// <remarks>
+   /// TODO: Unit test coverage needed on TimedEvent compare and calculate methods.
+   /// </remarks>
    public class TimedEvent : IComparable<TimedEvent> {
       protected DateTime _StartTime, _EndTime;
 
