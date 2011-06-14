@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDL Explorer", "TDL Explore
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4599C19F-FE55-4892-9A15-501A5F3FC58E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expl.Itinerary.Quartz", "Expl.Itinerary.Quartz\Expl.Itinerary.Quartz.csproj", "{3FC037F6-5329-4BFB-84B8-21C0828DC1FC}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Itinerary.vsmdi
@@ -44,6 +46,10 @@ Global
 		{D9437514-8767-4B34-947A-31473EF92BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9437514-8767-4B34-947A-31473EF92BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9437514-8767-4B34-947A-31473EF92BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC037F6-5329-4BFB-84B8-21C0828DC1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC037F6-5329-4BFB-84B8-21C0828DC1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC037F6-5329-4BFB-84B8-21C0828DC1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC037F6-5329-4BFB-84B8-21C0828DC1FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
