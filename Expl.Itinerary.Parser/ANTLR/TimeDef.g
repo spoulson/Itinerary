@@ -47,7 +47,6 @@ atom returns [ISchedule value]:
    once_p { $value = $once_p.value; } |
    every_p { $value = $every_p.value; } |
    cron_p { $value = $cron_p.value; } |
-   dayofweek_p { $value = $dayofweek_p.value; } |
    void_p { $value = $void_p.value; } |
    paren_p { $value = $paren_p.value; };
 
@@ -69,13 +68,9 @@ cron_p returns [CronSchedule value]: (
    hour=cron_field_p WS+
    day=cron_field_p WS+
    month=cron_field_p WS+
-   dow=cron_field_p
+   dow=dow_cron_field_p
    (WS+ 'lasting' WS+ duration=timespan_p)?
 ) { $value = new CronSchedule($minute.text, $hour.text, $day.text, $month.text, $dow.text, duration==null ? TimeSpan.Zero : $duration.value); };
-
-dayofweek_p returns [DayOfWeekSchedule value]: (
-   'week' WS+ ordinal=intspec_p WS+ dayofweek=intspec_p
-) { $value = new DayOfWeekSchedule($ordinal.text, $dayofweek.text); };
 
 void_p returns [VoidSchedule value]:
    'void' { $value = new VoidSchedule(); };
@@ -208,6 +203,9 @@ milliseconds_p returns [int value]: int_p { $value = int.Parse($int_p.text); };
 
 cron_field_p: cron_term_p (',' cron_term_p)*;
 cron_term_p: '!'? (UINT | '/' | '-' | '*' | '>' | '<')+;
+
+dow_cron_field_p: dow_cron_term_p (',' dow_cron_term_p)*;
+dow_cron_term_p: '!'? (UINT | ALPHA | '/' | '-' | '*' | '>' | '<' | '#')+;
 
 intspec_p: intspec_term_p (',' intspec_term_p)*;
 intspec_term_p: '!'? ( '*' | int_p ( '-' int_p )? ) ( '/' UINT )?;

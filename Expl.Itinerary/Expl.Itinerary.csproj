@@ -57,7 +57,6 @@
     <Compile Include="Schedule\Filter\RepeatSchedule.cs" />
     <Compile Include="Schedule\ISchedule.cs" />
     <Compile Include="Schedule\Primitive\CronSchedule.cs" />
-    <Compile Include="Schedule\Primitive\DayOfWeekSchedule.cs" />
     <Compile Include="Schedule\Primitive\IntervalSchedule.cs" />
     <Compile Include="Schedule\Primitive\OneTimeSchedule.cs" />
     <Compile Include="Schedule\Primitive\VoidSchedule.cs" />

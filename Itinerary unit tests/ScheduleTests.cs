@@ -13,7 +13,7 @@ namespace Expl.Itinerary.Test {
          ScheduleUnitTest[] tests = {
             new ScheduleUnitTest("Test void",
                new VoidSchedule(),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             )
          };
 
@@ -454,326 +454,6 @@ namespace Expl.Itinerary.Test {
       }
 
       [TestMethod]
-      public void DayOfWeekTest() {
-         ScheduleUnitTest[] tests = {
-            new ScheduleUnitTest("Test Mondays",
-               new DayOfWeekSchedule("1"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 8), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 15), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 22), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 29), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test Tuesdays",
-               new DayOfWeekSchedule("2"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 2), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 9), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 16), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 23), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 30), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test Wednesdays",
-               new DayOfWeekSchedule("3"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 3), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 10), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 17), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 24), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test Thursdays",
-               new DayOfWeekSchedule("4"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 4), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 11), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 18), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 25), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test Fridays",
-               new DayOfWeekSchedule("5"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 5), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 12), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 19), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 26), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test Saturdays",
-               new DayOfWeekSchedule("6"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 6), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 13), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 20), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 27), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test Sundays",
-               new DayOfWeekSchedule("0"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 7), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 14), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 21), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 28), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test Weekdays",
-               new DayOfWeekSchedule("1-5"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 2), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 3), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 4), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 5), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 8), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 9), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 10), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 11), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 12), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 15), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 16), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 17), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 18), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 19), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 22), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 23), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 24), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 25), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 26), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 29), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 30), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Test month end boundary",
-               new DayOfWeekSchedule("*"),
-               new DateTime(2008, 9, 29), new DateTime(2008, 10, 3),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 29), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 30), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 10, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 10, 2), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("First Mondays",
-               new DayOfWeekSchedule("1", "1"),
-               new DateTime(2008, 10, 1), new DateTime(2009, 2, 1),
-               new TimedEvent[] {
-                  //new TimedEvent(new DateTime(2008, 9, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 10, 6), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 3), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 12, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2009, 1, 5), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("Third Fridays",
-               new DayOfWeekSchedule("3", "5"),
-               new DateTime(2008, 9, 1), new DateTime(2009, 2, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 19), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 10, 17), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 21), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 12, 19), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2009, 1, 16), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("1st week, month starts on a Monday",
-               new DayOfWeekSchedule("1", "*"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 2), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 3), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 4), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 5), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 6), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 7), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("2nd week, month starts on a Monday",
-               new DayOfWeekSchedule("2", "*"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 8), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 9), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 10), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 11), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 12), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 13), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 14), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("3rd week, month starts on a Monday",
-               new DayOfWeekSchedule("3", "*"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 15), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 16), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 17), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 18), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 19), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 20), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 21), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("4th week, month starts on a Monday",
-               new DayOfWeekSchedule("4", "*"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 22), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 23), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 24), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 25), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 26), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 27), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 28), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("5th week, month starts on a Monday",
-               new DayOfWeekSchedule("5", "*"),
-               new DateTime(2008, 9, 1), new DateTime(2008, 10, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 29), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 9, 30), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("1st week, month starts on a Sunday",
-               new DayOfWeekSchedule("1", "*"),
-               new DateTime(2008, 6, 1), new DateTime(2008, 7, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 6, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 2), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 3), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 4), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 5), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 6), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 7), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("2nd week, month starts on a Sunday",
-               new DayOfWeekSchedule("2", "*"),
-               new DateTime(2008, 6, 1), new DateTime(2008, 7, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 6, 8), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 9), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 10), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 11), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 12), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 13), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 14), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("3rd week, month starts on a Sunday",
-               new DayOfWeekSchedule("3", "*"),
-               new DateTime(2008, 6, 1), new DateTime(2008, 7, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 6, 15), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 16), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 17), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 18), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 19), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 20), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 21), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("4th week, month starts on a Sunday",
-               new DayOfWeekSchedule("4", "*"),
-               new DateTime(2008, 6, 1), new DateTime(2008, 7, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 6, 22), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 23), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 24), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 25), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 26), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 27), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 28), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("5th week, month starts on a Sunday",
-               new DayOfWeekSchedule("5", "*"),
-               new DateTime(2008, 6, 1), new DateTime(2008, 7, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 6, 29), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 6, 30), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("1st week, month starts on a Saturday",
-               new DayOfWeekSchedule("1", "*"),
-               new DateTime(2008, 11, 1), new DateTime(2008, 12, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 11, 1), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 2), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 3), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 4), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 5), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 6), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 7), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("2nd week, month starts on a Saturday",
-               new DayOfWeekSchedule("2", "*"),
-               new DateTime(2008, 11, 1), new DateTime(2008, 12, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 11, 8), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 9), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 10), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 11), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 12), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 13), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 14), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("3rd week, month starts on a Saturday",
-               new DayOfWeekSchedule("3", "*"),
-               new DateTime(2008, 11, 1), new DateTime(2008, 12, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 11, 15), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 16), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 17), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 18), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 19), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 20), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 21), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("4th week, month starts on a Saturday",
-               new DayOfWeekSchedule("4", "*"),
-               new DateTime(2008, 11, 1), new DateTime(2008, 12, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 11, 22), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 23), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 24), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 25), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 26), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 27), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 28), new TimeSpan(1, 0, 0, 0))
-               }
-            ),
-            new ScheduleUnitTest("5th week, month starts on a Saturday",
-               new DayOfWeekSchedule("5", "*"),
-               new DateTime(2008, 11, 1), new DateTime(2008, 12, 1),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 11, 29), new TimeSpan(1, 0, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 11, 30), new TimeSpan(1, 0, 0, 0))
-               }
-            )
-         };
-
-         foreach (var t in tests) t.Run();
-      }
-
-      [TestMethod]
       public void LastingTest() {
          ScheduleUnitTest[] tests = {
             new ScheduleUnitTest("Test one time event",
@@ -792,7 +472,7 @@ namespace Expl.Itinerary.Test {
             new ScheduleUnitTest("Test event no longer within range",
                new LastingSchedule(new TimeSpan(0, 10, 0), new OneTimeSchedule(new DateTime(2008, 9, 9), new TimeSpan(1, 0, 0))),
                new DateTime(2008, 9, 9, 0, 30, 0), new DateTime(2008, 9, 10),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test interval",
                new LastingSchedule(new TimeSpan(1, 0, 0), new IntervalSchedule(new TimeSpan(2, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)),
@@ -820,22 +500,13 @@ namespace Expl.Itinerary.Test {
       [TestMethod]
       public void IndexTest() {
          ScheduleUnitTest[] tests = {
-            new ScheduleUnitTest("Test index #0",
-               new IndexSchedule("0",
-                  new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
-               ),
-               new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 3, 10, 0, 0), new TimeSpan(0, 10, 0))
-               }
-            ),
             new ScheduleUnitTest("Test index #1",
                new IndexSchedule("1",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
                new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 3, 11, 0, 0), new TimeSpan(0, 10, 0))
+                  new TimedEvent(new DateTime(2008, 9, 3, 10, 0, 0), new TimeSpan(0, 10, 0))
                }
             ),
             new ScheduleUnitTest("Test index #2",
@@ -844,18 +515,34 @@ namespace Expl.Itinerary.Test {
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
                new TimedEvent[] {
-                  new TimedEvent(new DateTime(2008, 9, 3, 12, 0, 0), new TimeSpan(0, 10, 0))
+                  new TimedEvent(new DateTime(2008, 9, 3, 11, 0, 0), new TimeSpan(0, 10, 0))
                }
             ),
-            new ScheduleUnitTest("Test index out of range #4",
-               new IndexSchedule("4",
+            new ScheduleUnitTest("Test index #3",
+               new IndexSchedule("3",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
-               new TimedEvent[] { }
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 9, 3, 12, 0, 0), new TimeSpan(0, 10, 0))
+               }
+            ),
+            new ScheduleUnitTest("Test index out of range #0",
+               new IndexSchedule("0",
+                  new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
+               ),
+               new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
+               new TimedEvent[0]
+            ),
+            new ScheduleUnitTest("Test index out of range #5",
+               new IndexSchedule("5",
+                  new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
+               ),
+               new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test multiple indicies",
-               new IndexSchedule("0,1,3",
+               new IndexSchedule("1,2,4",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -866,7 +553,7 @@ namespace Expl.Itinerary.Test {
                }
             ),
             new ScheduleUnitTest("Test index range",
-               new IndexSchedule("1-3",
+               new IndexSchedule("2-4",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -877,7 +564,7 @@ namespace Expl.Itinerary.Test {
                }
             ),
             new ScheduleUnitTest("Test index range and not single",
-               new IndexSchedule("1-3,!2",
+               new IndexSchedule("2-4,!3",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -887,7 +574,7 @@ namespace Expl.Itinerary.Test {
                }
             ),
             new ScheduleUnitTest("Test index range, out of range",
-               new IndexSchedule("1-98",
+               new IndexSchedule("2-99",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -898,7 +585,7 @@ namespace Expl.Itinerary.Test {
                }
             ),
             new ScheduleUnitTest("Test exclusive index",
-               new IndexSchedule("*,!0",
+               new IndexSchedule("*,!1",
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(1, 0, 0), DateTime.MinValue)
                ),
                new DateTime(2008, 9, 3, 10, 0, 0), new DateTime(2008, 9, 3, 14, 0, 0),
@@ -1005,7 +692,7 @@ namespace Expl.Itinerary.Test {
                   0, 
                   new OneTimeSchedule(new DateTime(2008, 9, 2), TimeSpan.Zero)
                ),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test repeat 1",
                new RepeatSchedule(
@@ -1082,14 +769,14 @@ namespace Expl.Itinerary.Test {
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 4, 0, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0))
                ),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test no intersection, reversed",
                new IntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 4, 0, 0), new TimeSpan(1, 0, 0))
                ),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test complete intersection",
                new IntersectionSchedule(
@@ -1273,7 +960,7 @@ namespace Expl.Itinerary.Test {
                new DifferenceSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0))),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test contained intersection",
                new DifferenceSchedule(
@@ -1391,13 +1078,13 @@ namespace Expl.Itinerary.Test {
                new BoolIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 4, 0, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0))),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test no intersection, reversed",
                new BoolIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 4, 0, 0), new TimeSpan(1, 0, 0))),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test complete intersection",
                new BoolIntersectionSchedule(
@@ -1461,13 +1148,13 @@ namespace Expl.Itinerary.Test {
                new BoolNonIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0))),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test partial intersection, reversed",
                new BoolNonIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0))),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test no intersection",
                new BoolNonIntersectionSchedule(
@@ -1489,28 +1176,28 @@ namespace Expl.Itinerary.Test {
                new BoolNonIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0))),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test contained intersection",
                new BoolNonIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 0, 0, 0), new TimeSpan(1, 0, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 10, 45, 0), new TimeSpan(3, 0, 0))
                ),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test contained intersection, reversed",
                new BoolNonIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 10, 45, 0), new TimeSpan(3, 0, 0)),
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 0, 0, 0), new TimeSpan(1, 0, 0, 0))
                ),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test multiple intersections",
                new BoolNonIntersectionSchedule(
                   new OneTimeSchedule(new DateTime(2008, 1, 31, 0, 0, 0), new TimeSpan(6, 0, 0)),
                   new IntervalSchedule(new TimeSpan(1, 0, 0), new TimeSpan(0, 10, 0), DateTime.MinValue)
                ),
-               new TimedEvent[] { }
+               new TimedEvent[0]
             ),
             new ScheduleUnitTest("Test multiple intersections, reversed",
                new BoolNonIntersectionSchedule(
@@ -1547,7 +1234,7 @@ namespace Expl.Itinerary.Test {
       [TestMethod]
       public void ListTest() {
          ScheduleUnitTest[] tests = new ScheduleUnitTest[] {
-            new ScheduleUnitTest("Test empty list", new ListSchedule(), new TimedEvent[] { }),
+            new ScheduleUnitTest("Test empty list", new ListSchedule(), new TimedEvent[0]),
             new ScheduleUnitTest("Test single element",
                new ListSchedule(new OneTimeSchedule(new DateTime(2008, 1, 1, 0, 0, 0), TimeSpan.Zero)),
                new TimedEvent[] {
@@ -1655,7 +1342,6 @@ namespace Expl.Itinerary.Test {
          }
 
          yield return new TimedEvent(DateTime.MaxValue.AddMinutes(-1), TimeSpan.Zero);
-         yield break;
       }
 
       [TestMethod]
@@ -1789,7 +1475,7 @@ namespace Expl.Itinerary.Test {
             ),
             new ScheduleUnitTest("Test President's Day -- 3rd Monday of February",
                new BoolIntersectionSchedule(
-                  new DayOfWeekSchedule("3", "1"),
+                  new CronSchedule("0", "0", "*", "2", "1#3", TimeSpan.FromDays(1)),
                   new UnionSchedule(
                      new CronSchedule("0", "0", "*", "2", "*", new TimeSpan(1, 0, 0, 0)),
                      new VoidSchedule()
@@ -1841,7 +1527,9 @@ namespace Expl.Itinerary.Test {
             }),
             new CronFieldTester("Test *,!>20", new CronField("*,!>20", 0, 59), new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 }),
             new CronFieldTester("Test 1-10,!2-20", new CronField("1-10,!2-20", 0, 59), new int[] { 1 }),
-            new CronFieldTester("Test 1-10,!>0", new CronField("1-10,!>0", 0, 59), new int[] { })
+            new CronFieldTester("Test 1-10,!>0", new CronField("1-10,!>0", 0, 59), new int[0]),
+            new CronFieldTester("Test *#1", new CronField("*#1", 0, 7), new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 1),
+            new CronFieldTester("Test *#3", new CronField("*#3", 0, 7), new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 3)
          };
 
          foreach (CronFieldTester t in crontests) t.Run();
@@ -1850,7 +1538,171 @@ namespace Expl.Itinerary.Test {
       [TestMethod]
       public void CronTest() {
          ScheduleUnitTest[] tests = {
-            new ScheduleUnitTest("Every minute",
+            new ScheduleUnitTest("Monday by name",
+               new CronSchedule("0", "0", "*", "*", "Mon", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Tuesday by name",
+               new CronSchedule("0", "0", "*", "*", "Tue", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 7, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Wednesday by name",
+               new CronSchedule("0", "0", "*", "*", "Wed", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 1, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Thursday by name",
+               new CronSchedule("0", "0", "*", "*", "Thu", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 2, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Friday by name",
+               new CronSchedule("0", "0", "*", "*", "Fri", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 3, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Saturday by name",
+               new CronSchedule("0", "0", "*", "*", "Sat", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 4, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Sunday by name",
+               new CronSchedule("0", "0", "*", "*", "Sun", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 5, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Monday-Friday by name",
+               new CronSchedule("0", "0", "*", "*", "Mon-Fri", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 1, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 2, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 3, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 7, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("First Monday",
+               new CronSchedule("0", "0", "*", "*", "1#1", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Second Saturday",
+               new CronSchedule("0", "0", "*", "*", "6#2", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 11, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Fifth Thursday",
+               new CronSchedule("0", "0", "*", "*", "4#5", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 30, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Fifth Friday (out of range, no matches)",
+               new CronSchedule("0", "0", "*", "*", "5#5", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[0]
+            ),
+            new ScheduleUnitTest("Third weekdays",
+               new CronSchedule("0", "0", "*", "*", "1-5#3", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 15, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 16, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 17, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 20, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 21, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("First Monday and Saturday",
+               new CronSchedule("0", "0", "*", "*", "1,6#1", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 4, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Last Monday - L syntax",
+               new CronSchedule("0", "0", "*", "*", "1#L", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 27, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Last Monday - negative number syntax",
+               new CronSchedule("0", "0", "*", "*", "1#-1", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 27, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Fifth to Last Monday (out of range, no matches)",
+               new CronSchedule("0", "0", "*", "*", "1#-5", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[0]
+            ),
+            new ScheduleUnitTest("Second to Last Monday",
+               new CronSchedule("0", "0", "*", "*", "1#-2", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 20, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Sunday using 0",
+               new CronSchedule("0", "0", "*", "*", "0", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 5, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 12, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 19, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 26, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Sunday using 7",
+               new CronSchedule("0", "0", "*", "*", "7", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 5, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 12, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 19, 0, 0, 0), TimeSpan.Zero),
+                  new TimedEvent(new DateTime(2011, 6, 26, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Second Sunday using 0",
+               new CronSchedule("0", "0", "*", "*", "0#2", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 12, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),
+            new ScheduleUnitTest("Second Sunday using 7",
+               new CronSchedule("0", "0", "*", "*", "7#2", TimeSpan.Zero),
+               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2011, 6, 12, 0, 0, 0), TimeSpan.Zero)
+               }
+            ),            new ScheduleUnitTest("Every minute",
                new CronSchedule("*", "*", "*", "*", "*", TimeSpan.Zero),
                new DateTime(2008, 2, 7, 8, 0, 0), new DateTime(2008, 2, 7, 8, 15, 0),
                new TimedEvent[] {
@@ -1964,16 +1816,22 @@ namespace Expl.Itinerary.Test {
          private string _Name;
          private CronField _Field;
          private IEnumerable<int> _ExpectedValues;
+         private int? _ExpectedOccurranceIndex;
 
-         public CronFieldTester(string Name, CronField Field, IEnumerable<int> ExpectedValues) {
+         public CronFieldTester(string Name, CronField Field, IEnumerable<int> ExpectedValues)
+            : this(Name, Field, ExpectedValues, null) { }
+
+         public CronFieldTester(string Name, CronField Field, IEnumerable<int> ExpectedValues, int? ExpectedOccurranceIndex) {
             _Name = Name;
             _Field = Field;
             _ExpectedValues = ExpectedValues;
+            _ExpectedOccurranceIndex = ExpectedOccurranceIndex;
          }
 
          public void Run() {
             Debug.WriteLine("CronField Test: " + _Name);
             ArrayCompare(_Field.PickList, _ExpectedValues);
+            Assert.AreEqual(_ExpectedOccurranceIndex, _Field.OccurranceIndex);
          }
 
          private void ArrayCompare(IEnumerable A, IEnumerable<int> B) {
@@ -1993,7 +1851,7 @@ namespace Expl.Itinerary.Test {
                   while (enum1.MoveNext()) {
                      Debug.WriteLine("Remaining element: " + enum1.Current.ToString());
                   }
-                  throw new Exception("ArrayCompare failure: mismatch");
+                  Assert.Fail("ArrayCompare failure: mismatch");
                }
             }
 
@@ -2002,14 +1860,14 @@ namespace Expl.Itinerary.Test {
                do {
                   Debug.WriteLine(string.Format("Extra left element: {0:d}", enum1.Current));
                } while (enum1.MoveNext());
-               throw new Exception("ArrayCompare failure: Extra left elements");
+               Assert.Fail("ArrayCompare failure: Extra left elements");
             }
             // If enum2 has more records, note them
             if (enum2more) {
                do {
                   Debug.WriteLine(string.Format("Extra right element: {0:d}", enum2.Current));
                } while (enum2.MoveNext());
-               throw new Exception("ArrayCompare failure: Extra right elements");
+               Assert.Fail("ArrayCompare failure: Extra right elements");
             }
          }
       }

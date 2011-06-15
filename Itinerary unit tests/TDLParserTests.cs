@@ -67,33 +67,6 @@ namespace Expl.Itinerary.Tests {
       }
 
       [TestMethod]
-      public void DayOfWeekScheduleTest() {
-         TDLUnitTest[] tests = {
-            new TDLUnitTest("week * *"),
-            new TDLUnitTest("week 0 *"),
-            new TDLUnitTest("week 1 *"),
-            new TDLUnitTest("week 2 *"),
-            new TDLUnitTest("week 3 *"),
-            new TDLUnitTest("week 4 *"),
-            new TDLUnitTest("week 5 *"),
-            new TDLUnitTest("week 6 *"),
-            new TDLUnitTest("week * 0"),
-            new TDLUnitTest("week * 1"),
-            new TDLUnitTest("week * 2"),
-            new TDLUnitTest("week * 3"),
-            new TDLUnitTest("week * 4"),
-            new TDLUnitTest("week * 5"),
-            new TDLUnitTest("week * 6"),
-            new TDLUnitTest("week 1-3 4-6"),
-            new TDLUnitTest("week */2 1-5/2"),
-            new TDLUnitTest("week 1,3,4 0,2,5"),
-            new TDLUnitTest("week *,!3 *,!2")
-         };
-
-         foreach (var t in tests) t.Run();
-      }
-
-      [TestMethod]
       public void LastingScheduleParseTest() {
          TDLUnitTest[] tests = {
             new TDLUnitTest("2008-09-09 10:37 lasting T10 lasting T20"),

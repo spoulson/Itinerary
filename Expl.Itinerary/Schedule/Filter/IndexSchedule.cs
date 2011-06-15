@@ -5,7 +5,8 @@ using Expl.Auxiliary;
 
 namespace Expl.Itinerary {
    /// <summary>
-   /// Extract events at specified indices
+   /// Extract events at specified indexes.
+   /// Indexes are 1-based.
    /// </summary>
    [Description("Index")]
    public class IndexSchedule : IFilterSchedule {
@@ -35,8 +36,8 @@ namespace Expl.Itinerary {
       }
 
       public IEnumerable<TimedEvent> GetRange(DateTime RangeStart, DateTime RangeEnd) {
-         int Index = 0;
-         IEnumerator<int> IndicesIter = IntSpec.Parse(_IndexSpec).GetEnumerator();
+         int Index = 1;
+         IEnumerator<int> IndicesIter = IntSpec.Parse(_IndexSpec, 1, int.MaxValue).GetEnumerator();
 
          // If no indices, return
          if (!IndicesIter.MoveNext()) yield break;

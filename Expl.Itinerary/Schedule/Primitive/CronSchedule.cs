@@ -37,7 +37,7 @@ namespace Expl.Itinerary {
          _HourLookup = new CronField(HourSpec, 0, 23);
          _DayLookup = new CronField(DaySpec, 1, 31);
          _MonthLookup = new CronField(MonthSpec, 1, 12);
-         _DayOfWeekLookup = new CronField(DayOfWeekSpec, 0, 6);
+         _DayOfWeekLookup = new CronField(DayOfWeekSpec, 0, 6, XlatDOW);
          _Duration = Duration;
       }
 
@@ -70,6 +70,7 @@ namespace Expl.Itinerary {
          for (int Year = IterateStart.Year; Year <= RangeEnd.Year; Year++) {
 
             foreach (int Month in _MonthLookup.PickList.Where(x => MonthStart.HasValue ? x >= MonthStart.Value : true)) {
+               var DOWCounter = new int[] { 0, 0, 0, 0, 0, 0, 0 };
                if (MonthStart.HasValue && Month != MonthStart.Value)
                   MonthStart = DayStart = HourStart = MinuteStart = null;
                   
@@ -79,9 +80,22 @@ namespace Expl.Itinerary {
                   if (DayStart.HasValue && Day != DayStart.Value)
                      DayStart = HourStart = MinuteStart = null;
 
+                  // Compute day of week.
                   int DOW = (int)new DateTime(Year, Month, Day).DayOfWeek;
+
                   // Skip this daBy if DOW doesn't match
                   if (!_DayOfWeekLookup[DOW]) continue;
+                  DOWCounter[DOW]++;
+                  if (_DayOfWeekLookup.OccurranceIndex.HasValue) {
+                     // Check DOW occurance index.
+                     // Handle special case for last occurance (negative range).
+                     int occuranceIndex = _DayOfWeekLookup.OccurranceIndex < 0 ?
+                        // Compute last occurrance index.
+                        ComputeLastDOWOccurance(Year, Month, DOW) + _DayOfWeekLookup.OccurranceIndex.Value + 1 :
+                        _DayOfWeekLookup.OccurranceIndex.Value - 1;
+
+                     if (occuranceIndex != DOWCounter[DOW] - 1) continue;
+                  }
 
                   foreach (int Hour in _HourLookup.PickList.Where(x => HourStart.HasValue ? x >= HourStart.Value : true)) {
                      if (HourStart.HasValue && Hour != HourStart.Value)
@@ -109,27 +123,67 @@ namespace Expl.Itinerary {
 
          yield break;
       }
+
+      /// <summary>
+      /// Compute last occurance index of a day of week in a month.
+      /// </summary>
+      /// <param name="Year"></param>
+      /// <param name="Month"></param>
+      /// <param name="DOW"></param>
+      /// <returns></returns>
+      private int ComputeLastDOWOccurance(int Year, int Month, int DOW) {
+         var A = new DateTime(Year, Month, 1).AddDays(DOW);
+         var B = new DateTime(Year, Month + 1, 1).AddDays(-1);
+         return ((int)A.DayOfWeek + B.Day) / 7 - 1;
+      }
+
+      private static readonly Dictionary<string, string> _XlatDOWLookup = new Dictionary<string, string>() {
+         { "7", "0" },
+         { "sun", "0" },
+         { "mon", "1" },
+         { "tue", "2" },
+         { "wed", "3" },
+         { "thu", "4" },
+         { "fri", "5" },
+         { "sat", "6" }
+      };
+
+      private static string XlatDOW(string value) {
+         var lookupKey = value.ToLower();
+         if (_XlatDOWLookup.ContainsKey(lookupKey))
+            return _XlatDOWLookup[lookupKey];
+
+         return value;
+      }
    }
 
    /// <summary>
    /// Cron numeric field parser.
    /// </summary>
    /// <remarks>
-   /// TODO: Consider migrating numeric parser to IntSpec?
+   /// TODO: Consider migrating parser to ANTLR grammar?  IntSpec syntax?
    /// </remarks>
    public class CronField {
+      public const int LAST_OCCURANCE_INDEX = -1;
       private int _Min, _Max;
+      private Func<string, string> _XlatFunc;
       private string _CronSpec;
       private bool[] _Lookup;
       private List<int> _PickList;
-      private static Regex _RegexStep = new Regex("/(\\d+)$");
-      private static Regex _RegexSingle = new Regex("^\\d+$");
-      private static Regex _RegexRange = new Regex("^(\\d+)-(\\d+)$");
-      private static Regex _RegexMinMaxRange = new Regex("^([<>])(\\d+)$");
+      private int? _OccurranceIndex;
+      private static readonly Regex _RegexStep = new Regex("/(\\w+)$");
+      private static readonly Regex _RegexSingle = new Regex("^\\w+$");
+      private static readonly Regex _RegexRange = new Regex("^(\\w+)-(\\w+)$");
+      private static readonly Regex _RegexMinMaxRange = new Regex("^([<>])(\\w+)$");
 
-      public CronField(string CronSpec, int Min, int Max) {
+      public CronField(string CronSpec, int Min, int Max)
+         : this(CronSpec, Min, Max, x => x) { }
+
+      public CronField(string CronSpec, int Min, int Max, Func<string, string> XlatFunc) {
          _Min = Min;
          _Max = Max;
+         _XlatFunc = XlatFunc;
+         var Length = _Max - Min + 1;
          _Lookup = new bool[Length];
          Array.Clear(_Lookup, 0, Length);
 
@@ -137,31 +191,52 @@ namespace Expl.Itinerary {
          Parse(CronSpec);
       }
 
-      public int Length {
-         get { return _Max - _Min + 1; }
-      }
-
-      public IEnumerable<int> Range {
-         get {
-            for (int i = _Min; i <= _Max; i++) {
-               yield return i;
-            }
-         }
-      }
-
+      /// <summary>
+      /// Get cron field spec string.
+      /// </summary>
       public string CronSpec {
          get { return _CronSpec; }
       }
 
-      public bool this[int Index] {
+      /// <summary>
+      /// Get occurrance match index.  Index is 1-based.
+      /// Index of -1 means last occurance.
+      /// </summary>
+      public int? OccurranceIndex {
+         get { return _OccurranceIndex; }
+      }
+
+      /// <summary>
+      /// Get minimum field value.
+      /// </summary>
+      public int Min {
+         get { return _Min; }
+      }
+
+      /// <summary>
+      /// Get maximum field value.
+      /// </summary>
+      public int Max {
+         get { return _Max; }
+      }
+
+      /// <summary>
+      /// Lookup whether value matches cron field spec.
+      /// </summary>
+      /// <param name="Value"></param>
+      /// <returns></returns>
+      public bool this[int Value] {
          get {
-            if (Index < _Min) throw new ArgumentOutOfRangeException("Index argument is below the minimum");
-            if (Index > _Max) throw new ArgumentOutOfRangeException("Index argument is greater than the maximum");
-            int ArrayIndex = Index - _Min;
+            if (Value < _Min) throw new ArgumentOutOfRangeException("Argument is below the minimum");
+            if (Value > _Max) throw new ArgumentOutOfRangeException("Argument is greater than the maximum");
+            int ArrayIndex = Value - _Min;
             return _Lookup[ArrayIndex];
          }
       }
 
+      /// <summary>
+      /// Get list of matching values in cron field spec.
+      /// </summary>
       public IEnumerable<int> PickList {
          get { return _PickList; }
       }
@@ -171,16 +246,38 @@ namespace Expl.Itinerary {
          _Lookup[ArrayIndex] = Value;
       }
 
+      /// <summary>
+      /// Parse Cron field spec string.
+      /// </summary>
+      /// <param name="Cron"></param>
       private void Parse(string Cron) {
          List<int> TallyList = new List<int>();
          List<int> NotList = new List<int>();
          Match RegMatch;
 
-         foreach (string Arg in Cron.Split(',')) {
-            string Item = Arg;
+         // Parse occurrance index.
+         string[] CronIndexParts = Cron.Split('#');
+         string CronItem = CronIndexParts[0];
+         string IndexArg = CronIndexParts.Skip(1).FirstOrDefault();
+         if (IndexArg == "L") {
+            _OccurranceIndex = LAST_OCCURANCE_INDEX;
+         }
+         else {
+            int OccurranceIndex;
+            if (int.TryParse(IndexArg, out OccurranceIndex)) {
+               _OccurranceIndex = OccurranceIndex;
+            }
+            else {
+               // If unparsable, assume no index.
+               _OccurranceIndex = null;
+            }
+         }
+
+         foreach (string Arg in CronItem.Split(',')) {
+            var Item = Arg;
             List<int> PickList = new List<int>();
-            int Step = 1;
-            bool NotFlag = false;
+            var Step = 1;
+            var NotFlag = false;
 
             // Parse step
             if ((RegMatch = _RegexStep.Match(Item)).Success) {
@@ -196,16 +293,16 @@ namespace Expl.Itinerary {
 
             // Parse single value
             if (_RegexSingle.IsMatch(Item)) {
-               PickList.Add(int.Parse(Item));
+               PickList.Add(int.Parse(_XlatFunc(Item)));
             }
             // Parse wildcard
             else if (Item == "*") {
-               PickList.AddRange(Range);
+               PickList.AddRange(Enumerable.Range(_Min, _Max - _Min + 1));
             }
             // Parse range
             else if ((RegMatch = _RegexRange.Match(Item)).Success) {
-               int RangeStart = int.Parse(RegMatch.Groups[1].Value);
-               int RangeEnd = int.Parse(RegMatch.Groups[2].Value);
+               int RangeStart = int.Parse(_XlatFunc(RegMatch.Groups[1].Value));
+               int RangeEnd = int.Parse(_XlatFunc(RegMatch.Groups[2].Value));
                for (int i = RangeStart; i <= RangeEnd; i++) {
                   PickList.Add(i);
                }
@@ -215,10 +312,10 @@ namespace Expl.Itinerary {
                int RangeStart, RangeEnd;
                if (RegMatch.Groups[1].Value == "<") {
                   RangeStart = _Min;
-                  RangeEnd = int.Parse(RegMatch.Groups[2].Value) - 1;
+                  RangeEnd = int.Parse(_XlatFunc(RegMatch.Groups[2].Value)) - 1;
                }
                else {
-                  RangeStart = int.Parse(RegMatch.Groups[2].Value) + 1;
+                  RangeStart = int.Parse(_XlatFunc(RegMatch.Groups[2].Value)) + 1;
                   RangeEnd = _Max;
                }
                for (int i = RangeStart; i <= RangeEnd; i++) {

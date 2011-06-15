@@ -53,17 +53,17 @@ namespace TDL_Explorer {
             new ExampleGroup("US Holidays") {
                Items = new IExampleItem[] {
                   new ExampleSchedule("New Year's Day", "cron 0 0 1 1 * lasting T1.0:0:0"),
-                  new ExampleSchedule("Martin Luther King, Jr. Day", "week 3 1 && cron 0 0 1 1 * lasting T31.0:0:0"),
-                  new ExampleSchedule("Washington's Birthday", "week 3 1 && (cron 0 0 * 2 * lasting T1.0:0:0 | void)"),
+                  new ExampleSchedule("Martin Luther King, Jr. Day", "cron 0 0 * 1 1#3 lasting T1.0:0:0"),
+                  new ExampleSchedule("Washington's Birthday", "cron 0 0 * 2 1#3 lasting T1.0:0:0"),
                   new ExampleSchedule("Valentine's Day", "cron 0 0 14 2 * lasting T1.0:0:0"),
                   new ExampleSchedule("St. Patrick's Day", "cron 0 0 17 3 * lasting T1.0:0:0"),
-                  new ExampleSchedule("Memorial Day", "cron 0 0 >24 5 1 lasting T1.0:0:0"),
+                  new ExampleSchedule("Memorial Day", "cron 0 0 * 5 1#-1 lasting T1.0:0:0"),
                   new ExampleSchedule("Independence Day", "cron 0 0 4 7 * lasting T1.0:0:0"),
-                  new ExampleSchedule("Labor Day", "week 1 1 && cron 0 0 1 9 * lasting T30.0:0:0"),
-                  new ExampleSchedule("Columbus Day", "week 2 1 && cron 0 0 1 10 * lasting T31.0:0:0"),
+                  new ExampleSchedule("Labor Day", "cron 0 0 * 9 1#1 lasting T1.0:0:0"),
+                  new ExampleSchedule("Columbus Day", "cron 0 0 * 10 1#2 lasting T1.0:0:0"),
                   new ExampleSchedule("Halloween", "cron 0 0 31 10 * lasting T1.0:0:0"),
                   new ExampleSchedule("Veteran's Day", "cron 0 0 11 11 * lasting T1.0:0:0"),
-                  new ExampleSchedule("Thanksgiving Day", "week 4 4 && cron 0 0 1 11 * lasting T30.0:0:0"),
+                  new ExampleSchedule("Thanksgiving Day", "cron 0 0 * 11 4#4 lasting T1.0:0:0"),
                   new ExampleSchedule("Christmas Eve", "cron 0 0 24 12 * lasting T1.0:0:0"),
                   new ExampleSchedule("Christmas Day", "cron 0 0 25 12 * lasting T1.0:0:0"),
                   new ExampleSchedule("New Year's Eve", "cron 0 0 31 12 * lasting T1.0:0:0")
