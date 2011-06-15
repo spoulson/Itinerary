@@ -1,10 +1,12 @@
 Itinerary: Time scheduling toolset for .NET
+===========================================
+
 Pre-release, 2011-06-06
 GitHub repo: https://github.com/spoulson/Itinerary
 Shawn Poulson, http://explodingcoder.com
 
 1. INTRODUCTION
-========================================
+---------------
 * What does Itinerary do?
   - Describe an abstract schedule of timed events as an expression, such as the equivalent of:
     "Every Friday at 5:30 pm for 1 hour, except on holidays."
@@ -28,20 +30,20 @@ Shawn Poulson, http://explodingcoder.com
   - See the example projects and unit tests for reference.
 
 2. SYSTEM REQUIREMENTS
-========================================
-Development requirements:
+----------------------
+### Development requirements:
 Visual Studio 2010
 
-Runtime requirements:
+### Runtime requirements:
 .NET 4.0
 
 3. KNOWN ISSUES
-========================================
+---------------
 None reported at time of release.
 See GitHub repo for issue tracking.
 
 4. LICENSING
-========================================
+------------
 Itinerary is an open source project licensed under the Creative Commons Attribution license:
 http://creativecommons.org/licenses/by/3.0/legalcode.
 
