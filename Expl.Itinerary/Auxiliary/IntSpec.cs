@@ -127,15 +127,17 @@ namespace Expl.Auxiliary {
          }
 
          // Enforce value limits
-         if (RangeStart > MaxValue) RangeStart = MaxValue;
-         else if (RangeStart < MinValue) RangeStart = MinValue;
+         // If completely out of range, no possible matches.
+         if (RangeStart > MaxValue || RangeEnd < MinValue) yield break;
+         // If partially out of range, resize to fit.
+         if (RangeStart < MinValue) RangeStart = MinValue;
          if (RangeEnd > MaxValue) RangeEnd = MaxValue;
-         else if (RangeEnd < MinValue) RangeEnd = MinValue;
 
          // Generate counter
          int Count = Math.Min(RangeEnd - RangeStart, int.MaxValue - 1) + 1;
          IEnumerable<int> Counter = System.Linq.Enumerable.Range(RangeStart, Count);
          int Index = 0;
+
          foreach (int i in Counter.Where(x => (Index++ % Step == 0)))
             yield return i;
 
