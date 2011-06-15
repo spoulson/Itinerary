@@ -1,8 +1,8 @@
 Itinerary: Time scheduling toolset for .NET
 ===========================================
 
-Pre-release, 2011-06-06
-GitHub repo: https://github.com/spoulson/Itinerary
+Pre-release, 2011-06-06  
+GitHub repo: https://github.com/spoulson/Itinerary  
 Shawn Poulson, http://explodingcoder.com
 
 INTRODUCTION
