@@ -28,7 +28,7 @@ namespace Expl.Itinerary.Tests {
       }
 
       [TestMethod]
-      public void OneTimeScheduleTest() {
+      public void OneTimeScheduleTriggerTest() {
          Debug.WriteLine("------- Scheduling Jobs -------------------");
 
          var semHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
@@ -63,7 +63,7 @@ namespace Expl.Itinerary.Tests {
       }
 
       [TestMethod]
-      public void IntervalScheduleTest() {
+      public void IntervalScheduleTriggerTest() {
          Debug.WriteLine("------- Scheduling Jobs -------------------");
 
          var semHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
@@ -100,7 +100,7 @@ namespace Expl.Itinerary.Tests {
       }
 
       [TestMethod]
-      public void MisfireTest() {
+      public void MisfireTriggerTest() {
          Debug.WriteLine("------- Scheduling Jobs -------------------");
 
          var semHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
