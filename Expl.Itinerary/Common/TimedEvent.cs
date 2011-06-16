@@ -293,6 +293,12 @@ namespace Expl.Itinerary {
       public TimedEvent[] Union(TimedEvent B) {
          TimedEvent A = this;
 
+         // Swap if out of order.
+         if (A.StartTime > B.StartTime) {
+            A = B;
+            B = this;
+         }
+
          if (A.Contains(B.StartTime)) {
             //  AAA..
             //    BBB..
@@ -375,6 +381,12 @@ namespace Expl.Itinerary {
       /// <returns>TimedEvent[] array.</returns>
       public TimedEvent[] Difference(TimedEvent B) {
          TimedEvent A = this;
+
+         // Swap if out of order.
+         if (A.StartTime > B.StartTime) {
+            A = B;
+            B = this;
+         }
 
          if (A.Contains(B.StartTime)) {
             //  AAA..

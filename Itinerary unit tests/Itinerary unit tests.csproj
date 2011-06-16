@@ -57,6 +57,7 @@
     <Compile Include="ScheduleTests.cs" />
     <Compile Include="ArrayComparer.cs" />
     <Compile Include="TDLParserTests.cs" />
+    <Compile Include="TimedEventTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Expl.Itinerary.Parser\Expl.Itinerary.Parser.csproj">
