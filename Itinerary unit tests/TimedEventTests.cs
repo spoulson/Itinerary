@@ -468,6 +468,7 @@ namespace Expl.Itinerary.Test {
                e => e != new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 1), TimeSpan.FromMinutes(5)),
                true
             ),
+
             // Greater than.
             new TimedEventBooleanUnitTest("Test greater than, different start time",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
@@ -477,6 +478,16 @@ namespace Expl.Itinerary.Test {
             new TimedEventBooleanUnitTest("Test greater than, different start time (using operator)",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
                e => e > new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test greater than, different duration",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5))) > 0,
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test greater than, different duration (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e > new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
                true
             ),
             new TimedEventBooleanUnitTest("Test greater than, equal events",
@@ -499,6 +510,17 @@ namespace Expl.Itinerary.Test {
                e => e > new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
                false
             ),
+            new TimedEventBooleanUnitTest("Test greater than, different duration reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1))) > 0,
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test greater than, different duration reversed (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
+               e => e > new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               false
+            ),
+
             // Greater than or equal to.
             new TimedEventBooleanUnitTest("Test greater than or equal to, different start time",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
@@ -508,6 +530,16 @@ namespace Expl.Itinerary.Test {
             new TimedEventBooleanUnitTest("Test greater than or equal to, different start time (using operator)",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
                e => e >= new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test greater than or equal to, different duration",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5))) >= 0,
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test greater than or equal to, different duration (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e >= new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
                true
             ),
             new TimedEventBooleanUnitTest("Test greater than or equal to, equal events",
@@ -530,6 +562,17 @@ namespace Expl.Itinerary.Test {
                e => e >= new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
                false
             ),
+            new TimedEventBooleanUnitTest("Test greater than or equal to, different duration reversed ",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1))) >= 0,
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test greater than or equal to, different duration reversed (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
+               e => e >= new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               false
+            ),
+
             // Less than.
             new TimedEventBooleanUnitTest("Test less than, different start time",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
@@ -538,6 +581,16 @@ namespace Expl.Itinerary.Test {
             ),
             new TimedEventBooleanUnitTest("Test less than, different start time (using operator)",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e < new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test less than, different duration",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1))) < 0,
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test less than, different duration (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
                e => e < new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
                true
             ),
@@ -561,6 +614,17 @@ namespace Expl.Itinerary.Test {
                e => e < new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
                false
             ),
+            new TimedEventBooleanUnitTest("Test less than, different duration reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5))) < 0,
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test less than, different duration reversed (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e < new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
+               false
+            ),
+
             // Less than or equal to.
             new TimedEventBooleanUnitTest("Test less than or equal to, different start time",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
@@ -569,6 +633,16 @@ namespace Expl.Itinerary.Test {
             ),
             new TimedEventBooleanUnitTest("Test less than or equal to, different start time (using operator)",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e <= new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test less than or equal to, different duration",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1))) <= 0,
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test less than or equal to, different duration (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
                e => e <= new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
                true
             ),
@@ -590,6 +664,16 @@ namespace Expl.Itinerary.Test {
             new TimedEventBooleanUnitTest("Test less than or equal to, reversed (using operator)",
                new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
                e => e <= new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test less than or equal to, different duration reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e.CompareTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5))) <= 0,
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test less than or equal to, different duration reversed (using operator)",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromHours(1)),
+               e => e <= new TimedEvent(new DateTime(2011, 6, 16, 7, 34, 0), TimeSpan.FromMinutes(5)),
                false
             )
          };
