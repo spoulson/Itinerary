@@ -34,7 +34,7 @@ SYSTEM REQUIREMENTS
 -------------------
 
 ### Development requirements:
-Visual Studio 2010
+Visual Studio 2010 (Professional edition or better required for unit test execution)
 
 ### Runtime requirements:
 .NET 4.0
