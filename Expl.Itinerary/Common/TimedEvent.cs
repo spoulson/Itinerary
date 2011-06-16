@@ -4,11 +4,13 @@ namespace Expl.Itinerary {
    /// <summary>
    /// Class encapsulating a timed event.
    /// </summary>
-   /// <remarks>
-   /// TODO: Unit test coverage needed on TimedEvent compare and calculate methods.
-   /// </remarks>
    public class TimedEvent : IComparable<TimedEvent> {
       protected DateTime _StartTime, _EndTime;
+
+      /// <summary>
+      /// Actual maximum DateTime value TimedEvent can process.
+      /// </summary>
+      public static readonly DateTime MaxDateTime = StripTicks(DateTime.MaxValue);
 
       /// <summary>
       /// Constructor.
@@ -270,7 +272,7 @@ namespace Expl.Itinerary {
       /// </summary>
       /// <param name="B">TimedEvent to compare.</param>
       /// <returns>True if TimedEvents are adjacent.</returns>
-      public bool AdjacentTo(TimedEvent B) {
+      public bool IsAdjacentTo(TimedEvent B) {
          TimedEvent A = this;
          return A.EndTime == B.StartTime || B.EndTime == A.StartTime;
       }
@@ -459,12 +461,12 @@ namespace Expl.Itinerary {
       /// </summary>
       /// <returns>TimedEvent[] array.</returns>
       public TimedEvent[] Negate() {
-         if (StartTime > DateTime.MinValue && EndTime < DateTime.MaxValue)
+         if (StartTime > DateTime.MinValue && EndTime < MaxDateTime)
             return new TimedEvent[] { new TimedEvent(DateTime.MinValue, StartTime), new TimedEvent(EndTime, DateTime.MaxValue) };
          else if (StartTime > DateTime.MinValue)
             return new TimedEvent[] { new TimedEvent(DateTime.MinValue, StartTime) };
-         else if (EndTime < DateTime.MaxValue)
-            return new TimedEvent[] { new TimedEvent(EndTime, DateTime.MaxValue) };
+         else if (EndTime < MaxDateTime)
+            return new TimedEvent[] { new TimedEvent(EndTime, MaxDateTime) };
          else
             return new TimedEvent[] { };
       }

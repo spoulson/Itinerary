@@ -681,9 +681,205 @@ namespace Expl.Itinerary.Test {
          foreach (var t in tests) t.Run();
       }
 
-      // TODO: Coverage required for: Contains, AdjacentTo, Negate
+      [TestMethod]
+      public void ContainsTest() {
+         TimedEventBooleanUnitTest[] tests = {
+            new TimedEventBooleanUnitTest("Test equality",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(e.StartTime, e.EndTime)),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 30), TimeSpan.FromMinutes(10))),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 30), TimeSpan.FromMinutes(10)),
+               e => e.Contains(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same start time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromMinutes(10))),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same start time reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromMinutes(10)),
+               e => e.Contains(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same end time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 50), TimeSpan.FromMinutes(10))),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same end time reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 50), TimeSpan.FromMinutes(10)),
+               e => e.Contains(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having later end time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(e.StartTime.AddMinutes(30), e.EndTime.AddHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having same start time but later end time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(e.StartTime, e.EndTime.AddHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having earlier start time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(e.StartTime.AddHours(-1), e.EndTime.AddMinutes(-30))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having same end time but earlier start time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(e.StartTime.AddHours(-1), e.EndTime)),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test adjacent left",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(e.StartTime.AddHours(-1), e.StartTime)),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test adjacent right",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.Contains(new TimedEvent(e.EndTime, e.EndTime.AddHours(1))),
+               false
+            )
+         };
 
-      public class TimedEventUnitTest {
+         foreach (var t in tests) t.Run();
+      }
+
+      [TestMethod]
+      public void IsAdjacentToTest() {
+         TimedEventBooleanUnitTest[] tests = {
+            new TimedEventBooleanUnitTest("Test equality",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(e.StartTime, e.EndTime)),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test adjacent left",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(e.StartTime.AddHours(-1), e.StartTime)),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test adjacent right",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(e.EndTime, e.EndTime.AddHours(1))),
+               true
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 30), TimeSpan.FromMinutes(10))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 30), TimeSpan.FromMinutes(10)),
+               e => e.IsAdjacentTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same start time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromMinutes(10))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same start time reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromMinutes(10)),
+               e => e.IsAdjacentTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same end time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 50), TimeSpan.FromMinutes(10))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A contains smaller B, same end time reversed",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 50), TimeSpan.FromMinutes(10)),
+               e => e.IsAdjacentTo(new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having later end time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(e.StartTime.AddMinutes(30), e.EndTime.AddHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having same start time but later end time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(e.StartTime, e.EndTime.AddHours(1))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having earlier start time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(e.StartTime.AddHours(-1), e.EndTime.AddMinutes(-30))),
+               false
+            ),
+            new TimedEventBooleanUnitTest("Test A partially contains B, B having same end time but earlier start time",
+               new TimedEvent(new DateTime(2011, 6, 16, 7, 27, 0), TimeSpan.FromHours(1)),
+               e => e.IsAdjacentTo(new TimedEvent(e.StartTime.AddHours(-1), e.EndTime)),
+               false
+            )
+         };
+
+         foreach (var t in tests) t.Run();
+      }
+
+      [TestMethod]
+      public void NegateTest() {
+         TimedEventUnitTest[] tests = {
+            new TimedEventUnitTest("Test negate",
+               new TimedEvent(new DateTime(2008, 1, 31, 7, 0, 0), TimeSpan.FromHours(1)),
+               e => e.Negate(),
+               new[] {
+                  new TimedEvent(DateTime.MinValue, new DateTime(2008, 1, 31, 7, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 1, 31, 8, 0, 0), TimedEvent.MaxDateTime)
+               }
+            ),
+            new TimedEventUnitTest("Test negate, no duration",
+               new TimedEvent(new DateTime(2008, 1, 31, 7, 0, 0), TimeSpan.Zero),
+               e => e.Negate(),
+               new[] {
+                  new TimedEvent(DateTime.MinValue, new DateTime(2008, 1, 31, 7, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 1, 31, 7, 0, 0), TimedEvent.MaxDateTime)
+               }
+            ),
+            new TimedEventUnitTest("Test negate DateTime.MinValue",
+               new TimedEvent(DateTime.MinValue, TimeSpan.FromHours(1)),
+               e => e.Negate(),
+               new[] {
+                  new TimedEvent(DateTime.MinValue.AddHours(1), TimedEvent.MaxDateTime)
+               }
+            ),
+            new TimedEventUnitTest("Test negate DateTime.MinValue, no duration",
+               new TimedEvent(DateTime.MinValue, TimeSpan.Zero),
+               e => e.Negate(),
+               new[] {
+                  new TimedEvent(DateTime.MinValue, TimedEvent.MaxDateTime)
+               }
+            ),
+            new TimedEventUnitTest("Test negate DateTime.MaxValue",
+               new TimedEvent(DateTime.MaxValue.AddHours(-1), TimeSpan.FromHours(1)),
+               e => e.Negate(),
+               new[] {
+                  new TimedEvent(DateTime.MinValue, TimedEvent.MaxDateTime.AddHours(-1))
+               }
+            ),
+            new TimedEventUnitTest("Test negate DateTime.MaxValue, no duration",
+               new TimedEvent(DateTime.MaxValue, TimeSpan.Zero),
+               e => e.Negate(),
+               new[] {
+                  new TimedEvent(DateTime.MinValue, TimedEvent.MaxDateTime)
+               }
+            ),
+         };
+
+         foreach (var t in tests) t.Run();
+      }
+
+      private class TimedEventUnitTest {
          private string _Name;
          private TimedEvent _Event;
          private Func<TimedEvent, IEnumerable<TimedEvent>> _TimedEventFunc;
@@ -709,7 +905,7 @@ namespace Expl.Itinerary.Test {
          }
       }
 
-      public class TimedEventBooleanUnitTest {
+      private class TimedEventBooleanUnitTest {
          private string _Name;
          private TimedEvent _Event;
          private Func<TimedEvent, bool> _TimedEventFunc;

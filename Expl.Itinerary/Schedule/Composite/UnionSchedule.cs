@@ -95,7 +95,7 @@ namespace Expl.Itinerary {
                // Load up MatchEvent
                MatchEvent = A;
             }
-            else if (MatchEvent.Intersects(A) || MatchEvent.AdjacentTo(A)) {
+            else if (MatchEvent.Intersects(A) || MatchEvent.IsAdjacentTo(A)) {
                // Compute union and move on
                MatchEvent = MatchEvent.Union(A)[0];
             }
