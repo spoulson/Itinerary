@@ -18,7 +18,8 @@ namespace Expl.Auxiliary {
    /// Index values much be greater than zero.
    /// Throw exception on invalid format or number range.
    /// 
-   /// TODO: Consider converting to ANTLR parser?
+   /// TODO: Consider converting IntSpec parser to ANTLR parser?
+   /// TODO: Unit tests for IntSpec.
    /// </remarks>
    public static class IntSpec {
       private static readonly Regex _RegexStep = new Regex("/(-?\\d+)$");
@@ -80,7 +81,7 @@ namespace Expl.Auxiliary {
                   // Combine with previously defined enumeration and removal duplicates
                   EnumChain = new[] { EnumChain, ParseTerm(IntSpec, MinValue, MaxValue) }
                      .SequenceFlatten<int>((a, b) => a.CompareTo(b))
-                     .SequenceDistinct((a, b) => a.CompareTo(b));
+                     .Distinct();
                }
             }
          }

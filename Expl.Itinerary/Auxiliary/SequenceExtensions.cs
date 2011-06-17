@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Collections;
 
 namespace Expl.Auxiliary.Sequence {
    /// <summary>
@@ -17,7 +17,7 @@ namespace Expl.Auxiliary.Sequence {
       /// <returns>Result sequence.</returns>
       public static IEnumerable<T> SequenceFlatten<T>(this IEnumerable<T>[] inputSequences, Comparison<T> comparer) {
          return new SequenceSetFlatten<T>(inputSequences, comparer);
-      }
+         }
 
       /// <summary>
       /// Flatten multiple sequences into a single sequence, preserving order.
@@ -27,41 +27,6 @@ namespace Expl.Auxiliary.Sequence {
       /// <returns>Result sequence.</returns>
       public static IEnumerable<T> SequenceFlatten<T>(this IEnumerable<T>[] inputSequences) where T : IComparable<T> {
          return new SequenceSetFlatten<T>(inputSequences, (x, y) => x.CompareTo(y));
-      }
-
-      /// <summary>
-      /// Get distinct values from sequence.
-      /// </summary>
-      /// <typeparam name="T">Enumerated type.</typeparam>
-      /// <param name="sequence">Input sequence.</param>
-      /// <param name="comparer">Delegate to compare two input objects; like IComparer.CompareTo.</param>
-      /// <returns>Result sequence.</returns>
-      [Obsolete("Use Enumerable.Distinct() instead.")]
-      public static IEnumerable<T> SequenceDistinct<T>(this IEnumerable<T> sequence, Comparison<T> comparer) {
-         SpyEnumerator<T> sequence2 = sequence.GetSpyEnumerator();
-
-         if (sequence2.MoveNext()) yield return sequence2.Current;
-         else yield break;
-
-         while (sequence2.HasMore) {
-            if (comparer(sequence2.Current, sequence2.Peek) != 0) {
-               yield return sequence2.Peek;
-            }
-            sequence2.MoveNext();
-         }
-
-         yield break;
-      }
-
-      /// <summary>
-      /// Get distinct values from sequence.
-      /// </summary>
-      /// <typeparam name="T">Enumerated type which implements IComparable.</typeparam>
-      /// <param name="sequence">Input sequence.</param>
-      /// <returns>Result sequence.</returns>
-      [Obsolete("Use Enumerable.Distinct() instead.")]
-      public static IEnumerable<T> SequenceDistinct<T>(this IEnumerable<T> sequence) where T : IComparable<T> {
-         return SequenceDistinct(sequence, (x, y) => x.CompareTo(y));
       }
 
       /// <summary>

@@ -1497,39 +1497,40 @@ namespace Expl.Itinerary.Test {
       [TestMethod]
       public void CronFieldTest() {
          CronFieldTester[] crontests = {
-            new CronFieldTester("Test *", new CronField("*", 0, 59), new int[] {
+            new CronFieldTester("Test *", new CronField("*", 0, 59), new[] {
                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 
             }),
-            new CronFieldTester("Test */2", new CronField("*/2", 0, 59), new int[] {
+            new CronFieldTester("Test */2", new CronField("*/2", 0, 59), new[] {
                0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58
             }),
-            new CronFieldTester("Test 0", new CronField("0", 0, 59), new int[] { 0 }),
-            new CronFieldTester("Test 1", new CronField("1", 0, 59), new int[] { 1 }),
-            new CronFieldTester("Test 59", new CronField("59", 0, 59), new int[] { 59 }),
-            new CronFieldTester("Test 0-10", new CronField("0-10", 0, 59), new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }),
-            new CronFieldTester("Test 0-10/2", new CronField("0-10/2", 0, 59), new int[] { 0, 2, 4, 6, 8, 10 }),
-            new CronFieldTester("Test 1-11/2", new CronField("1-11/2", 0, 59), new int[] { 1, 3, 5, 7, 9, 11 }),
-            new CronFieldTester("Test */3", new CronField("*/3", 0, 59), new int[] { 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57 }),
-            new CronFieldTester("Test 0-10/3", new CronField("0-10/3", 0, 59), new int[] { 0, 3, 6, 9 }),
-            new CronFieldTester("Test 1,2,3", new CronField("1,2,3", 0, 59), new int[] { 1, 2, 3}),
-            new CronFieldTester("Test 0-10,15", new CronField("0-10,15", 0, 59), new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15 }),
-            new CronFieldTester("Test 0-10,5", new CronField("0-10,5", 0, 59), new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }),
-            new CronFieldTester("Test *,!7", new CronField("*,!7", 0, 59), new int[] {
+            new CronFieldTester("Test 0", new CronField("0", 0, 59), new[] { 0 }),
+            new CronFieldTester("Test 1", new CronField("1", 0, 59), new[] { 1 }),
+            new CronFieldTester("Test 59", new CronField("59", 0, 59), new[] { 59 }),
+            new CronFieldTester("Test 0-10", new CronField("0-10", 0, 59), new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }),
+            new CronFieldTester("Test 0-10/2", new CronField("0-10/2", 0, 59), new[] { 0, 2, 4, 6, 8, 10 }),
+            new CronFieldTester("Test 1-11/2", new CronField("1-11/2", 0, 59), new[] { 1, 3, 5, 7, 9, 11 }),
+            new CronFieldTester("Test */3", new CronField("*/3", 0, 59), new[] { 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57 }),
+            new CronFieldTester("Test 0-10/3", new CronField("0-10/3", 0, 59), new[] { 0, 3, 6, 9 }),
+            new CronFieldTester("Test 1,2,3", new CronField("1,2,3", 0, 59), new[] { 1, 2, 3}),
+            new CronFieldTester("Test 0-10,15", new CronField("0-10,15", 0, 59), new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15 }),
+            new CronFieldTester("Test 0-10,5", new CronField("0-10,5", 0, 59), new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }),
+            new CronFieldTester("Test *,!7", new CronField("*,!7", 0, 59), new[] {
                0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 
             }),
-            new CronFieldTester("Test 0-10,!7", new CronField("0-10,!7", 0, 59), new int[] { 0, 1, 2, 3, 4, 5, 6, 8, 9, 10 }),
-            new CronFieldTester("Test >45", new CronField(">45", 0, 59), new int[] { 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 }),
-            new CronFieldTester("Test <15", new CronField("<15", 0, 59), new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 }),
-            new CronFieldTester("Test *,!20-50", new CronField("*,!20-50", 0, 59), new int[] {
+            new CronFieldTester("Test 0-10,!7", new CronField("0-10,!7", 0, 59), new[] { 0, 1, 2, 3, 4, 5, 6, 8, 9, 10 }),
+            new CronFieldTester("Test >45", new CronField(">45", 0, 59), new[] { 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 }),
+            new CronFieldTester("Test <15", new CronField("<15", 0, 59), new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 }),
+            new CronFieldTester("Test *,!20-50", new CronField("*,!20-50", 0, 59), new[] {
                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 51, 52, 53, 54, 55, 56, 57, 58, 59
             }),
-            new CronFieldTester("Test *,!>20", new CronField("*,!>20", 0, 59), new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 }),
-            new CronFieldTester("Test 1-10,!2-20", new CronField("1-10,!2-20", 0, 59), new int[] { 1 }),
+            new CronFieldTester("Test *,!>20", new CronField("*,!>20", 0, 59), new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 }),
+            new CronFieldTester("Test 1-10,!2-20", new CronField("1-10,!2-20", 0, 59), new[] { 1 }),
             new CronFieldTester("Test 1-10,!>0", new CronField("1-10,!>0", 0, 59), new int[0]),
-            new CronFieldTester("Test *#1", new CronField("*#1", 0, 7), new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 1),
-            new CronFieldTester("Test *#3", new CronField("*#3", 0, 7), new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 3)
+            new CronFieldTester("Test *#1", new CronField("*#1", 0, 7), new[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 1),
+            new CronFieldTester("Test *#3", new CronField("*#3", 0, 7), new[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 3),
+            new CronFieldTester("Test duplicates", new CronField("1,2,3,1,2,3", 0, 59), new[] { 1, 2, 3 })
          };
 
          foreach (CronFieldTester t in crontests) t.Run();
