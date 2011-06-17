@@ -303,18 +303,18 @@ namespace Expl.Itinerary {
                if (B.EndTime > A.EndTime) {
                   // AAAA
                   //   BBBB
-                  return new TimedEvent[] { new TimedEvent(A.StartTime, B.EndTime) };
+                  return new[] { new TimedEvent(A.StartTime, B.EndTime) };
                }
                else {
                   // AAAA
                   //   BB
-                  return new TimedEvent[] { A };
+                  return new[] { A };
                }
             }
             else {
                // AAAA  AAAA
                // BBBB  BBBBBB
-               return new TimedEvent[] { B };
+               return new[] { B };
             }
          }
          else if (A.Contains(B.EndTime)) {
@@ -326,36 +326,36 @@ namespace Expl.Itinerary {
                if (B.EndTime < A.EndTime) {
                   //   AAAA
                   // BBBB
-                  return new TimedEvent[] { new TimedEvent(B.StartTime, A.EndTime) };
+                  return new[] { new TimedEvent(B.StartTime, A.EndTime) };
                }
                else {
                   //   AAAA
                   // BBBBBB
-                  return new TimedEvent[] { B };
+                  return new[] { B };
                }
             }
             else {
                // AAAA
                // BB
-               return new TimedEvent[] { A };
+               return new[] { A };
             }
          }
          else if (B.Contains(A.StartTime)) {
             //  AA
             // BBBB
-            return new TimedEvent[] { B };
+            return new[] { B };
          }
          else if (A.EndTime == B.StartTime) {
             // AAAABBBB
-            return new TimedEvent[] { new TimedEvent(A.StartTime, B.EndTime) };
+            return new[] { new TimedEvent(A.StartTime, B.EndTime) };
          }
          else if (B.EndTime == A.StartTime) {
             // BBBBAAAA
-            return new TimedEvent[] { new TimedEvent(B.StartTime, A.EndTime) };
+            return new[] { new TimedEvent(B.StartTime, A.EndTime) };
          }
 
          // No intersection
-         return new TimedEvent[] { A, B };
+         return new[] { A, B };
       }
 
       /// <summary>
@@ -392,28 +392,28 @@ namespace Expl.Itinerary {
                if (B.EndTime > A.EndTime) {
                   // AAAA
                   //   BBBB
-                  return new TimedEvent[] { new TimedEvent(A.StartTime, B.StartTime), new TimedEvent(A.EndTime, B.EndTime) };
+                  return new[] { new TimedEvent(A.StartTime, B.StartTime), new TimedEvent(A.EndTime, B.EndTime) };
                }
                else if (B.EndTime < A.EndTime) {
                   // AAAA
                   //  BB
-                  return new TimedEvent[] { new TimedEvent(A.StartTime, B.StartTime), new TimedEvent(B.EndTime, A.EndTime) };
+                  return new[] { new TimedEvent(A.StartTime, B.StartTime), new TimedEvent(B.EndTime, A.EndTime) };
                }
                else {
                   // AAAA
                   //   BB
-                  return new TimedEvent[] { new TimedEvent(A.StartTime, B.StartTime) };
+                  return new[] { new TimedEvent(A.StartTime, B.StartTime) };
                }
             }
             else if (B.EndTime > A.EndTime) {
                // AAAA
                // BBBBBB
-               return new TimedEvent[] { new TimedEvent(A.EndTime, B.EndTime) };
+               return new[] { new TimedEvent(A.EndTime, B.EndTime) };
             }
             else {
                // AAAA
                // BBBB
-               return new TimedEvent[] { };
+               return new TimedEvent[0];
             }
          }
          else if (A.Contains(B.EndTime)) {
@@ -425,28 +425,28 @@ namespace Expl.Itinerary {
                if (B.EndTime < A.EndTime) {
                   //   AAAA
                   // BBBB
-                  return new TimedEvent[] { new TimedEvent(B.StartTime, A.StartTime), new TimedEvent(B.EndTime, A.EndTime) };
+                  return new[] { new TimedEvent(B.StartTime, A.StartTime), new TimedEvent(B.EndTime, A.EndTime) };
                }
                else {
                   //   AAAA
                   // BBBBBB
-                  return new TimedEvent[] { new TimedEvent(B.StartTime, A.StartTime) };
+                  return new[] { new TimedEvent(B.StartTime, A.StartTime) };
                }
             }
             else {
                // AAAA
                // BB
-               return new TimedEvent[] { new TimedEvent(B.EndTime, A.EndTime) };
+               return new[] { new TimedEvent(B.EndTime, A.EndTime) };
             }
          }
          else if (B.Contains(A.StartTime)) {
             //  AA
             // BBBB
-            return new TimedEvent[] { new TimedEvent(B.StartTime, A.StartTime), new TimedEvent(A.EndTime, B.EndTime) };
+            return new[] { new TimedEvent(B.StartTime, A.StartTime), new TimedEvent(A.EndTime, B.EndTime) };
          }
 
          // No intersection
-         return new TimedEvent[] { A, B };
+         return new[] { A, B };
       }
 
       /// <summary>
@@ -455,13 +455,13 @@ namespace Expl.Itinerary {
       /// <returns>TimedEvent[] array.</returns>
       public TimedEvent[] Negate() {
          if (StartTime > DateTime.MinValue && EndTime < DateTime.MaxValue)
-            return new TimedEvent[] { new TimedEvent(DateTime.MinValue, StartTime), new TimedEvent(EndTime, DateTime.MaxValue) };
+            return new[] { new TimedEvent(DateTime.MinValue, StartTime), new TimedEvent(EndTime, DateTime.MaxValue) };
          else if (StartTime > DateTime.MinValue)
-            return new TimedEvent[] { new TimedEvent(DateTime.MinValue, StartTime) };
+            return new[] { new TimedEvent(DateTime.MinValue, StartTime) };
          else if (EndTime < DateTime.MaxValue)
-            return new TimedEvent[] { new TimedEvent(EndTime, DateTime.MaxValue) };
+            return new[] { new TimedEvent(EndTime, DateTime.MaxValue) };
          else
-            return new TimedEvent[] { };
+            return new TimedEvent[0];
       }
 
       #endregion

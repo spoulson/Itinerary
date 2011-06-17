@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Expl.Itinerary {
    /// <summary>
-   /// Void schedule
+   /// Void schedule.
    /// </summary>
    public class VoidSchedule : IPrimitiveSchedule {
       public int OperatorPrecedence { get { return 1; } }

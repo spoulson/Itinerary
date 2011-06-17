@@ -7,22 +7,22 @@ namespace Expl.Itinerary {
    /// Schedule at regular intervals.
    /// </summary>
    public class IntervalSchedule : IPrimitiveSchedule {
-      protected TimeSpan _Interval;
-      protected TimeSpan _Duration;
-      protected DateTime _SyncTime;
+      private TimeSpan _Interval;
+      private TimeSpan _Duration;
+      private DateTime _SyncTime;
 
       /// <summary>
-      /// Default constructor
+      /// Default constructor.
       /// </summary>
       public IntervalSchedule()
          : this(TimeSpan.Zero, TimeSpan.Zero, DateTime.MinValue) { }
 
       /// <summary>
-      /// Constructor for events at a regular interval
+      /// Constructor for events at a regular interval.
       /// </summary>
-      /// <param name="Interval">Time interval</param>
-      /// <param name="Duration">Duration of event</param>
-      /// <param name="SynchronizeTime">Synchronize to time</param>
+      /// <param name="Interval">Time interval.</param>
+      /// <param name="Duration">Duration of event.</param>
+      /// <param name="SynchronizeTime">Synchronize to time.</param>
       public IntervalSchedule(TimeSpan Interval, TimeSpan Duration, DateTime SynchronizeTime) {
          _Interval = Interval;
          _Duration = Duration;
@@ -44,7 +44,6 @@ namespace Expl.Itinerary {
             sb.Append(ItineraryConvert.ToString(_Duration));
          }
          return sb.ToString();
-         //return string.Format("every {0} since {1} lasting {2}", ItineraryConvert.ToString(_Interval), ItineraryConvert.ToString(_SyncTime), ItineraryConvert.ToString(_Duration));
       }
 
       public IEnumerable<TimedEvent> GetRange(DateTime RangeStart, DateTime RangeEnd) {
@@ -87,10 +86,10 @@ namespace Expl.Itinerary {
       }
 
       /// <summary>
-      /// Synchronize time to set interval and sync time
+      /// Synchronize time to set interval and sync time.
       /// </summary>
-      /// <param name="dt">Date/time to synchronize</param>
-      /// <returns>Synchronized date/time</returns>
+      /// <param name="dt">Date/time to synchronize.</param>
+      /// <returns>Synchronized date/time.</returns>
       private DateTime SynchronizeTime(DateTime dt) {
          /*
           * Test cases for synchronize time algorithm:

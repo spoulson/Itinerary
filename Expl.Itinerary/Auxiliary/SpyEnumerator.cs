@@ -6,6 +6,9 @@ namespace Expl.Auxiliary {
    /// <summary>
    /// Wraps IEnumerator to provide single element lookahead.
    /// </summary>
+   /// <remarks>
+   /// TODO: Review whether SpyEnumerator can be eliminated in favor of framework functionality.
+   /// </remarks>
    /// <typeparam name="T">Enumerated type.</typeparam>
    public class SpyEnumerator<T> : IEnumerator<T> {
       IEnumerator<T> _Iterator;

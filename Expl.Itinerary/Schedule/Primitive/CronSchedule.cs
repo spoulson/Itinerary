@@ -10,28 +10,42 @@ namespace Expl.Itinerary {
    /// Cron schedule.
    /// </summary>
    public class CronSchedule : IPrimitiveSchedule {
-      protected CronField _MinuteLookup;
-      protected CronField _HourLookup;
-      protected CronField _DayLookup;
-      protected CronField _MonthLookup;
-      protected CronField _DayOfWeekLookup;
-      protected TimeSpan _Duration;
+      /// <summary>
+      /// Translation table for day of week field.
+      /// </summary>
+      private static readonly Dictionary<string, string> _XlatDOWLookup = new Dictionary<string, string>() {
+         { "7", "0" },
+         { "sun", "0" },
+         { "mon", "1" },
+         { "tue", "2" },
+         { "wed", "3" },
+         { "thu", "4" },
+         { "fri", "5" },
+         { "sat", "6" }
+      };
+
+      private CronField _MinuteLookup;
+      private CronField _HourLookup;
+      private CronField _DayLookup;
+      private CronField _MonthLookup;
+      private CronField _DayOfWeekLookup;
+      private TimeSpan _Duration;
 
       /// <summary>
-      /// Default constructor
+      /// Default constructor.
       /// </summary>
       public CronSchedule()
          : this("*", "*", "*", "*", "*", TimeSpan.Zero) { }
 
       /// <summary>
-      /// Constructor for cron specification of event intervals
+      /// Constructor for cron specification of event intervals.
       /// </summary>
-      /// <param name="MinuteSpec">Minute spec</param>
-      /// <param name="HourSpec">Hour spec</param>
-      /// <param name="DaySpec">Day spec</param>
-      /// <param name="MonthSpec">Month spec</param>
-      /// <param name="DayOfWeekSpec">Day of week spec</param>
-      /// <param name="Duration">Duration of event</param>
+      /// <param name="MinuteSpec">Minute spec.</param>
+      /// <param name="HourSpec">Hour spec.</param>
+      /// <param name="DaySpec">Day spec.</param>
+      /// <param name="MonthSpec">Month spec.</param>
+      /// <param name="DayOfWeekSpec">Day of week spec.</param>
+      /// <param name="Duration">Duration of event.</param>
       public CronSchedule(string MinuteSpec, string HourSpec, string DaySpec, string MonthSpec, string DayOfWeekSpec, TimeSpan Duration) {
          _MinuteLookup = new CronField(MinuteSpec, 0, 59);
          _HourLookup = new CronField(HourSpec, 0, 23);
@@ -137,17 +151,11 @@ namespace Expl.Itinerary {
          return ((int)A.DayOfWeek + B.Day) / 7 - 1;
       }
 
-      private static readonly Dictionary<string, string> _XlatDOWLookup = new Dictionary<string, string>() {
-         { "7", "0" },
-         { "sun", "0" },
-         { "mon", "1" },
-         { "tue", "2" },
-         { "wed", "3" },
-         { "thu", "4" },
-         { "fri", "5" },
-         { "sat", "6" }
-      };
-
+      /// <summary>
+      /// Translation function for day of week tokens.
+      /// </summary>
+      /// <param name="value"></param>
+      /// <returns></returns>
       private static string XlatDOW(string value) {
          var lookupKey = value.ToLower();
          if (_XlatDOWLookup.ContainsKey(lookupKey))

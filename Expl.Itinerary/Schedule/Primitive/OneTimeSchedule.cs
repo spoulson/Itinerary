@@ -7,25 +7,25 @@ namespace Expl.Itinerary {
    /// Schedule once at a set time.
    /// </summary>
    public class OneTimeSchedule : IPrimitiveSchedule {
-      protected TimedEvent _Event;
+      private TimedEvent _Event;
 
       /// <summary>
-      /// Default constructor
+      /// Default constructor.
       /// </summary>
       public OneTimeSchedule()
          : this(DateTime.MinValue, TimeSpan.Zero) { }
 
       /// <summary>
-      /// Constructor for event with a start time and duration
+      /// Constructor for event with a start time and duration.
       /// </summary>
-      /// <param name="EventTime">Date/time of event</param>
-      /// <param name="Duration">Duration of event</param>
+      /// <param name="EventTime">Date/time of event.</param>
+      /// <param name="Duration">Duration of event.</param>
       public OneTimeSchedule(DateTime StartTime, TimeSpan Duration) {
          _Event = new TimedEvent(StartTime, Duration);
       }
 
       /// <summary>
-      /// Constructor for event with a start and end time
+      /// Constructor for event with a start and end time.
       /// </summary>
       /// <param name="StartTime"></param>
       /// <param name="EndTime"></param>
@@ -46,7 +46,6 @@ namespace Expl.Itinerary {
             sb.Append(ItineraryConvert.ToString(Duration));
          }
          return sb.ToString();
-         //return string.Format("{0} lasting {1}", ItineraryConvert.ToString(_Event.StartTime), ItineraryConvert.ToString(_Event.Duration));
       }
 
       public IEnumerable<TimedEvent> GetRange(DateTime RangeStart, DateTime RangeEnd) {
