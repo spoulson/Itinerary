@@ -5,20 +5,20 @@ using System.ComponentModel;
 namespace Expl.Itinerary {
    [Description("Offset")]
    public class OffsetSchedule : IFilterSchedule {
-      protected ISchedule _Schedule;
-      protected TimeSpan _OffsetTime;
+      private ISchedule _Schedule;
+      private TimeSpan _OffsetTime;
 
       /// <summary>
-      /// Default constructor
+      /// Default constructor.
       /// </summary>
       public OffsetSchedule()
          : this(TimeSpan.Zero, new VoidSchedule()) { }
 
       /// <summary>
-      /// Constructor
+      /// Constructor.
       /// </summary>
-      /// <param name="OffsetTime">TimeSpan of offset</param>
-      /// <param name="Schedule">Schedule to filter</param>
+      /// <param name="OffsetTime">TimeSpan of offset.</param>
+      /// <param name="Schedule">Schedule to filter.</param>
       public OffsetSchedule(TimeSpan OffsetTime, ISchedule Schedule) {
          _OffsetTime = OffsetTime;
          _Schedule = Schedule;

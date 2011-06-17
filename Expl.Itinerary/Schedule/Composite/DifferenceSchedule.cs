@@ -7,34 +7,34 @@ using Expl.Auxiliary;
 
 namespace Expl.Itinerary {
    /// <summary>
-   /// Difference
+   /// Difference.
    /// Non-intersecting schedules collection of two or more ISchedule objects where event times do not overlap.
    /// (****[..)****]
-   /// Generate difference of two datetime spans
+   /// Generate difference of two datetime spans.
    /// </summary>
    [Description("Difference")]
    public class DifferenceSchedule : ICompositeSchedule {
-      protected ListSchedule _Schedule;
+      private ListSchedule _Schedule;
 
       /// <summary>
-      /// Default constructor for empty list
+      /// Default constructor for empty list.
       /// </summary>
       public DifferenceSchedule()
          : this(new VoidSchedule(), new VoidSchedule()) { }
 
       /// <summary>
-      /// Constructor for two schedules
+      /// Constructor for two schedules.
       /// </summary>
-      /// <param name="ScheduleA">Schedule A</param>
-      /// <param name="ScheduleB">Schedule B</param>
+      /// <param name="ScheduleA">Schedule A.</param>
+      /// <param name="ScheduleB">Schedule B.</param>
       public DifferenceSchedule(ISchedule ScheduleA, ISchedule ScheduleB) {
          _Schedule = new ListSchedule(ScheduleA, ScheduleB);
       }
 
       /// <summary>
-      /// Constructor for many schedules
+      /// Constructor for many schedules.
       /// </summary>
-      /// <param name="List">Enumerable list of ISchedule objects</param>
+      /// <param name="List">Enumerable list of ISchedule objects.</param>
       public DifferenceSchedule(IEnumerable<ISchedule> List) {
          _Schedule = new ListSchedule(List);
       }

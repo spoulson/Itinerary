@@ -10,8 +10,8 @@ namespace Expl.Itinerary {
    /// </summary>
    [Description("Index")]
    public class IndexSchedule : IFilterSchedule {
-      protected string _IndexSpec;
-      protected ISchedule _Schedule;
+      private string _IndexSpec;
+      private ISchedule _Schedule;
 
       public IndexSchedule() : this("1", new VoidSchedule()) { }
 

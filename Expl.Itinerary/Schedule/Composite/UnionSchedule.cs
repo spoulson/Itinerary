@@ -7,40 +7,40 @@ using Expl.Auxiliary;
 
 namespace Expl.Itinerary {
    /// <summary>
-   /// Union collection of ISchedule objects
+   /// Union collection of ISchedule objects.
    /// </summary>
    [Description("Union")]
    public class UnionSchedule : ICompositeSchedule {
-      protected ListSchedule _Schedule;
+      private ListSchedule _Schedule;
 
       /// <summary>
-      /// Constructor for empty list
+      /// Constructor for empty list.
       /// </summary>
       public UnionSchedule() {
          _Schedule = new ListSchedule();
       }
 
       /// <summary>
-      /// Constructor for single schedule
+      /// Constructor for single schedule.
       /// </summary>
-      /// <param name="A">Schedule</param>
+      /// <param name="A">Schedule.</param>
       public UnionSchedule(ISchedule A) {
          _Schedule = new ListSchedule(A);
       }
 
       /// <summary>
-      /// Constructor for two schedules
+      /// Constructor for two schedules.
       /// </summary>
-      /// <param name="A">Schedule A</param>
-      /// <param name="B">Schedule B</param>
+      /// <param name="A">Schedule A.</param>
+      /// <param name="B">Schedule B.</param>
       public UnionSchedule(ISchedule A, ISchedule B) {
          _Schedule = new ListSchedule(A, B);
       }
 
       /// <summary>
-      /// Constructor for many schedules
+      /// Constructor for many schedules.
       /// </summary>
-      /// <param name="List"></param>
+      /// <param name="List">Enumerable list of ISchedule objects.</param>
       public UnionSchedule(IEnumerable<ISchedule> List) {
          _Schedule = new ListSchedule(List);
       }

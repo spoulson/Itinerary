@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Expl.Auxiliary.Sequence;
-using System;
 
 namespace Expl.Auxiliary {
    /// <summary>

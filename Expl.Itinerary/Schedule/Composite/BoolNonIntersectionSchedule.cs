@@ -8,29 +8,30 @@ namespace Expl.Itinerary {
    /// </summary>
    [Description("Boolean Non-Intersection")]
    public class BoolNonIntersectionSchedule : ICompositeSchedule {
-      protected ISchedule _ScheduleA, _ScheduleB;
+      private ISchedule _ScheduleA;
+      private ISchedule _ScheduleB;
 
       /// <summary>
-      /// Default constructor
+      /// Default constructor.
       /// </summary>
       public BoolNonIntersectionSchedule()
          : this(new VoidSchedule(), new VoidSchedule()) { }
 
       /// <summary>
-      /// Constructor
+      /// Constructor.
       /// </summary>
-      /// <param name="ScheduleA">Schedule A</param>
-      /// <param name="ScheduleB">Schedule B</param>
+      /// <param name="ScheduleA">Schedule A.</param>
+      /// <param name="ScheduleB">Schedule B.</param>
       public BoolNonIntersectionSchedule(ISchedule ScheduleA, ISchedule ScheduleB) {
          _ScheduleA = ScheduleA;
          _ScheduleB = ScheduleB;
       }
 
       /// <summary>
-      /// Constructor for schedule list
-      /// <remarks>Will only enumerate the first two elements from the list</remarks>
+      /// Constructor for schedule list.
+      /// <remarks>Will only enumerate the first two elements from the list.</remarks>
       /// </summary>
-      /// <param name="List">Enumerable list of ISchedule objects</param>
+      /// <param name="List">Enumerable list of ISchedule objects.</param>
       public BoolNonIntersectionSchedule(IEnumerable<ISchedule> List) {
          var Iter = List.GetEnumerator();
          if (Iter.MoveNext()) {

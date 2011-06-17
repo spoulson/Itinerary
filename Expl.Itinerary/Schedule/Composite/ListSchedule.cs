@@ -7,33 +7,33 @@ using Expl.Auxiliary;
 
 namespace Expl.Itinerary {
    /// <summary>
-   /// Union collection of ISchedule objects
+   /// Union collection of ISchedule objects.
    /// </summary>
    [Description("List")]
    public class ListSchedule : ICompositeSchedule {
-      protected List<ISchedule> _Schedules;
+      private List<ISchedule> _Schedules;
 
       /// <summary>
-      /// Constructor for empty list
+      /// Constructor for empty list.
       /// </summary>
       public ListSchedule() {
          _Schedules = new List<ISchedule>();
       }
 
       /// <summary>
-      /// Constructor for single element in list
+      /// Constructor for single element in list.
       /// </summary>
-      /// <param name="A">Schedule</param>
+      /// <param name="A">Schedule.</param>
       public ListSchedule(ISchedule A) {
          _Schedules = new List<ISchedule>();
          _Schedules.Add(A);
       }
 
       /// <summary>
-      /// Constructor for two elements in list
+      /// Constructor for two elements in list.
       /// </summary>
-      /// <param name="A">Schedule A</param>
-      /// <param name="B">Schedule B</param>
+      /// <param name="A">Schedule A.</param>
+      /// <param name="B">Schedule B.</param>
       public ListSchedule(ISchedule A, ISchedule B) {
          _Schedules = new List<ISchedule>();
          _Schedules.Add(A);
@@ -41,9 +41,9 @@ namespace Expl.Itinerary {
       }
 
       /// <summary>
-      /// Constructor for many elements in list
+      /// Constructor for many elements in list.
       /// </summary>
-      /// <param name="List">Enumerable list of ISchedule objects</param>
+      /// <param name="List">Enumerable list of ISchedule objects.</param>
       public ListSchedule(IEnumerable<ISchedule> List) {
          _Schedules = new List<ISchedule>(List);
       }
@@ -65,7 +65,7 @@ namespace Expl.Itinerary {
       }
 
       /// <summary>
-      /// Get ISchedules collection
+      /// Get ISchedules collection.
       /// </summary>
       public IEnumerable<ISchedule> Schedules {
          get { return _Schedules; }
@@ -91,7 +91,7 @@ namespace Expl.Itinerary {
          // Batch loop
          List<TimedEvent> BatchEvents = new List<TimedEvent>(MaxScheduleBufferSize * _Schedules.Count);
          for (; ; ) {
-            Nullable<DateTime> BatchEndTime = null;
+            DateTime? BatchEndTime = null;
 
             // Peek first events from each iterator
             foreach (SpyEnumerator<TimedEvent> Iterator in Iterators) {
@@ -139,7 +139,6 @@ namespace Expl.Itinerary {
             // Clear event list and repeat
             BatchEvents.RemoveRange(0, BatchIdx);
          }
-
 
          yield break;
       }

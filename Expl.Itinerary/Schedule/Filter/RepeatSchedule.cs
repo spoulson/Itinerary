@@ -9,16 +9,16 @@ namespace Expl.Itinerary {
       protected int _RepeatCount;
 
       /// <summary>
-      /// Default constructor
+      /// Default constructor.
       /// </summary>
       public RepeatSchedule()
          : this(1, new VoidSchedule()) { }
 
       /// <summary>
-      /// Constructor
+      /// Constructor.
       /// </summary>
-      /// <param name="RepeatCount">Repeat count</param>
-      /// <param name="Schedule">Schedule to repeat</param>
+      /// <param name="RepeatCount">Repeat count.</param>
+      /// <param name="Schedule">Schedule to repeat.</param>
       public RepeatSchedule(int RepeatCount, ISchedule Schedule) {
          _Schedule = Schedule;
          _RepeatCount = RepeatCount;

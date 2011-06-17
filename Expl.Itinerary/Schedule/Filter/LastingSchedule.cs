@@ -4,12 +4,12 @@ using System.ComponentModel;
 
 namespace Expl.Itinerary {
    /// <summary>
-   /// Overrides event duration
+   /// Overrides event duration.
    /// </summary>
    [Description("Lasting")]
    public class LastingSchedule : IFilterSchedule {
-      protected TimeSpan _Duration;
-      protected ISchedule _Schedule;
+      private TimeSpan _Duration;
+      private ISchedule _Schedule;
 
       public LastingSchedule() : this(TimeSpan.Zero, new VoidSchedule()) { }
 

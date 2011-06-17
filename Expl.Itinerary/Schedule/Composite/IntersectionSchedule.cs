@@ -9,38 +9,39 @@ namespace Expl.Itinerary {
    /// </summary>
    [Description("Intersection")]
    public class IntersectionSchedule : ICompositeSchedule {
-      protected ISchedule _ScheduleA, _ScheduleB;
+      private ISchedule _ScheduleA;
+      private ISchedule _ScheduleB;
 
       /// <summary>
       /// Optimization threshold for iterating two schedules.
       /// If iterating more than SeekCountThreshold and no intersection has been found, 
       /// the iterator will be rebuilt starting at the next predicted match.
       /// </summary>
-      protected const int SeekCountThreshold = 2;
+      private const int SeekCountThreshold = 2;
 
       /// <summary>
-      /// Default constructor
-      /// <remarks>Uses Void schedules as parameters</remarks>
+      /// Default constructor.
+      /// <remarks>Uses Void schedules as parameters.</remarks>
       /// </summary>
       public IntersectionSchedule()
          : this(new VoidSchedule(), new VoidSchedule()) { }
 
       /// <summary>
-      /// Constructor
+      /// Constructor.
       /// </summary>
-      /// <param name="ScheduleA">Schedule A</param>
-      /// <param name="ScheduleB">Schedule B</param>
+      /// <param name="ScheduleA">Schedule A.</param>
+      /// <param name="ScheduleB">Schedule B.</param>
       public IntersectionSchedule(ISchedule ScheduleA, ISchedule ScheduleB) {
          _ScheduleA = ScheduleA;
          _ScheduleB = ScheduleB;
       }
 
       /// <summary>
-      /// Constructor for schedule list
+      /// Constructor for schedule list.
       /// <remarks>Will only enumerate the first two items from the list.
       /// If the list contains less than 2 items, default to Void schedules.</remarks>
       /// </summary>
-      /// <param name="List">Enumerable list of ISchedule objects</param>
+      /// <param name="List">Enumerable list of ISchedule objects.</param>
       public IntersectionSchedule(IEnumerable<ISchedule> List) {
          var Iter = List.GetEnumerator();
          if (Iter.MoveNext()) {

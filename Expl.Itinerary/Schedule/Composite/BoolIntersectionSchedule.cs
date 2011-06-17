@@ -4,33 +4,34 @@ using System.ComponentModel;
 
 namespace Expl.Itinerary {
    /// <summary>
-   /// Intersecting schedules collection of two ISchedule objects where event A intersects with event B
+   /// Intersecting schedules collection of two ISchedule objects where event A intersects with event B.
    /// </summary>
    [Description("Boolean Intersection")]
    public class BoolIntersectionSchedule : ICompositeSchedule {
-      protected ISchedule _ScheduleA, _ScheduleB;
+      private ISchedule _ScheduleA;
+      private ISchedule _ScheduleB;
 
       /// <summary>
-      /// Default contructor
+      /// Default contructor.
       /// </summary>
       public BoolIntersectionSchedule()
          : this(new VoidSchedule(), new VoidSchedule()) { }
 
       /// <summary>
-      /// Constructor
+      /// Constructor.
       /// </summary>
-      /// <param name="ScheduleA">Schedule A</param>
-      /// <param name="ScheduleB">Schedule B</param>
+      /// <param name="ScheduleA">Schedule A.</param>
+      /// <param name="ScheduleB">Schedule B.</param>
       public BoolIntersectionSchedule(ISchedule ScheduleA, ISchedule ScheduleB) {
          _ScheduleA = ScheduleA;
          _ScheduleB = ScheduleB;
       }
 
       /// <summary>
-      /// Constructor for schedule list
-      /// <remarks>Will only enumerate the first two items from the list</remarks>
+      /// Constructor for schedule list.
+      /// <remarks>Will only enumerate the first two items from the list.</remarks>
       /// </summary>
-      /// <param name="List">Enumerable list of ISchedule objects</param>
+      /// <param name="List">Enumerable list of ISchedule objects.</param>
       public BoolIntersectionSchedule(IEnumerable<ISchedule> List) {
          var Iter = List.GetEnumerator();
          if (Iter.MoveNext()) {
