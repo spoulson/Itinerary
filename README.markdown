@@ -1,5 +1,5 @@
-Itinerary: Time scheduling toolset for .NET
-===========================================
+Itinerary: Lazy time scheduling toolset for .NET
+================================================
 
 Pre-release, 2011-06-06  
 GitHub repo: https://github.com/spoulson/Itinerary  
@@ -10,8 +10,8 @@ INTRODUCTION
 
 * What does Itinerary do?
   - Describe an abstract schedule of timed events as an expression, such as the equivalent of:
-    "Every Friday at 5:30 pm for 1 hour, except on holidays."
-  - Perform complex boolean set math on timed events.
+    "Every Friday at 5:30 pm for 1 hour, except on holidays, for any given time range."
+  - Perform complex boolean set math on recurring patterns of timed events.
   - Parse expressions to a schedule object and enumerate timed events.
   - Change schedule properties programmatically, then reserialize back to expression.
 
@@ -21,23 +21,23 @@ INTRODUCTION
   - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 * Why use Itinerary?
-  - You need to describe complex recurrance patterns and/or arbitrary schedules of date/times.
+  - You need to logically describe complex recurrance patterns and/or arbitrary schedules of date/times.
   - You need to store this description (not the events) for later reuse.
 
 * How do I get started using Itinerary?
   - Learn TDL expression syntax from the Itinerary Wiki on GitHub:
     https://github.com/spoulson/Itinerary/wiki
   - Test TDL expression syntax using the TDL Explorer tool in the solution.
-  - See the example projects and unit tests for reference.
 
 SYSTEM REQUIREMENTS
 -------------------
 
 ### Development requirements:
-Visual Studio 2010 (Professional edition or better required for unit test execution)
+Visual Studio 2010 (Professional edition or better required for unit test execution).
+Java SE JDK (optional, required to compile ANTLR grammar).
 
 ### Runtime requirements:
-.NET 4.0
+.NET 4.0.
 
 KNOWN ISSUES
 ------------
