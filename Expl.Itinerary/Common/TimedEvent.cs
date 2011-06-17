@@ -6,20 +6,14 @@ namespace Expl.Itinerary {
    /// </summary>
    public class TimedEvent : IComparable<TimedEvent> {
       protected DateTime _StartTime, _EndTime;
-
-      /// <summary>
-      /// Actual maximum DateTime value TimedEvent can process.
-      /// </summary>
-      public static readonly DateTime MaxDateTime = StripTicks(DateTime.MaxValue);
-
       /// <summary>
       /// Constructor.
       /// </summary>
       /// <param name="StartTime">Event start time.</param>
       /// <param name="EndTime">Event end time.</param>
       public TimedEvent(DateTime StartTime, DateTime EndTime) {
-         _StartTime = StripTicks(StartTime);
-         _EndTime = StripTicks(EndTime);
+         _StartTime = StartTime;
+         _EndTime = EndTime;
       }
 
       /// <summary>
@@ -28,7 +22,7 @@ namespace Expl.Itinerary {
       /// <param name="StartTime">Event start time.</param>
       /// <param name="Duration">Event duration.</param>
       public TimedEvent(DateTime StartTime, TimeSpan Duration) {
-         _StartTime = StripTicks(StartTime);
+         _StartTime = StartTime;
          _EndTime = _StartTime + Duration;
       }
 
@@ -250,7 +244,6 @@ namespace Expl.Itinerary {
       /// <returns>True if DateTime is contained.</returns>
       public bool Contains(DateTime B) {
          TimedEvent A = this;
-         B = StripTicks(B);
          return B >= A.StartTime && B < A.EndTime;
       }
 
@@ -461,24 +454,14 @@ namespace Expl.Itinerary {
       /// </summary>
       /// <returns>TimedEvent[] array.</returns>
       public TimedEvent[] Negate() {
-         if (StartTime > DateTime.MinValue && EndTime < MaxDateTime)
+         if (StartTime > DateTime.MinValue && EndTime < DateTime.MaxValue)
             return new TimedEvent[] { new TimedEvent(DateTime.MinValue, StartTime), new TimedEvent(EndTime, DateTime.MaxValue) };
          else if (StartTime > DateTime.MinValue)
             return new TimedEvent[] { new TimedEvent(DateTime.MinValue, StartTime) };
-         else if (EndTime < MaxDateTime)
-            return new TimedEvent[] { new TimedEvent(EndTime, MaxDateTime) };
+         else if (EndTime < DateTime.MaxValue)
+            return new TimedEvent[] { new TimedEvent(EndTime, DateTime.MaxValue) };
          else
             return new TimedEvent[] { };
-      }
-
-      /// <summary>
-      /// Remove ticks from date/time value.
-      /// SQL Server 2005's DateTime type does not store anything smaller than a millisecond.
-      /// </summary>
-      /// <param name="dt">DateTime input.</param>
-      /// <returns>Modified DateTime value.</returns>
-      private static DateTime StripTicks(DateTime dt) {
-         return dt.AddTicks(-(dt.Ticks % 10000));
       }
 
       #endregion

@@ -835,7 +835,7 @@ namespace Expl.Itinerary.Test {
                e => e.Negate(),
                new[] {
                   new TimedEvent(DateTime.MinValue, new DateTime(2008, 1, 31, 7, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 1, 31, 8, 0, 0), TimedEvent.MaxDateTime)
+                  new TimedEvent(new DateTime(2008, 1, 31, 8, 0, 0), DateTime.MaxValue)
                }
             ),
             new TimedEventUnitTest("Test negate, no duration",
@@ -843,35 +843,35 @@ namespace Expl.Itinerary.Test {
                e => e.Negate(),
                new[] {
                   new TimedEvent(DateTime.MinValue, new DateTime(2008, 1, 31, 7, 0, 0)),
-                  new TimedEvent(new DateTime(2008, 1, 31, 7, 0, 0), TimedEvent.MaxDateTime)
+                  new TimedEvent(new DateTime(2008, 1, 31, 7, 0, 0), DateTime.MaxValue)
                }
             ),
             new TimedEventUnitTest("Test negate DateTime.MinValue",
                new TimedEvent(DateTime.MinValue, TimeSpan.FromHours(1)),
                e => e.Negate(),
                new[] {
-                  new TimedEvent(DateTime.MinValue.AddHours(1), TimedEvent.MaxDateTime)
+                  new TimedEvent(DateTime.MinValue.AddHours(1), DateTime.MaxValue)
                }
             ),
             new TimedEventUnitTest("Test negate DateTime.MinValue, no duration",
                new TimedEvent(DateTime.MinValue, TimeSpan.Zero),
                e => e.Negate(),
                new[] {
-                  new TimedEvent(DateTime.MinValue, TimedEvent.MaxDateTime)
+                  new TimedEvent(DateTime.MinValue, DateTime.MaxValue)
                }
             ),
             new TimedEventUnitTest("Test negate DateTime.MaxValue",
                new TimedEvent(DateTime.MaxValue.AddHours(-1), TimeSpan.FromHours(1)),
                e => e.Negate(),
                new[] {
-                  new TimedEvent(DateTime.MinValue, TimedEvent.MaxDateTime.AddHours(-1))
+                  new TimedEvent(DateTime.MinValue, DateTime.MaxValue.AddHours(-1))
                }
             ),
             new TimedEventUnitTest("Test negate DateTime.MaxValue, no duration",
                new TimedEvent(DateTime.MaxValue, TimeSpan.Zero),
                e => e.Negate(),
                new[] {
-                  new TimedEvent(DateTime.MinValue, TimedEvent.MaxDateTime)
+                  new TimedEvent(DateTime.MinValue, DateTime.MaxValue)
                }
             ),
          };
