@@ -9,8 +9,8 @@ INTRODUCTION
 ------------
 
 * What does Itinerary do?
-  - Describe an abstract schedule of timed events as an expression, such as the equivalent of:
-    "Every Friday at 5:30 pm for 1 hour, except on holidays, for any given time range."
+  - Describe an abstract schedule of timed events as an expression, such as the equivalent of:  
+    "Every Friday at 5:30 pm for 1 hour, except on holidays", for any given time range.
   - Perform complex boolean set math on recurring patterns of timed events.
   - Parse expressions to a schedule object and enumerate timed events.
   - Change schedule properties programmatically, then reserialize back to expression.
