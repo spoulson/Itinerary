@@ -21,6 +21,7 @@ INTRODUCTION
   - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 * Why use Itinerary?
+  - You need to integrate a cron-like scheduler into your app.
   - You need to logically describe complex recurrance patterns and/or arbitrary schedules of date/times.
   - You need to store this description (not the events) for later reuse.
 
@@ -33,11 +34,11 @@ SYSTEM REQUIREMENTS
 -------------------
 
 ### Development requirements:
-Visual Studio 2010 (Professional edition or better required for unit test execution).
-Java SE JDK (optional, required to compile ANTLR grammar).
+* Visual Studio 2010 (Professional edition or better required for unit test execution).
+* Java SE JDK (optional, required to compile ANTLR grammar).
 
 ### Runtime requirements:
-.NET 4.0.
+* .NET 4.0 Framework.
 
 KNOWN ISSUES
 ------------
