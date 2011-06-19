@@ -38,7 +38,7 @@ Visual Studio 2010 (Professional edition or better required for unit test execut
 Java SE JDK (optional, required to compile ANTLR grammar).
 
 ### Runtime requirements:
-.NET 4.0.
+.NET 4.0 Framework.
 
 KNOWN ISSUES
 ------------
