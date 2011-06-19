@@ -27,6 +27,7 @@ prog returns [ISchedule value]:
 //  Boolean Not Intersection !&&
 //  Boolean Intersection &&
 //  Union |
+//  Subtraction -
 //  Difference !&
 //  Intersection &
 // Filters: (all same precedence)
@@ -126,12 +127,20 @@ union_p returns [ISchedule value]
    List<ISchedule> Schedules = new List<ISchedule>();
 }
 : (
-   A=difference_p { Schedules.Add($A.value); }
-   (WS* '|' WS* B=difference_p { Schedules.Add($B.value); } )*
+   A=subtract_p { Schedules.Add($A.value); }
+   (WS* '|' WS* B=subtract_p { Schedules.Add($B.value); } )*
 ) { $value = Schedules.Count > 1 ? new UnionSchedule(Schedules) : Schedules[0]; };
+
+// Subtract
+// (****[..)....]
+// Generate subtraction of two datetime spans
+subtract_p returns [ISchedule value]:
+   A=difference_p { $value = $A.value; }
+   (WS* '-' WS* B=difference_p { $value = new SubtractSchedule($value, $B.value); } )*;
 
 // Difference
 // (****[..)****]
+// Like XORing A and B
 // Generate difference of two datetime spans
 difference_p returns [ISchedule value]
 @init {

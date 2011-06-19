@@ -57,7 +57,7 @@ namespace Expl.Itinerary {
          get { return int.MaxValue; }
       }
 
-      public int OperatorPrecedence { get { return 40; } }
+      public int OperatorPrecedence { get { return 50; } }
 
       public override string ToString() {
          // If schedule precedence is > this schedule, add parens

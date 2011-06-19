@@ -48,7 +48,7 @@ namespace Expl.Itinerary {
          _Schedules = new List<ISchedule>(List);
       }
 
-      public int OperatorPrecedence { get { return 70; } }
+      public int OperatorPrecedence { get { return 80; } }
 
       public override string ToString() {
          // If schedule precedence is > this schedule, add parens

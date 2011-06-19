@@ -46,7 +46,7 @@ namespace Expl.Itinerary {
          }
       }
 
-      public int OperatorPrecedence { get { return 50; } }
+      public int OperatorPrecedence { get { return 60; } }
 
       public override string ToString() {
          string SchedStringA = _ScheduleA.OperatorPrecedence > this.OperatorPrecedence ? "(" + _ScheduleA.ToString() + ")" : _ScheduleA.ToString();

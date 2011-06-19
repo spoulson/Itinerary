@@ -47,6 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule\Composite\BoolIntersectionSchedule.cs" />
     <Compile Include="Schedule\Composite\BoolNonIntersectionSchedule.cs" />
+    <Compile Include="Schedule\Composite\SubtractSchedule.cs" />
     <Compile Include="Schedule\Composite\DifferenceSchedule.cs" />
     <Compile Include="Schedule\Composite\IntersectionSchedule.cs" />
     <Compile Include="Schedule\Composite\ListSchedule.cs" />

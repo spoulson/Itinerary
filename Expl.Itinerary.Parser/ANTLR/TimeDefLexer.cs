@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 TimeDef.g 2011-06-15 15:24:06
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 TimeDef.g 2011-06-19 12:45:12
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 168, 219
@@ -655,10 +655,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = UINT;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:218:5: ( ( '0' .. '9' )+ )
-            // TimeDef.g:218:7: ( '0' .. '9' )+
+            // TimeDef.g:227:5: ( ( '0' .. '9' )+ )
+            // TimeDef.g:227:7: ( '0' .. '9' )+
             {
-            	// TimeDef.g:218:7: ( '0' .. '9' )+
+            	// TimeDef.g:227:7: ( '0' .. '9' )+
             	int cnt1 = 0;
             	do 
             	{
@@ -674,7 +674,7 @@ public partial class TimeDefLexer : Lexer {
             	    switch (alt1) 
             		{
             			case 1 :
-            			    // TimeDef.g:218:8: '0' .. '9'
+            			    // TimeDef.g:227:8: '0' .. '9'
             			    {
             			    	MatchRange('0','9'); 
 
@@ -712,10 +712,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = ALPHA;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:219:6: ( ( 'A' .. 'Z' | 'a' .. 'z' )+ )
-            // TimeDef.g:219:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
+            // TimeDef.g:228:6: ( ( 'A' .. 'Z' | 'a' .. 'z' )+ )
+            // TimeDef.g:228:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
             {
-            	// TimeDef.g:219:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
+            	// TimeDef.g:228:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
             	int cnt2 = 0;
             	do 
             	{
@@ -779,10 +779,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = WS;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:220:3: ( ( ' ' | '\\t' | '\\r\\n' | '\\r' )+ )
-            // TimeDef.g:220:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
+            // TimeDef.g:229:3: ( ( ' ' | '\\t' | '\\r\\n' | '\\r' )+ )
+            // TimeDef.g:229:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
             {
-            	// TimeDef.g:220:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
+            	// TimeDef.g:229:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
             	int cnt3 = 0;
             	do 
             	{
@@ -821,21 +821,21 @@ public partial class TimeDefLexer : Lexer {
             	    switch (alt3) 
             		{
             			case 1 :
-            			    // TimeDef.g:220:6: ' '
+            			    // TimeDef.g:229:6: ' '
             			    {
             			    	Match(' '); 
 
             			    }
             			    break;
             			case 2 :
-            			    // TimeDef.g:220:10: '\\t'
+            			    // TimeDef.g:229:10: '\\t'
             			    {
             			    	Match('\t'); 
 
             			    }
             			    break;
             			case 3 :
-            			    // TimeDef.g:220:15: '\\r\\n'
+            			    // TimeDef.g:229:15: '\\r\\n'
             			    {
             			    	Match("\r\n"); 
 
@@ -843,7 +843,7 @@ public partial class TimeDefLexer : Lexer {
             			    }
             			    break;
             			case 4 :
-            			    // TimeDef.g:220:22: '\\r'
+            			    // TimeDef.g:229:22: '\\r'
             			    {
             			    	Match('\r'); 
 

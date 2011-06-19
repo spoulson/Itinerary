@@ -57,8 +57,8 @@ namespace Expl.Itinerary {
          // First schedule is lvalue; if its precedence is > this schedule, add parens
          // If lvalue is same type as this schedule, no parens are needed.
          // e.g. "(A !& B) !& C" -- lvalue is "(B !& C)".  Expression equates to "A !& B !& C".
-         // All other schedules are rvalues; if precedent is >= this schedule or the type is same as this schedule, add parens
-         // e.g. "A !& (B !& C)" -- rvalue is "(B !& C)", requires parens to preserve precedence
+         // All other schedules are rvalues; if precedent is >= this schedule or the type is same as this schedule, add parens.
+         // e.g. "A !& (B !& C)" -- rvalue is "(B !& C)", requires parens to preserve precedence.
          StringBuilder sb = new StringBuilder();
          sb.Append(Schedules.Select<ISchedule, string>((Schedule, Count) =>
             (Count == 0 && Schedule.OperatorPrecedence > this.OperatorPrecedence)
@@ -72,25 +72,37 @@ namespace Expl.Itinerary {
       // Optimized 2008-07-13
       public IEnumerable<TimedEvent> GetRange(DateTime RangeStart, DateTime RangeEnd) {
          /*
-          * xxxx  xxxx
-          *   xxxxxx
+          * Input:
+          * A: xxxx  xxxx
+          * B:   xxxxxx
           *
-          * AAAA  xxxx
-          *   BBBBBB
+          * Compare:
+          * A: AAAA  xxxx
+          * B:   BBBBBB
           * 
-          * xx    xxxx
-          *     xxxx
+          * Compute difference:
           * 
-          * AA    xxxx
-          *     BBBB
+          * A: AA--  xxxx
+          * B:   --BBBB
           * 
-          * AA    BBBB
-          *     xxxx
+          * Compare next:
+          * A: AA    xxxx
+          * B:     BBBB
           * 
-          * xx    BBBB
-          *     AAAA
+          * Compare next:
+          * A: AA    BBBB
+          * B:     xxxx
           * 
-          * xx  xx  xx
+          * Compare next:
+          * A: RR    BBBB
+          * B:     AAAA
+          *
+          * Compute difference:
+          * A: RR    --BB
+          * B:     AA--
+          * 
+          * Result:
+          * RR  RR  RR
           * 
           */
 
