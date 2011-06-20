@@ -8,24 +8,24 @@ Shawn Poulson, http://explodingcoder.com
 INTRODUCTION
 ------------
 
-* What does Itinerary do?
+### What does Itinerary do?
   - Describe an abstract schedule of timed events as an expression, such as the equivalent of:  
     "Every Friday at 5:30 pm for 1 hour, except on holidays", for any given time range.
   - Perform complex boolean set math on recurring patterns of timed events.
   - Parse expressions to a schedule object and enumerate timed events.
   - Change schedule properties programmatically, then reserialize back to expression.
 
-* What doesn't Itinerary do?
+### What *doesn't* Itinerary do?
   - Does not actively run tasks on a schedule.  That's your job.
     For that, check out http://quartznet.sf.net and the ItineraryTrigger class in the solution.
   - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
-* Why use Itinerary?
+### Why use Itinerary?
   - You need to integrate a cron-like scheduler into your app.
   - You need to logically describe complex recurrance patterns and/or arbitrary schedules of date/times.
   - You need to store this description (not the events) for later reuse.
 
-* How do I get started using Itinerary?
+### How do I get started using Itinerary?
   - Learn TDL expression syntax from the Itinerary Wiki on GitHub:
     https://github.com/spoulson/Itinerary/wiki
   - Test TDL expression syntax using the TDL Explorer tool in the solution.
