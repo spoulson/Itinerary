@@ -56,8 +56,12 @@ atom returns [ISchedule value]:
 // Core expression primitives
 //
 once_p returns [OneTimeSchedule value]: (
-   start=datetime_p (WS+ 'lasting' WS+ duration=timespan_p)?
-) { $value = new OneTimeSchedule($start.value, duration==null ? TimeSpan.Zero : $duration.value); };
+   start=datetime_p (WS+ ('lasting' WS+ duration=timespan_p | 'to' WS+ enddatetime=datetime_p ))?
+) {
+    $value = enddatetime != null ?
+        new OneTimeSchedule($start.value, $enddatetime.value) : // 'to' syntax
+        new OneTimeSchedule($start.value, duration==null ? TimeSpan.Zero : $duration.value); // 'lasting' syntax
+};
 
 every_p returns [IntervalSchedule value]: (
    'every' WS+ interval=timespan_p (WS+ 'since' WS+ sync=datetime_p)? (WS+ 'lasting' WS+ duration=timespan_p)?
