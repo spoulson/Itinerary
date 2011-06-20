@@ -56,7 +56,7 @@ atom returns [ISchedule value]:
 // Core expression primitives
 //
 once_p returns [OneTimeSchedule value]: (
-   start=datetime_p (WS+ ('lasting' WS+ duration=timespan_p | 'to' WS+ enddatetime=datetime_p ))?
+   start=datetime_p (WS+ ('lasting' WS+ duration=timespan_p | 'to' WS+ enddatetime=datetime_p))?
 ) {
     $value = enddatetime != null ?
         new OneTimeSchedule($start.value, $enddatetime.value) : // 'to' syntax
@@ -168,17 +168,26 @@ intersection_p returns [ISchedule value]:
 // Time units
 //
 datetime_p returns [DateTime value]: (
+   keyword=('beginning' | 'end') |
    y=year_p '-' mo=month_p '-' d=day_p (WS+ h=hour24_p ':' m=minute60_p (':' s=second60_p ('.' ms=millisecond1000_p)?)?)? |
    h=hour24_p ':' m=minute60_p (':' s=second60_p ('.' ms=millisecond1000_p)?)?
 ) {
-   $value = new DateTime(
-      y==null ? DateTime.UtcNow.Year : $y.value,
-      mo==null ? DateTime.UtcNow.Month : $mo.value,
-      d==null ? DateTime.UtcNow.Day : $d.value,
-      h==null ? 0 : $h.value,
-      m==null ? 0 : $m.value,
-      s==null ? 0 : $s.value,
-      ms==null ? 0 : $ms.value);
+   if ($keyword.text == "beginning") {
+      $value = DateTime.MinValue;
+   }
+   else if ($keyword.text == "end") {
+      $value = DateTime.MaxValue;
+   }
+   else {
+      $value = new DateTime(
+         y==null ? DateTime.UtcNow.Year : $y.value,
+         mo==null ? DateTime.UtcNow.Month : $mo.value,
+         d==null ? DateTime.UtcNow.Day : $d.value,
+         h==null ? 0 : $h.value,
+         m==null ? 0 : $m.value,
+         s==null ? 0 : $s.value,
+         ms==null ? 0 : $ms.value);
+   }
 };
 
 datetime_prog returns [DateTime value]: (

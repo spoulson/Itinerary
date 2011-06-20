@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 TimeDef.g 2011-06-20 10:26:36
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 TimeDef.g 2011-06-20 11:12:50
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 168, 219
@@ -35,8 +35,10 @@ public partial class TimeDefLexer : Lexer {
     public const int T__31 = 31;
     public const int T__32 = 32;
     public const int T__16 = 16;
+    public const int T__33 = 33;
     public const int WS = 4;
     public const int T__15 = 15;
+    public const int T__34 = 34;
     public const int T__18 = 18;
     public const int T__17 = 17;
     public const int T__12 = 12;
@@ -496,10 +498,11 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__25;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:25:7: ( ':' )
-            // TimeDef.g:25:9: ':'
+            // TimeDef.g:25:7: ( 'beginning' )
+            // TimeDef.g:25:9: 'beginning'
             {
-            	Match(':'); 
+            	Match("beginning"); 
+
 
             }
 
@@ -519,10 +522,11 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__26;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:26:7: ( '.' )
-            // TimeDef.g:26:9: '.'
+            // TimeDef.g:26:7: ( 'end' )
+            // TimeDef.g:26:9: 'end'
             {
-            	Match('.'); 
+            	Match("end"); 
+
 
             }
 
@@ -542,10 +546,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__27;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:27:7: ( 'T' )
-            // TimeDef.g:27:9: 'T'
+            // TimeDef.g:27:7: ( ':' )
+            // TimeDef.g:27:9: ':'
             {
-            	Match('T'); 
+            	Match(':'); 
 
             }
 
@@ -565,10 +569,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__28;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:28:7: ( '!' )
-            // TimeDef.g:28:9: '!'
+            // TimeDef.g:28:7: ( '.' )
+            // TimeDef.g:28:9: '.'
             {
-            	Match('!'); 
+            	Match('.'); 
 
             }
 
@@ -588,10 +592,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__29;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:29:7: ( '/' )
-            // TimeDef.g:29:9: '/'
+            // TimeDef.g:29:7: ( 'T' )
+            // TimeDef.g:29:9: 'T'
             {
-            	Match('/'); 
+            	Match('T'); 
 
             }
 
@@ -611,10 +615,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__30;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:30:7: ( '*' )
-            // TimeDef.g:30:9: '*'
+            // TimeDef.g:30:7: ( '!' )
+            // TimeDef.g:30:9: '!'
             {
-            	Match('*'); 
+            	Match('!'); 
 
             }
 
@@ -634,10 +638,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__31;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:31:7: ( '>' )
-            // TimeDef.g:31:9: '>'
+            // TimeDef.g:31:7: ( '/' )
+            // TimeDef.g:31:9: '/'
             {
-            	Match('>'); 
+            	Match('/'); 
 
             }
 
@@ -657,10 +661,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = T__32;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:32:7: ( '<' )
-            // TimeDef.g:32:9: '<'
+            // TimeDef.g:32:7: ( '*' )
+            // TimeDef.g:32:9: '*'
             {
-            	Match('<'); 
+            	Match('*'); 
 
             }
 
@@ -673,6 +677,52 @@ public partial class TimeDefLexer : Lexer {
     }
     // $ANTLR end "T__32"
 
+    // $ANTLR start "T__33"
+    public void mT__33() // throws RecognitionException [2]
+    {
+    		try
+    		{
+            int _type = T__33;
+    	int _channel = DEFAULT_TOKEN_CHANNEL;
+            // TimeDef.g:33:7: ( '>' )
+            // TimeDef.g:33:9: '>'
+            {
+            	Match('>'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally 
+    	{
+        }
+    }
+    // $ANTLR end "T__33"
+
+    // $ANTLR start "T__34"
+    public void mT__34() // throws RecognitionException [2]
+    {
+    		try
+    		{
+            int _type = T__34;
+    	int _channel = DEFAULT_TOKEN_CHANNEL;
+            // TimeDef.g:34:7: ( '<' )
+            // TimeDef.g:34:9: '<'
+            {
+            	Match('<'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally 
+    	{
+        }
+    }
+    // $ANTLR end "T__34"
+
     // $ANTLR start "UINT"
     public void mUINT() // throws RecognitionException [2]
     {
@@ -680,10 +730,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = UINT;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:231:5: ( ( '0' .. '9' )+ )
-            // TimeDef.g:231:7: ( '0' .. '9' )+
+            // TimeDef.g:240:5: ( ( '0' .. '9' )+ )
+            // TimeDef.g:240:7: ( '0' .. '9' )+
             {
-            	// TimeDef.g:231:7: ( '0' .. '9' )+
+            	// TimeDef.g:240:7: ( '0' .. '9' )+
             	int cnt1 = 0;
             	do 
             	{
@@ -699,7 +749,7 @@ public partial class TimeDefLexer : Lexer {
             	    switch (alt1) 
             		{
             			case 1 :
-            			    // TimeDef.g:231:8: '0' .. '9'
+            			    // TimeDef.g:240:8: '0' .. '9'
             			    {
             			    	MatchRange('0','9'); 
 
@@ -737,10 +787,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = ALPHA;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:232:6: ( ( 'A' .. 'Z' | 'a' .. 'z' )+ )
-            // TimeDef.g:232:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
+            // TimeDef.g:241:6: ( ( 'A' .. 'Z' | 'a' .. 'z' )+ )
+            // TimeDef.g:241:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
             {
-            	// TimeDef.g:232:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
+            	// TimeDef.g:241:8: ( 'A' .. 'Z' | 'a' .. 'z' )+
             	int cnt2 = 0;
             	do 
             	{
@@ -804,10 +854,10 @@ public partial class TimeDefLexer : Lexer {
     		{
             int _type = WS;
     	int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TimeDef.g:233:3: ( ( ' ' | '\\t' | '\\r\\n' | '\\r' )+ )
-            // TimeDef.g:233:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
+            // TimeDef.g:242:3: ( ( ' ' | '\\t' | '\\r\\n' | '\\r' )+ )
+            // TimeDef.g:242:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
             {
-            	// TimeDef.g:233:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
+            	// TimeDef.g:242:5: ( ' ' | '\\t' | '\\r\\n' | '\\r' )+
             	int cnt3 = 0;
             	do 
             	{
@@ -846,21 +896,21 @@ public partial class TimeDefLexer : Lexer {
             	    switch (alt3) 
             		{
             			case 1 :
-            			    // TimeDef.g:233:6: ' '
+            			    // TimeDef.g:242:6: ' '
             			    {
             			    	Match(' '); 
 
             			    }
             			    break;
             			case 2 :
-            			    // TimeDef.g:233:10: '\\t'
+            			    // TimeDef.g:242:10: '\\t'
             			    {
             			    	Match('\t'); 
 
             			    }
             			    break;
             			case 3 :
-            			    // TimeDef.g:233:15: '\\r\\n'
+            			    // TimeDef.g:242:15: '\\r\\n'
             			    {
             			    	Match("\r\n"); 
 
@@ -868,7 +918,7 @@ public partial class TimeDefLexer : Lexer {
             			    }
             			    break;
             			case 4 :
-            			    // TimeDef.g:233:22: '\\r'
+            			    // TimeDef.g:242:22: '\\r'
             			    {
             			    	Match('\r'); 
 
@@ -901,8 +951,8 @@ public partial class TimeDefLexer : Lexer {
 
     override public void mTokens() // throws RecognitionException 
     {
-        // TimeDef.g:1:8: ( T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | UINT | ALPHA | WS )
-        int alt4 = 29;
+        // TimeDef.g:1:8: ( T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | UINT | ALPHA | WS )
+        int alt4 = 31;
         alt4 = dfa4.Predict(input);
         switch (alt4) 
         {
@@ -1089,21 +1139,35 @@ public partial class TimeDefLexer : Lexer {
                 }
                 break;
             case 27 :
-                // TimeDef.g:1:163: UINT
+                // TimeDef.g:1:163: T__33
+                {
+                	mT__33(); 
+
+                }
+                break;
+            case 28 :
+                // TimeDef.g:1:169: T__34
+                {
+                	mT__34(); 
+
+                }
+                break;
+            case 29 :
+                // TimeDef.g:1:175: UINT
                 {
                 	mUINT(); 
 
                 }
                 break;
-            case 28 :
-                // TimeDef.g:1:168: ALPHA
+            case 30 :
+                // TimeDef.g:1:180: ALPHA
                 {
                 	mALPHA(); 
 
                 }
                 break;
-            case 29 :
-                // TimeDef.g:1:174: WS
+            case 31 :
+                // TimeDef.g:1:186: WS
                 {
                 	mWS(); 
 
@@ -1122,104 +1186,123 @@ public partial class TimeDefLexer : Lexer {
 	}
 
     const string DFA4_eotS =
-        "\x01\uffff\x06\x19\x03\uffff\x01\x21\x03\uffff\x01\x23\x01\x25"+
-        "\x03\uffff\x01\x26\x07\uffff\x01\x19\x01\x28\x04\x19\x01\uffff\x01"+
-        "\x2e\x04\uffff\x01\x19\x01\uffff\x04\x19\x02\uffff\x03\x19\x01\x37"+
-        "\x01\x38\x01\x19\x01\x3a\x01\x3b\x02\uffff\x01\x19\x02\uffff\x01"+
-        "\x3d\x01\uffff";
+        "\x01\uffff\x06\x1a\x03\uffff\x01\x23\x03\uffff\x01\x25\x01\x27"+
+        "\x01\uffff\x01\x1a\x02\uffff\x01\x29\x07\uffff\x01\x1a\x01\x2b\x05"+
+        "\x1a\x01\uffff\x01\x32\x03\uffff\x01\x1a\x01\uffff\x01\x1a\x01\uffff"+
+        "\x01\x1a\x01\x36\x03\x1a\x02\uffff\x03\x1a\x01\uffff\x01\x1a\x01"+
+        "\x3e\x01\x3f\x02\x1a\x01\x42\x01\x43\x02\uffff\x02\x1a\x02\uffff"+
+        "\x01\x1a\x01\x47\x01\x1a\x01\uffff\x01\x1a\x01\x4a\x01\uffff";
     const string DFA4_eofS =
-        "\x3e\uffff";
+        "\x4b\uffff";
     const string DFA4_minS =
-        "\x01\x09\x01\x61\x01\x6f\x01\x76\x01\x69\x01\x72\x01\x6f\x03\uffff"+
-        "\x01\x41\x03\uffff\x02\x26\x03\uffff\x01\x41\x07\uffff\x01\x73\x01"+
-        "\x41\x01\x65\x01\x6e\x01\x6f\x01\x69\x01\uffff\x01\x26\x04\uffff"+
-        "\x01\x74\x01\uffff\x01\x72\x01\x63\x01\x6e\x01\x64\x02\uffff\x01"+
-        "\x69\x01\x79\x01\x65\x02\x41\x01\x6e\x02\x41\x02\uffff\x01\x67\x02"+
-        "\uffff\x01\x41\x01\uffff";
+        "\x01\x09\x01\x61\x01\x6f\x01\x6e\x01\x69\x01\x72\x01\x6f\x03\uffff"+
+        "\x01\x41\x03\uffff\x02\x26\x01\uffff\x01\x65\x02\uffff\x01\x41\x07"+
+        "\uffff\x01\x73\x01\x41\x01\x65\x01\x64\x01\x6e\x01\x6f\x01\x69\x01"+
+        "\uffff\x01\x26\x03\uffff\x01\x67\x01\uffff\x01\x74\x01\uffff\x01"+
+        "\x72\x01\x41\x01\x63\x01\x6e\x01\x64\x02\uffff\x02\x69\x01\x79\x01"+
+        "\uffff\x01\x65\x02\x41\x02\x6e\x02\x41\x02\uffff\x01\x6e\x01\x67"+
+        "\x02\uffff\x01\x69\x01\x41\x01\x6e\x01\uffff\x01\x67\x01\x41\x01"+
+        "\uffff";
     const string DFA4_maxS =
         "\x01\x7c\x01\x61\x01\x6f\x01\x76\x01\x69\x01\x72\x01\x6f\x03\uffff"+
-        "\x01\x7a\x03\uffff\x02\x26\x03\uffff\x01\x7a\x07\uffff\x01\x73\x01"+
-        "\x7a\x01\x65\x01\x6e\x01\x6f\x01\x69\x01\uffff\x01\x26\x04\uffff"+
-        "\x01\x74\x01\uffff\x01\x72\x01\x63\x01\x6e\x01\x64\x02\uffff\x01"+
-        "\x69\x01\x79\x01\x65\x02\x7a\x01\x6e\x02\x7a\x02\uffff\x01\x67\x02"+
-        "\uffff\x01\x7a\x01\uffff";
+        "\x01\x7a\x03\uffff\x02\x26\x01\uffff\x01\x65\x02\uffff\x01\x7a\x07"+
+        "\uffff\x01\x73\x01\x7a\x01\x65\x01\x64\x01\x6e\x01\x6f\x01\x69\x01"+
+        "\uffff\x01\x26\x03\uffff\x01\x67\x01\uffff\x01\x74\x01\uffff\x01"+
+        "\x72\x01\x7a\x01\x63\x01\x6e\x01\x64\x02\uffff\x02\x69\x01\x79\x01"+
+        "\uffff\x01\x65\x02\x7a\x02\x6e\x02\x7a\x02\uffff\x01\x6e\x01\x67"+
+        "\x02\uffff\x01\x69\x01\x7a\x01\x6e\x01\uffff\x01\x67\x01\x7a\x01"+
+        "\uffff";
     const string DFA4_acceptS =
         "\x07\uffff\x01\x07\x01\x08\x01\x09\x01\uffff\x01\x0b\x01\x0c\x01"+
-        "\x0d\x02\uffff\x01\x10\x01\x13\x01\x14\x01\uffff\x01\x17\x01\x18"+
-        "\x01\x19\x01\x1a\x01\x1b\x01\x1c\x01\x1d\x06\uffff\x01\x0a\x01\uffff"+
-        "\x01\x16\x01\x0f\x01\x12\x01\x15\x01\uffff\x01\x02\x04\uffff\x01"+
-        "\x0e\x01\x11\x08\uffff\x01\x05\x01\x06\x01\uffff\x01\x03\x01\x04"+
-        "\x01\uffff\x01\x01";
+        "\x0d\x02\uffff\x01\x10\x01\uffff\x01\x15\x01\x16\x01\uffff\x01\x19"+
+        "\x01\x1a\x01\x1b\x01\x1c\x01\x1d\x01\x1e\x01\x1f\x07\uffff\x01\x0a"+
+        "\x01\uffff\x01\x18\x01\x0f\x01\x12\x01\uffff\x01\x17\x01\uffff\x01"+
+        "\x02\x05\uffff\x01\x0e\x01\x11\x03\uffff\x01\x14\x07\uffff\x01\x05"+
+        "\x01\x06\x02\uffff\x01\x03\x01\x04\x03\uffff\x01\x01\x02\uffff\x01"+
+        "\x13";
     const string DFA4_specialS =
-        "\x3e\uffff}>";
+        "\x4b\uffff}>";
     static readonly string[] DFA4_transitionS = {
-            "\x01\x1a\x03\uffff\x01\x1a\x12\uffff\x01\x1a\x01\x0e\x01\uffff"+
-            "\x01\x09\x02\uffff\x01\x0f\x01\uffff\x01\x07\x01\x08\x01\x15"+
-            "\x01\x0b\x01\x0d\x01\x0c\x01\x12\x01\x14\x0a\x18\x01\x11\x01"+
-            "\uffff\x01\x17\x01\uffff\x01\x16\x02\uffff\x13\x19\x01\x13\x06"+
-            "\x19\x06\uffff\x02\x19\x01\x05\x01\x19\x01\x03\x06\x19\x01\x01"+
-            "\x06\x19\x01\x04\x01\x02\x01\x19\x01\x06\x01\x19\x01\x0a\x02"+
-            "\x19\x01\uffff\x01\x10",
-            "\x01\x1b",
+            "\x01\x1b\x03\uffff\x01\x1b\x12\uffff\x01\x1b\x01\x0e\x01\uffff"+
+            "\x01\x09\x02\uffff\x01\x0f\x01\uffff\x01\x07\x01\x08\x01\x16"+
+            "\x01\x0b\x01\x0d\x01\x0c\x01\x13\x01\x15\x0a\x19\x01\x12\x01"+
+            "\uffff\x01\x18\x01\uffff\x01\x17\x02\uffff\x13\x1a\x01\x14\x06"+
+            "\x1a\x06\uffff\x01\x1a\x01\x11\x01\x05\x01\x1a\x01\x03\x06\x1a"+
+            "\x01\x01\x06\x1a\x01\x04\x01\x02\x01\x1a\x01\x06\x01\x1a\x01"+
+            "\x0a\x02\x1a\x01\uffff\x01\x10",
             "\x01\x1c",
             "\x01\x1d",
-            "\x01\x1e",
-            "\x01\x1f",
+            "\x01\x1f\x07\uffff\x01\x1e",
             "\x01\x20",
-            "",
-            "",
-            "",
-            "\x1a\x19\x06\uffff\x1a\x19",
-            "",
-            "",
-            "",
+            "\x01\x21",
             "\x01\x22",
+            "",
+            "",
+            "",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
+            "",
+            "",
+            "",
             "\x01\x24",
+            "\x01\x26",
+            "",
+            "\x01\x28",
+            "",
+            "",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
             "",
             "",
             "",
-            "\x1a\x19\x06\uffff\x1a\x19",
             "",
             "",
             "",
             "",
-            "",
-            "",
-            "",
-            "\x01\x27",
-            "\x1a\x19\x06\uffff\x1a\x19",
-            "\x01\x29",
             "\x01\x2a",
-            "\x01\x2b",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
             "\x01\x2c",
-            "",
             "\x01\x2d",
-            "",
-            "",
-            "",
-            "",
+            "\x01\x2e",
             "\x01\x2f",
-            "",
             "\x01\x30",
+            "",
             "\x01\x31",
-            "\x01\x32",
+            "",
+            "",
+            "",
             "\x01\x33",
             "",
-            "",
             "\x01\x34",
+            "",
             "\x01\x35",
-            "\x01\x36",
-            "\x1a\x19\x06\uffff\x1a\x19",
-            "\x1a\x19\x06\uffff\x1a\x19",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
+            "\x01\x37",
+            "\x01\x38",
             "\x01\x39",
-            "\x1a\x19\x06\uffff\x1a\x19",
-            "\x1a\x19\x06\uffff\x1a\x19",
             "",
             "",
+            "\x01\x3a",
+            "\x01\x3b",
             "\x01\x3c",
             "",
+            "\x01\x3d",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
+            "\x01\x40",
+            "\x01\x41",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
             "",
-            "\x1a\x19\x06\uffff\x1a\x19",
+            "",
+            "\x01\x44",
+            "\x01\x45",
+            "",
+            "",
+            "\x01\x46",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
+            "\x01\x48",
+            "",
+            "\x01\x49",
+            "\x1a\x1a\x06\uffff\x1a\x1a",
             ""
     };
 
@@ -1249,7 +1332,7 @@ public partial class TimeDefLexer : Lexer {
 
         override public string Description
         {
-            get { return "1:1: Tokens : ( T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | UINT | ALPHA | WS );"; }
+            get { return "1:1: Tokens : ( T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | UINT | ALPHA | WS );"; }
         }
 
     }
