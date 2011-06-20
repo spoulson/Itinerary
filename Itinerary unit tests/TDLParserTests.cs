@@ -24,6 +24,9 @@ namespace Expl.Itinerary.Tests {
          TDLUnitTest[] tests = {
             new TDLUnitTest("2008-08-19", "2008-08-19 00:00"),
             new TDLUnitTest("10:37", NowDate + " 10:37"),
+            new TDLUnitTest("10:37:00", NowDate + " 10:37"), // Test unnecessary precision dropped in output
+            new TDLUnitTest("10:37:00.000", NowDate + " 10:37"), // Test unnecessary precision dropped in output
+            new TDLUnitTest("10:37:00.000", NowDate + " 10:37"), // Test unnecessary precision dropped in output
             new TDLUnitTest("10:37:51", NowDate + " 10:37:51"),
             new TDLUnitTest("10:37:51.627", NowDate + " 10:37:51.627"),
             new TDLUnitTest("2008-01-15 10:37:51.627", "2008-01-15 10:37:51.627"),
@@ -31,7 +34,11 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("10:37 lasting T1:16", NowDate + " 10:37 lasting T1:16"),
             new TDLUnitTest("10:37 lasting T1:16.867", NowDate + " 10:37 lasting T1:16.867"),
             new TDLUnitTest("10:37 lasting T6:1:16.867", NowDate + " 10:37 lasting T6:1:16.867"),
-            new TDLUnitTest("10:37 lasting T7.6:1:16.867", NowDate + " 10:37 lasting T7.6:1:16.867")
+            new TDLUnitTest("10:37 lasting T7.6:1:16.867", NowDate + " 10:37 lasting T7.6:1:16.867"),
+            new TDLUnitTest("10:37 lasting T10:51:0", NowDate + " 10:37 lasting T10:51:0"), // Test single zeros in duration.
+            new TDLUnitTest("10:37 lasting T10:51:00", NowDate + " 10:37 lasting T10:51:0"), // Test double zeros in duration simplified to single zeros.
+            new TDLUnitTest("10:37 to 10:51", NowDate + " 10:37 to " + NowDate + " 10:51"), // Test 'to' syntax
+            new TDLUnitTest("2011-06-20 10:37 to 2011-06-20 10:51", "2011-06-20 10:37 to 2011-06-20 10:51") // Test 'to' syntax
          };
          
          foreach (var t in tests) t.Run();
@@ -60,7 +67,15 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("cron *>4 *>10 *>2 * *"),
             new TDLUnitTest("cron *<20 *<10 *<20 * *"),
             new TDLUnitTest("cron *,!20 *,!1,!4,!10 * * *"),
-            new TDLUnitTest("cron 0 0 1 10 *")
+            new TDLUnitTest("cron 0 0 1 10 *"),
+            new TDLUnitTest("cron * * * * 5#1"),
+            new TDLUnitTest("cron * * * * 1-5#1"),
+            new TDLUnitTest("cron * * * * *#1"),
+            new TDLUnitTest("cron * * * * 1,2,5#1"),
+            new TDLUnitTest("cron * * * * >3#1"),
+            new TDLUnitTest("cron * * * * <5#1"),
+            new TDLUnitTest("cron * * * * */2#1"),
+            new TDLUnitTest("cron * * * * !5#1")
          };
 
          foreach (var t in tests) t.Run();
@@ -153,6 +168,22 @@ namespace Expl.Itinerary.Tests {
             new TDLUnitTest("10:37 lasting T1:00:00!&10:38 lasting T1:00:00", NowDate + " 10:37 lasting T1:0:0 !& " + NowDate + " 10:38 lasting T1:0:0"),
          };
          
+         foreach (var t in tests) t.Run();
+      }
+
+      [TestMethod]
+      public void SubtractScheduleParseTest() {
+         TDLUnitTest[] tests = {
+            new TDLUnitTest("10:37 - 10:38", NowDate + " 10:37 - " + NowDate + " 10:38"),
+            new TDLUnitTest("10:37- 10:38", NowDate + " 10:37 - " + NowDate + " 10:38"),
+            new TDLUnitTest("10:37 -10:38", NowDate + " 10:37 - " + NowDate + " 10:38"),
+            new TDLUnitTest("10:37-10:38", NowDate + " 10:37 - " + NowDate + " 10:38"),
+            new TDLUnitTest("10:37 lasting T1:00:00 - 10:38 lasting T1:00:00", NowDate + " 10:37 lasting T1:0:0 - " + NowDate + " 10:38 lasting T1:0:0"),
+            new TDLUnitTest("10:37 lasting T1:00:00- 10:38 lasting T1:00:00", NowDate + " 10:37 lasting T1:0:0 - " + NowDate + " 10:38 lasting T1:0:0"),
+            new TDLUnitTest("10:37 lasting T1:00:00 -10:38 lasting T1:00:00", NowDate + " 10:37 lasting T1:0:0 - " + NowDate + " 10:38 lasting T1:0:0"),
+            new TDLUnitTest("10:37 lasting T1:00:00-10:38 lasting T1:00:00", NowDate + " 10:37 lasting T1:0:0 - " + NowDate + " 10:38 lasting T1:0:0"),
+         };
+
          foreach (var t in tests) t.Run();
       }
 

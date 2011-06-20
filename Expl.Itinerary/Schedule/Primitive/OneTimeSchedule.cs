@@ -7,7 +7,12 @@ namespace Expl.Itinerary {
    /// Schedule once at a set time.
    /// </summary>
    public class OneTimeSchedule : IPrimitiveSchedule {
+      private enum NotationKind {
+         Lasting, To
+      }
+
       private TimedEvent _Event;
+      private NotationKind _Notation;
 
       /// <summary>
       /// Default constructor.
@@ -22,6 +27,7 @@ namespace Expl.Itinerary {
       /// <param name="Duration">Duration of event.</param>
       public OneTimeSchedule(DateTime StartTime, TimeSpan Duration) {
          _Event = new TimedEvent(StartTime, Duration);
+         _Notation = NotationKind.Lasting;
       }
 
       /// <summary>
@@ -31,6 +37,7 @@ namespace Expl.Itinerary {
       /// <param name="EndTime"></param>
       public OneTimeSchedule(DateTime StartTime, DateTime EndTime) {
          _Event = new TimedEvent(StartTime, EndTime);
+         _Notation = NotationKind.To;
       }
 
       public int OperatorPrecedence { get { return 1; } }
@@ -40,11 +47,23 @@ namespace Expl.Itinerary {
       public override string ToString() {
          var sb = new StringBuilder();
          sb.Append(ItineraryConvert.ToString(_Event.StartTime));
-         TimeSpan Duration = _Event.Duration;
-         if (Duration != TimeSpan.Zero) {
-            sb.Append(" lasting ");
-            sb.Append(ItineraryConvert.ToString(Duration));
+
+         // Output TDL in same notation used to create this.
+         switch (_Notation) {
+         case NotationKind.Lasting:
+            TimeSpan Duration = _Event.Duration;
+            if (Duration != TimeSpan.Zero) {
+               sb.Append(" lasting ");
+               sb.Append(ItineraryConvert.ToString(Duration));
+            }
+            break;
+
+         case NotationKind.To:
+            sb.Append(" to ");
+            sb.Append(ItineraryConvert.ToString(_Event.EndTime));
+            break;
          }
+
          return sb.ToString();
       }
 
