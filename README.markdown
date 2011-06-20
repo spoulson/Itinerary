@@ -30,6 +30,7 @@ INTRODUCTION
  - Learn TDL expression syntax from the Itinerary Wiki on GitHub:
    https://github.com/spoulson/Itinerary/wiki
  - Test TDL expression syntax using the TDL Explorer tool in the solution.
+ - Refer to unit tests for usage reference.
 
 SYSTEM REQUIREMENTS
 -------------------
