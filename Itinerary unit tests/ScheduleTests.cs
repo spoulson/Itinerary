@@ -1959,34 +1959,33 @@ namespace Expl.Itinerary.Test {
       }
 
       public class ScheduleUnitTest {
-         private string _Name;
-         private ISchedule _Schedule;
-         private DateTime _RangeStart, _RangeEnd;
-         private IEnumerable<TimedEvent> _ExpectedEvents;
-
          public ScheduleUnitTest(string Name, ISchedule Schedule, IEnumerable<TimedEvent> ExpectedEvents) {
-            _Name = Name;
-            _Schedule = Schedule;
-            _RangeStart = DateTime.MinValue;
-            _RangeEnd = DateTime.MaxValue;
-            _ExpectedEvents = ExpectedEvents;
+            this.Name = Name;
+            this.Schedule = Schedule;
+            this.RangeStart = DateTime.MinValue;
+            this.RangeEnd = DateTime.MaxValue;
+            this.ExpectedEvents = ExpectedEvents;
          }
 
          public ScheduleUnitTest(string Name, ISchedule Schedule, DateTime StartRange, DateTime EndRange, IEnumerable<TimedEvent> ExpectedEvents) {
-            _Name = Name;
-            _Schedule = Schedule;
-            _RangeStart = StartRange;
-            _RangeEnd = EndRange;
-            _ExpectedEvents = ExpectedEvents;
+            this.Name = Name;
+            this.Schedule = Schedule;
+            this.RangeStart = StartRange;
+            this.RangeEnd = EndRange;
+            this.ExpectedEvents = ExpectedEvents;
          }
 
-         public string Name { get { return _Name; } }
+         public string Name { get; private set; }
+         public ISchedule Schedule { get; private set; }
+         public DateTime RangeStart { get; private set; }
+         public DateTime RangeEnd { get; private set; }
+         public IEnumerable<TimedEvent> ExpectedEvents { get; private set; }
 
          public void Run() {
-            Debug.WriteLine("Unit test: " + this._Name);
-            Debug.WriteLine("Schedule expression: " + this._Schedule.ToString());
+            Debug.WriteLine("Unit test: " + Name);
+            Debug.WriteLine("Schedule expression: " + Schedule.ToString());
 
-            SequenceComparer.AssertCompare(_Schedule.GetRange(_RangeStart, _RangeEnd), _ExpectedEvents, (a, b) => a.CompareTo(b));
+            SequenceComparer.AssertCompare(ExpectedEvents, Schedule.GetRange(RangeStart, RangeEnd), (a, b) => a.CompareTo(b));
 
             // Success, exact match
          }

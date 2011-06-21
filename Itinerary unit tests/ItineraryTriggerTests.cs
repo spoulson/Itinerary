@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quartz;
 using Quartz.Impl;
 
-namespace Expl.Itinerary.Tests {
+namespace Expl.Itinerary.Test {
    [TestClass]
    public class ItineraryTriggerTests {
       public ISchedulerFactory sf;

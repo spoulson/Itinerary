@@ -4,7 +4,7 @@ using Expl.Auxiliary;
 using Expl.Itinerary.Parser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Expl.Itinerary.Tests {
+namespace Expl.Itinerary.Test {
    /// <summary>
    /// TDL Parser validity unit tests
    /// </summary>

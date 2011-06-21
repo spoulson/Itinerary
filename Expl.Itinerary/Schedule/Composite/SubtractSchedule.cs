@@ -12,9 +12,6 @@ namespace Expl.Itinerary {
    /// (****[..)....]
    /// Generate subtraction of two datetime spans.
    /// </summary>
-   /// <remarks>
-   /// TODO: Implement unit tests for SubtractSchedule.
-   /// </remarks>
    [Description("Subtract")]
    public class SubtractSchedule : ICompositeSchedule {
       private ISchedule _ScheduleA;

@@ -19,13 +19,12 @@ namespace Expl.Auxiliary {
    /// Throw exception on invalid format or number range.
    /// 
    /// TODO: Consider converting IntSpec parser to ANTLR parser?
-   /// TODO: Unit tests for IntSpec.
    /// </remarks>
    public static class IntSpec {
       private static readonly Regex _RegexStep = new Regex("/(-?\\d+)$");
       private static readonly Regex _RegexSingle = new Regex("^-?\\d+$");
       private static readonly Regex _RegexRange = new Regex("^(-?\\d+)-(-?\\d+)$");
-      private static readonly Regex _RegexValid = new Regex("^(\\*|-?\\d+(--?\\d+)?)(/\\d+)?$");
+      private static readonly Regex _RegexValid = new Regex("^(\\*|-?\\d+(--?\\d+)?)(/\\d+)?\\s*$");
 
       /// <summary>
       /// Check if string is valid IntSpec syntax.
@@ -54,11 +53,12 @@ namespace Expl.Auxiliary {
       /// <returns>Integer enumeration.</returns>
       public static IEnumerable<int> Parse(string SpecString, int MinValue, int MaxValue) {
          // Split specs by comma and parse each item
-         string[] Spec = SpecString.Split(',');
+         string[] Spec = SpecString.TrimEnd(' ').Split(',');
          IEnumerable<int> EnumChain = null;
 
          for (int i = 0; i < Spec.Length; i++) {
             string IntSpec = Spec[i];
+            if (IntSpec.Length == 0) continue;
             bool NotFlag = false;
 
             // Parse not

@@ -51,6 +51,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntSpecTests.cs" />
     <Compile Include="ExplDiagnostics.cs" />
     <Compile Include="ItineraryTriggerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
