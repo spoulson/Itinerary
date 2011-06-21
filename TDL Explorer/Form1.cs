@@ -47,7 +47,7 @@ namespace TDL_Explorer {
             menu.DropDownItems.Add(newMenu);
          });
 
-         foreach (var item in Examples.GetExampleList()) {
+         foreach (var item in Examples.ExampleList) {
             funcAddExampleItem(insertExamplesToolStripDropDownButton, item);
          }
       }
