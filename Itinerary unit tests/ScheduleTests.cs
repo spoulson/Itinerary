@@ -988,6 +988,91 @@ namespace Expl.Itinerary.Test {
       }
 
       [TestMethod]
+      public void SubtractTest() {
+         ScheduleUnitTest[] tests = {
+            new ScheduleUnitTest("Test weekdays",
+               new SubtractSchedule(
+                  new IntervalSchedule(new TimeSpan(1, 0, 0, 0), new TimeSpan(1, 0, 0, 0), DateTime.MinValue),
+                  new ListSchedule(
+                     new IntervalSchedule(new TimeSpan(7, 0, 0, 0), new TimeSpan(1, 0, 0, 0), new DateTime(2008, 1, 5, 0, 0, 0)), // Saturdays
+                     new IntervalSchedule(new TimeSpan(7, 0, 0, 0), new TimeSpan(1, 0, 0, 0), new DateTime(2008, 1, 6, 0, 0, 0)) // Sundays
+                  )
+               ),
+               new DateTime(2008, 2, 18, 0, 0 ,0), new DateTime(2008, 3, 1, 0, 0, 0),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 2, 18, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 19, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 20, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 21, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 22, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 25, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 26, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 27, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 28, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0)),
+                  new TimedEvent(new DateTime(2008, 2, 29, 0 ,0 ,0), new TimeSpan(1, 0, 0, 0))
+               }
+            ),
+            new ScheduleUnitTest("Test partial intersection",
+               new SubtractSchedule(
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0)),
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0))),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(0, 30, 0))
+               }
+            ),
+            new ScheduleUnitTest("Test partial intersection, reversed",
+               new SubtractSchedule(
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0)),
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0))),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 1, 31, 8, 0, 0), new TimeSpan(0, 30, 0))
+               }
+            ),
+            new ScheduleUnitTest("Test no intersection",
+               new SubtractSchedule(
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 4, 0, 0), new TimeSpan(1, 0, 0)),
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0))),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 1, 31, 4, 0, 0), new TimeSpan(1, 0, 0))
+               }
+            ),
+            new ScheduleUnitTest("Test no intersection, reversed",
+               new SubtractSchedule(
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0)),
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 4, 0, 0), new TimeSpan(1, 0, 0))),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 1, 31, 7, 30, 0), new TimeSpan(1, 0, 0))
+               }
+            ),
+            new ScheduleUnitTest("Test complete intersection",
+               new SubtractSchedule(
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0)),
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 7, 0, 0), new TimeSpan(1, 0, 0))),
+               new TimedEvent[0]
+            ),
+            new ScheduleUnitTest("Test contained intersection",
+               new SubtractSchedule(
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 0, 0, 0), new TimeSpan(1, 0, 0, 0)),
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 10, 45, 0), new TimeSpan(3, 0, 0))
+               ),
+               new TimedEvent[] {
+                  new TimedEvent(new DateTime(2008, 1, 31, 0, 0, 0), new TimeSpan(10, 45, 0)),
+                  new TimedEvent(new DateTime(2008, 1, 31, 13, 45, 0), new TimeSpan(10, 15, 0))
+               }
+            ),
+            new ScheduleUnitTest("Test contained intersection, reversed",
+               new SubtractSchedule(
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 10, 45, 0), new TimeSpan(3, 0, 0)),
+                  new OneTimeSchedule(new DateTime(2008, 1, 31, 0, 0, 0), new TimeSpan(1, 0, 0, 0))
+               ),
+               new TimedEvent[0]
+            )
+         };
+
+         foreach (var t in tests) t.Run();
+      }
+
+      [TestMethod]
       public void UnionTest() {
          ScheduleUnitTest[] tests = {
             new ScheduleUnitTest("Test partial intersection",

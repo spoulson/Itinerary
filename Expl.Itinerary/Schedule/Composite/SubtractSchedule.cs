@@ -109,7 +109,10 @@ namespace Expl.Itinerary {
 
          List<TimedEvent> QueueA = new List<TimedEvent>();
 
+         bool readvanceFlag;
          do {
+            readvanceFlag = false;
+
             // Get next event for A from queue or iterator, whichever is earliest.
             TimedEvent A = default(TimedEvent);
             if (QueueA.Count > 0 && (!HasMoreA || QueueA[0] <= IteratorA.Current)) {
@@ -122,10 +125,14 @@ namespace Expl.Itinerary {
                // get next event from A and put it on the queue.
                QueueA.Add(IteratorA.Current);
                HasMoreA = IteratorA.MoveNext();
+               readvanceFlag = true;
                continue;
             }
 
-            do {  // Dummy code block.
+            bool recompareFlag;
+            do {  // comparison code block.
+               recompareFlag = false;
+
                if (!HasMoreB) {
                   // If no more events from B, return remaining events from A.
                   yield return A;
@@ -150,7 +157,7 @@ namespace Expl.Itinerary {
                         QueueA.Add(NewA);
 
                         if (B.EndTime < A.EndTime) {
-                           var NewA2 = new TimedEvent(A.StartTime, B.StartTime);
+                           var NewA2 = new TimedEvent(B.EndTime, A.EndTime);
                            QueueA.Add(NewA2);
                         }
                      }
@@ -166,13 +173,14 @@ namespace Expl.Itinerary {
                      // BBBB
                      // No intersection, advance schedule B and recompare.
                      HasMoreB = IteratorB.MoveNext();
+                     recompareFlag = true;
                      continue;
                   }
                } // if (!HasMoreB) else
-            } while (false);
+            } while (recompareFlag);
 
             // Continue until no more events from A.
-         } while (HasMoreA || QueueA.Count > 0);
+         } while (readvanceFlag || HasMoreA || QueueA.Count > 0);
 
          yield break;
       }
