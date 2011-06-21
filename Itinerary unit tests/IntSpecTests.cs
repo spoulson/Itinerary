@@ -46,31 +46,31 @@ namespace Expl.Itinerary.Test {
             this.Spec = Spec;
             this.RangeStart = null;
             this.RangeEnd = null;
-            this.Expected = Expected;
+            this.ExpectedResult = Expected;
          }
 
-         public IntSpecUnitTest(string Name, string Spec, int RangeStart, int RangeEnd, IEnumerable<int> Expected) {
+         public IntSpecUnitTest(string Name, string Spec, int RangeStart, int RangeEnd, IEnumerable<int> ExpectedResult) {
             this.Name = Name;
             this.Spec = Spec;
             this.RangeStart = RangeStart;
             this.RangeEnd = RangeEnd;
-            this.Expected = Expected;
+            this.ExpectedResult = ExpectedResult;
          }
 
          public string Name { get; private set; }
          public string Spec { get; private set; }
          public int? RangeStart { get; private set; }
          public int? RangeEnd { get; private set; }
-         public IEnumerable<int> Expected { get; private set; }
+         public IEnumerable<int> ExpectedResult { get; private set; }
 
          public void Run() {
             Debug.WriteLine("Unit test: " + Name);
             Debug.WriteLine("IntSpec expression: " + Spec);
 
-            var specActual = RangeStart.HasValue && RangeEnd.HasValue ?
+            var actualResult = RangeStart.HasValue && RangeEnd.HasValue ?
                IntSpec.Parse(Spec, RangeStart.Value, RangeEnd.Value) :
                IntSpec.Parse(Spec);
-            SequenceComparer.AssertCompare(Expected, specActual, (a, b) => a.CompareTo(b));
+            SequenceComparer.AssertCompare(ExpectedResult, actualResult, (a, b) => a.CompareTo(b));
 
             // Success, exact match
          }

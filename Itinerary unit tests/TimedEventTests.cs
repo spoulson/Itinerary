@@ -880,25 +880,23 @@ namespace Expl.Itinerary.Test {
       }
 
       private class TimedEventUnitTest {
-         private string _Name;
-         private TimedEvent _Event;
-         private Func<TimedEvent, IEnumerable<TimedEvent>> _TimedEventFunc;
-         private IEnumerable<TimedEvent> _ExpectedEvents;
-
          public TimedEventUnitTest(string Name, TimedEvent Event, Func<TimedEvent, IEnumerable<TimedEvent>> TimedEventFunc, IEnumerable<TimedEvent> ExpectedEvents) {
-            _Name = Name;
-            _Event = Event;
-            _TimedEventFunc = TimedEventFunc;
-            _ExpectedEvents = ExpectedEvents;
+            this.Name = Name;
+            this.Event = Event;
+            this.TimedEventFunc = TimedEventFunc;
+            this.ExpectedEvents = ExpectedEvents;
          }
 
-         public string Name { get { return _Name; } }
+         public string Name { get; private set; }
+         public TimedEvent Event { get; private set; }
+         public Func<TimedEvent, IEnumerable<TimedEvent>> TimedEventFunc { get; private set; }
+         public IEnumerable<TimedEvent> ExpectedEvents { get; private set; }
 
          public void Run() {
-            Debug.WriteLine("Unit test: " + this._Name);
+            Debug.WriteLine("Unit test: " + Name);
             SequenceComparer.AssertCompare(
-               _TimedEventFunc(_Event).Where(x => x != null),
-               _ExpectedEvents, 
+               ExpectedEvents, 
+               TimedEventFunc(Event).Where(x => x != null),
                (a, b) => a.CompareTo(b));
 
             // Success, exact match
@@ -906,23 +904,21 @@ namespace Expl.Itinerary.Test {
       }
 
       private class TimedEventBooleanUnitTest {
-         private string _Name;
-         private TimedEvent _Event;
-         private Func<TimedEvent, bool> _TimedEventFunc;
-         private bool _ExpectedResult;
-
          public TimedEventBooleanUnitTest(string Name, TimedEvent Event, Func<TimedEvent, bool> TimedEventFunc, bool ExpectedResult) {
-            _Name = Name;
-            _Event = Event;
-            _TimedEventFunc = TimedEventFunc;
-            _ExpectedResult = ExpectedResult;
+            this.Name = Name;
+            this.Event = Event;
+            this.TimedEventFunc = TimedEventFunc;
+            this.ExpectedResult = ExpectedResult;
          }
 
-         public string Name { get { return _Name; } }
+         public string Name { get; private set; }
+         public TimedEvent Event { get; private set; }
+         public Func<TimedEvent, bool> TimedEventFunc { get; private set; }
+         public bool ExpectedResult { get; private set; }
 
          public void Run() {
-            Debug.WriteLine("Unit test: " + this._Name);
-            Assert.AreEqual(_ExpectedResult, _TimedEventFunc(_Event));
+            Debug.WriteLine("Unit test: " + Name);
+            Assert.AreEqual(ExpectedResult, TimedEventFunc(Event));
             
             // Success.
          }
