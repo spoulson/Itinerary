@@ -3,4 +3,6 @@
 TestResults
 */bin
 */obj
+Examples/*/bin
+Examples/*/obj
 Itinerary.sln.docstates

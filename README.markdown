@@ -1,7 +1,7 @@
 Itinerary: Lazy time scheduling toolset for .NET
 ================================================
 
-Pre-release, 2011-06-06  
+Pre-release, 2011-06-22  
 GitHub repo: https://github.com/spoulson/Itinerary  
 Shawn Poulson, http://explodingcoder.com
 
@@ -13,12 +13,12 @@ INTRODUCTION
    "Every Friday at 5:30 pm for 1 hour, except on holidays", for any given time range.
  - Parse expressions to an Itinerary `ISchedule` object at runtime.
  - `ISchedule` provides `IEnumerable` of timed events within any given time range.
- - Perform complex boolean set math on recurring patterns of timed events.
+ - Perform complex boolean set math on schedules.
  - Change `ISchedule` properties programmatically, then reserialize back to TDL expression string.
 
 ### What *doesn't* Itinerary do?
  - Does not actively run tasks on a schedule.  That's your job.  
-   For that, check out http://quartznet.sf.net and the ItineraryTrigger class in the solution.
+   For that, check out [QuartzNet](http://quartznet.sf.net) and the `ItineraryTrigger` class in the solution.
  - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 ### Why use Itinerary?
@@ -32,6 +32,7 @@ INTRODUCTION
  - Learn TDL expression syntax from the Itinerary Wiki on GitHub:
    https://github.com/spoulson/Itinerary/wiki
  - Test TDL expression syntax using the TDL Explorer tool in the solution.
+ - Check out the example projects.
  - Refer to unit tests for usage reference.
 
 SYSTEM REQUIREMENTS
