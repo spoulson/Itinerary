@@ -18,7 +18,7 @@ INTRODUCTION
 
 ### What *doesn't* Itinerary do?
  - Does not actively run tasks on a schedule.  That's your job.  
-   For that, check out [QuartzNet](http://quartznet.sf.net) and the `ItineraryTrigger` class in the solution.
+   For that, check out [Quartz.NET](http://quartznet.sf.net) and the `ItineraryTrigger` class in the solution.
  - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 ### Why use Itinerary?
