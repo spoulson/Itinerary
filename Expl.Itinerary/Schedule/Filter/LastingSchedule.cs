@@ -7,6 +7,7 @@ namespace Expl.Itinerary {
    /// Overrides event duration.
    /// </summary>
    [Description("Lasting")]
+   [Serializable]
    public class LastingSchedule : IFilterSchedule {
       private TimeSpan _Duration;
       private ISchedule _Schedule;
@@ -44,6 +45,12 @@ namespace Expl.Itinerary {
          }
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return
+            _Schedule.GetHashCode() +
+            _Duration.GetHashCode();
       }
    }
 }

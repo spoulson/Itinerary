@@ -13,6 +13,7 @@ namespace Expl.Itinerary {
    /// Generate difference of two datetime spans.
    /// </summary>
    [Description("Difference")]
+   [Serializable]
    public class DifferenceSchedule : ICompositeSchedule {
       private ListSchedule _Schedule;
 
@@ -161,6 +162,10 @@ namespace Expl.Itinerary {
          }
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return _Schedule.GetHashCode();
       }
    }
 }

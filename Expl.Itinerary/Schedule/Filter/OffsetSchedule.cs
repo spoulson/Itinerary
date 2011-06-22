@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 namespace Expl.Itinerary {
    [Description("Offset")]
+   [Serializable]
    public class OffsetSchedule : IFilterSchedule {
       private ISchedule _Schedule;
       private TimeSpan _OffsetTime;
@@ -73,6 +74,12 @@ namespace Expl.Itinerary {
             if (-AddValue.Ticks >= Value.Ticks) return DateTime.MinValue;
          }
          return Value + AddValue;
+      }
+
+      public override int GetHashCode() {
+         return
+            _Schedule.GetHashCode() +
+            _OffsetTime.GetHashCode();
       }
    }
 }

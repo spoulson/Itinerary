@@ -7,6 +7,7 @@ namespace Expl.Itinerary {
    /// Non-intersecting schedules collection of two ISchedule objects where event A does not intersect with event B.
    /// </summary>
    [Description("Boolean Non-Intersection")]
+   [Serializable]
    public class BoolNonIntersectionSchedule : ICompositeSchedule {
       private ISchedule _ScheduleA;
       private ISchedule _ScheduleB;
@@ -80,6 +81,13 @@ namespace Expl.Itinerary {
          }
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         // TODO: Rewrite such that hashcodes A + B != B + A.
+         return
+            _ScheduleA.GetHashCode() +
+            _ScheduleB.GetHashCode();
       }
    }
 }

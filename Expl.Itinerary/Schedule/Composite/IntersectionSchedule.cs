@@ -8,6 +8,7 @@ namespace Expl.Itinerary {
    /// Intersecting schedules collection of two ISchedule objects where event times overlap.
    /// </summary>
    [Description("Intersection")]
+   [Serializable]
    public class IntersectionSchedule : ICompositeSchedule {
       private ISchedule _ScheduleA;
       private ISchedule _ScheduleB;
@@ -121,6 +122,12 @@ namespace Expl.Itinerary {
          }
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return
+            _ScheduleA.GetHashCode() +
+            _ScheduleB.GetHashCode();
       }
    }
 }

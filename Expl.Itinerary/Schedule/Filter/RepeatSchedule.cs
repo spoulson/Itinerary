@@ -4,9 +4,10 @@ using System.ComponentModel;
 
 namespace Expl.Itinerary {
    [Description("Repeat")]
+   [Serializable]
    public class RepeatSchedule : IFilterSchedule {
-      protected ISchedule _Schedule;
-      protected int _RepeatCount;
+      private ISchedule _Schedule;
+      private int _RepeatCount;
 
       /// <summary>
       /// Default constructor.
@@ -48,6 +49,12 @@ namespace Expl.Itinerary {
          }
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return
+            _Schedule.GetHashCode() +
+            _RepeatCount.GetHashCode();
       }
    }
 }

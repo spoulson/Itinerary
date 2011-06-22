@@ -9,6 +9,7 @@ namespace Expl.Itinerary {
    /// <summary>
    /// Cron schedule.
    /// </summary>
+   [Serializable]
    public class CronSchedule : IPrimitiveSchedule {
       /// <summary>
       /// Translation table for day of week field.
@@ -163,6 +164,16 @@ namespace Expl.Itinerary {
 
          return value;
       }
+
+      public override int GetHashCode() {
+         return
+            _MinuteLookup.GetHashCode() +
+            _HourLookup.GetHashCode() +
+            _DayLookup.GetHashCode() +
+            _MonthLookup.GetHashCode() +
+            _DayOfWeekLookup.GetHashCode() +
+            _Duration.GetHashCode();
+      }
    }
 
    /// <summary>
@@ -171,6 +182,7 @@ namespace Expl.Itinerary {
    /// <remarks>
    /// TODO: Consider migrating parser to ANTLR grammar?  IntSpec syntax?
    /// </remarks>
+   [Serializable]
    public class CronField {
       public const int LAST_OCCURANCE_INDEX = -1;
       private int _Min, _Max;
@@ -360,6 +372,11 @@ namespace Expl.Itinerary {
                _Lookup.Where<bool>(x => { Index++; return x; }).Select<bool, int>(x => Index - 1)
             );
          }
+      }
+
+      public override int GetHashCode()
+      {
+         return _CronSpec.GetHashCode();
       }
    }
 }

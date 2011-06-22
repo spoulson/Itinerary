@@ -13,6 +13,7 @@ namespace Expl.Itinerary {
    /// Generate subtraction of two datetime spans.
    /// </summary>
    [Description("Subtract")]
+   [Serializable]
    public class SubtractSchedule : ICompositeSchedule {
       private ISchedule _ScheduleA;
       private ISchedule _ScheduleB;
@@ -180,6 +181,13 @@ namespace Expl.Itinerary {
          } while (readvanceFlag || HasMoreA || QueueA.Count > 0);
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         // TODO: Rewrite such that hash codes A + B != B + A.
+         return
+            _ScheduleA.GetHashCode() +
+            _ScheduleB.GetHashCode();
       }
    }
 }

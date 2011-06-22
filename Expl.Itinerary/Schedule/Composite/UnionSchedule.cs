@@ -10,6 +10,7 @@ namespace Expl.Itinerary {
    /// Union collection of ISchedule objects.
    /// </summary>
    [Description("Union")]
+   [Serializable]
    public class UnionSchedule : ICompositeSchedule {
       private ListSchedule _Schedule;
 
@@ -110,6 +111,10 @@ namespace Expl.Itinerary {
          if (MatchEvent != null) yield return MatchEvent;
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return _Schedule.GetHashCode();
       }
    }
 }

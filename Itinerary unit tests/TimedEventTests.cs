@@ -6,9 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 
 namespace Expl.Itinerary.Test {
-   /// <summary>
-   /// Summary description for TimedEventTests
-   /// </summary>
    [TestClass]
    public class TimedEventTests {
       [TestMethod]
@@ -923,5 +920,5 @@ namespace Expl.Itinerary.Test {
             // Success.
          }
       }
-}
+   }
 }

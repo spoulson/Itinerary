@@ -5,6 +5,7 @@ namespace Expl.Itinerary {
    /// <summary>
    /// Void schedule.
    /// </summary>
+   [Serializable]
    public class VoidSchedule : IPrimitiveSchedule {
       public int OperatorPrecedence { get { return 1; } }
 
@@ -14,6 +15,10 @@ namespace Expl.Itinerary {
 
       public IEnumerable<TimedEvent> GetRange(DateTime RangeStart, DateTime RangeEnd) {
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return 0;
       }
    }
 }

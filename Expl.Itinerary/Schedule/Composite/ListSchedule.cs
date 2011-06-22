@@ -10,6 +10,7 @@ namespace Expl.Itinerary {
    /// Union collection of ISchedule objects.
    /// </summary>
    [Description("List")]
+   [Serializable]
    public class ListSchedule : ICompositeSchedule {
       private List<ISchedule> _Schedules;
 
@@ -141,6 +142,16 @@ namespace Expl.Itinerary {
          }
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         int a = 0;
+
+         foreach (var sched in _Schedules) {
+            a += sched.GetHashCode();
+         }
+
+         return a;
       }
    }
 }

@@ -9,6 +9,7 @@ namespace Expl.Itinerary {
    /// Indexes are 1-based.
    /// </summary>
    [Description("Index")]
+   [Serializable]
    public class IndexSchedule : IFilterSchedule {
       private string _IndexSpec;
       private ISchedule _Schedule;
@@ -57,6 +58,12 @@ namespace Expl.Itinerary {
          }
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return
+            _Schedule.GetHashCode() +
+            _IndexSpec.GetHashCode();
       }
    }
 }

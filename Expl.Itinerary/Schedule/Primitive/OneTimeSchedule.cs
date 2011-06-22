@@ -6,6 +6,7 @@ namespace Expl.Itinerary {
    /// <summary>
    /// Schedule once at a set time.
    /// </summary>
+   [Serializable]
    public class OneTimeSchedule : IPrimitiveSchedule {
       private enum NotationKind {
          Lasting, To
@@ -73,6 +74,12 @@ namespace Expl.Itinerary {
             yield return _Event;
 
          yield break;
+      }
+
+      public override int GetHashCode() {
+         return
+            _Event.GetHashCode() +
+            _Notation.GetHashCode();
       }
    }
 }

@@ -4,8 +4,11 @@ namespace Expl.Itinerary {
    /// <summary>
    /// Class encapsulating a timed event.
    /// </summary>
+   [Serializable]
    public class TimedEvent : IComparable<TimedEvent> {
-      protected DateTime _StartTime, _EndTime;
+      protected DateTime _StartTime;
+      protected DateTime _EndTime;
+
       /// <summary>
       /// Constructor.
       /// </summary>
@@ -27,7 +30,9 @@ namespace Expl.Itinerary {
       }
 
       public override int GetHashCode() {
-         return base.GetHashCode();
+         return
+            _StartTime.GetHashCode() +
+            _EndTime.GetHashCode();
       }
 
       /// <summary>

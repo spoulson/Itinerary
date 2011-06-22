@@ -6,6 +6,7 @@ namespace Expl.Itinerary {
    /// <summary>
    /// Schedule at regular intervals.
    /// </summary>
+   [Serializable]
    public class IntervalSchedule : IPrimitiveSchedule {
       private TimeSpan _Interval;
       private TimeSpan _Duration;
@@ -135,6 +136,13 @@ namespace Expl.Itinerary {
 
       private long TotalMilliseconds(DateTime dt) {
          return (long)(dt.Ticks / 10000);
+      }
+
+      public override int GetHashCode() {
+         return
+            _Interval.GetHashCode() +
+            _Duration.GetHashCode() +
+            _SyncTime.GetHashCode();
       }
    }
 }

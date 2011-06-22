@@ -22,9 +22,11 @@ INTRODUCTION
  - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 ### Why use Itinerary?
+ - Lightweight:  Stateless; Lazily generate events on demand.
  - You need to integrate a cron-like scheduler into your app.
- - You need to logically describe complex recurrance patterns and/or arbitrary schedules of date/times.
- - You need to store this description (not the events) for later reuse.
+ - You need to logically describe arbitrary or complex recurrance patterns.
+ - You need to forecast timed events from known recurrance patterns.
+ - You need to store the recurrance logic (not the events) for later reuse.
 
 ### How do I get started using Itinerary?
  - Learn TDL expression syntax from the Itinerary Wiki on GitHub:
