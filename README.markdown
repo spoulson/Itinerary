@@ -22,10 +22,11 @@ INTRODUCTION
  - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 ### Why use Itinerary?
- - Lightweight:  Stateless; Lazily generate events on demand.
+ - Lightweight, stateless, lazily generate events on demand.
  - You need to integrate a cron-like scheduler into your app.
+ - You already use a scheduler, like Quartz.NET, but need more powerful scheduling logic.
  - You need to logically describe arbitrary or complex recurrance patterns.
- - You need to forecast timed events from known recurrance patterns.
+ - You need to forecast scheduled timed events.
  - You need to store the recurrance logic (not the events) for later reuse.
 
 ### How do I get started using Itinerary?
@@ -40,7 +41,7 @@ SYSTEM REQUIREMENTS
 
 ### Development requirements:
 * Visual Studio 2010 (Professional edition or better required for unit test execution).
-* Java SE JDK (optional, required to compile ANTLR grammar).
+* Java SE JDK (optional, required to recompile ANTLR grammar).
 
 ### Runtime requirements:
 * .NET 4.0 Framework.
@@ -48,7 +49,7 @@ SYSTEM REQUIREMENTS
 KNOWN ISSUES
 ------------
 
-None reported at time of release.
+None reported at time of release.  
 See GitHub repo for issue tracking.
 
 LICENSING
