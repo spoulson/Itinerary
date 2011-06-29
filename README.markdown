@@ -1,7 +1,7 @@
 Itinerary: Lazy time scheduling toolset for .NET
 ================================================
 
-Pre-release, 2011-06-22  
+Release 1.0, 2011-06-23  
 GitHub repo: https://github.com/spoulson/Itinerary  
 Shawn Poulson, http://explodingcoder.com
 
