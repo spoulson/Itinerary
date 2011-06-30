@@ -7,6 +7,8 @@ namespace TDL_Explorer {
       public static readonly IExampleItem[] ExampleList = {
          new ExampleGroup("Intervals") {
             Items = new IExampleItem[] {
+               new ExampleSchedule("Every week from today", "every T7.0:0:0 lasting T1.0:0:0"),
+               new ExampleSchedule("Every 3 days from today", "every T3.0:0:0 lasting T1.0:0:0"),
                new ExampleSchedule("Every day", "every T1.0:0:0 lasting T1.0:0:0"),
                new ExampleSchedule("Every hour", "every T1:0:0 lasting T1:0:0"),
                new ExampleSchedule("Every 30 minutes", "every T30:0 lasting T30:0"),

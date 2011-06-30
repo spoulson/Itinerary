@@ -36,6 +36,10 @@ namespace TDL_Explorer {
          this.insertExamplesToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
          this.statusStrip1 = new System.Windows.Forms.StatusStrip();
          this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+         this.tabControl1 = new System.Windows.Forms.TabControl();
+         this.eventListTabPage = new System.Windows.Forms.TabPage();
+         this.calendarTabPage = new System.Windows.Forms.TabPage();
+         this.monthCalendar_Events = new System.Windows.Forms.MonthCalendar();
          ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
          this.splitContainer1.Panel1.SuspendLayout();
          this.splitContainer1.Panel2.SuspendLayout();
@@ -44,6 +48,9 @@ namespace TDL_Explorer {
          ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TimedEvents)).BeginInit();
          this.toolStrip1.SuspendLayout();
          this.statusStrip1.SuspendLayout();
+         this.tabControl1.SuspendLayout();
+         this.eventListTabPage.SuspendLayout();
+         this.calendarTabPage.SuspendLayout();
          this.SuspendLayout();
          // 
          // splitContainer1
@@ -61,7 +68,7 @@ namespace TDL_Explorer {
          // 
          // splitContainer1.Panel2
          // 
-         this.splitContainer1.Panel2.Controls.Add(this.dataGridView_TimedEvents);
+         this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
          this.splitContainer1.Size = new System.Drawing.Size(499, 320);
          this.splitContainer1.SplitterDistance = 115;
          this.splitContainer1.TabIndex = 1;
@@ -132,12 +139,12 @@ namespace TDL_Explorer {
          this.dataGridView_TimedEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
          this.dataGridView_TimedEvents.Dock = System.Windows.Forms.DockStyle.Fill;
          this.dataGridView_TimedEvents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-         this.dataGridView_TimedEvents.Location = new System.Drawing.Point(0, 0);
+         this.dataGridView_TimedEvents.Location = new System.Drawing.Point(3, 3);
          this.dataGridView_TimedEvents.Name = "dataGridView_TimedEvents";
          this.dataGridView_TimedEvents.ReadOnly = true;
          this.dataGridView_TimedEvents.RowHeadersVisible = false;
          this.dataGridView_TimedEvents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-         this.dataGridView_TimedEvents.Size = new System.Drawing.Size(499, 201);
+         this.dataGridView_TimedEvents.Size = new System.Drawing.Size(485, 169);
          this.dataGridView_TimedEvents.TabIndex = 0;
          // 
          // toolStrip1
@@ -186,6 +193,47 @@ namespace TDL_Explorer {
          this.toolStripStatusLabel1.Spring = true;
          this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
          // 
+         // tabControl1
+         // 
+         this.tabControl1.Controls.Add(this.eventListTabPage);
+         this.tabControl1.Controls.Add(this.calendarTabPage);
+         this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.tabControl1.Location = new System.Drawing.Point(0, 0);
+         this.tabControl1.Name = "tabControl1";
+         this.tabControl1.SelectedIndex = 0;
+         this.tabControl1.Size = new System.Drawing.Size(499, 201);
+         this.tabControl1.TabIndex = 1;
+         // 
+         // eventListTabPage
+         // 
+         this.eventListTabPage.Controls.Add(this.dataGridView_TimedEvents);
+         this.eventListTabPage.Location = new System.Drawing.Point(4, 22);
+         this.eventListTabPage.Name = "eventListTabPage";
+         this.eventListTabPage.Padding = new System.Windows.Forms.Padding(3);
+         this.eventListTabPage.Size = new System.Drawing.Size(491, 175);
+         this.eventListTabPage.TabIndex = 0;
+         this.eventListTabPage.Text = "Event List";
+         this.eventListTabPage.UseVisualStyleBackColor = true;
+         // 
+         // calendarTabPage
+         // 
+         this.calendarTabPage.Controls.Add(this.monthCalendar_Events);
+         this.calendarTabPage.Location = new System.Drawing.Point(4, 22);
+         this.calendarTabPage.Name = "calendarTabPage";
+         this.calendarTabPage.Padding = new System.Windows.Forms.Padding(3);
+         this.calendarTabPage.Size = new System.Drawing.Size(491, 175);
+         this.calendarTabPage.TabIndex = 1;
+         this.calendarTabPage.Text = "Calendar";
+         this.calendarTabPage.UseVisualStyleBackColor = true;
+         // 
+         // monthCalendar_Events
+         // 
+         this.monthCalendar_Events.CalendarDimensions = new System.Drawing.Size(2, 1);
+         this.monthCalendar_Events.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.monthCalendar_Events.Location = new System.Drawing.Point(3, 3);
+         this.monthCalendar_Events.Name = "monthCalendar_Events";
+         this.monthCalendar_Events.TabIndex = 0;
+         // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +257,9 @@ namespace TDL_Explorer {
          this.toolStrip1.PerformLayout();
          this.statusStrip1.ResumeLayout(false);
          this.statusStrip1.PerformLayout();
+         this.tabControl1.ResumeLayout(false);
+         this.eventListTabPage.ResumeLayout(false);
+         this.calendarTabPage.ResumeLayout(false);
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -229,6 +280,10 @@ namespace TDL_Explorer {
       private System.Windows.Forms.Label label2;
       private System.Windows.Forms.TextBox textBox_EndRange;
       private System.Windows.Forms.ToolStripDropDownButton insertExamplesToolStripDropDownButton;
+      private System.Windows.Forms.TabControl tabControl1;
+      private System.Windows.Forms.TabPage eventListTabPage;
+      private System.Windows.Forms.TabPage calendarTabPage;
+      private System.Windows.Forms.MonthCalendar monthCalendar_Events;
 
    }
 }

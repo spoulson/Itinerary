@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Expl.Itinerary;
 using Expl.Itinerary.Parser;
+using System.Collections.Generic;
 
 namespace TDL_Explorer {
    public partial class Form1 : Form {
@@ -92,22 +93,32 @@ namespace TDL_Explorer {
          }
 
          try {
+            // Parse TDL.
             var sched = TDLParser.Parse(textBox_TDL.Text);
+
             var events = sched.GetRange(StartRange, EndRange)
-               .Take(10000)
-               .Select(te => new {
+               .Take(10000);
+
+            // Populate datagrid view.
+            var eventTexts =
+               events.Select(te => new {
                   StartTime = ItineraryConvert.ToString(te.StartTime),
                   EndTime = ItineraryConvert.ToString(te.EndTime),
                   Duration = te.Duration.ToString()
                })
                .ToArray();
-
             dataGridView_TimedEvents.SuspendLayout();
-            dataGridView_TimedEvents.DataSource = events;
+            dataGridView_TimedEvents.DataSource = eventTexts;
             dataGridView_TimedEvents.Columns[0].Width = 150;
             dataGridView_TimedEvents.Columns[1].Width = 150;
             dataGridView_TimedEvents.Columns[2].Width = 125;
             dataGridView_TimedEvents.ResumeLayout();
+
+            // Populate calendar view.
+            var eventDates = events.SelectMany(e => e.GetEventDates()).ToArray();
+            monthCalendar_Events.SuspendLayout();
+            monthCalendar_Events.BoldedDates = eventDates;
+            monthCalendar_Events.ResumeLayout();
             
             toolStripStatusLabel1.Text = string.Format("TDL parsed successfully.  Generated {0} events.", events.Count());
          }
@@ -115,7 +126,6 @@ namespace TDL_Explorer {
             toolStripStatusLabel1.Text = "Error parsing TDL.";
             return;
          }
-
       }
 
       /// <summary>
