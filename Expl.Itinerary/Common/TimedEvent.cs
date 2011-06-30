@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Expl.Itinerary {
    /// <summary>
@@ -467,6 +468,22 @@ namespace Expl.Itinerary {
             return new[] { new TimedEvent(EndTime, DateTime.MaxValue) };
          else
             return new TimedEvent[0];
+      }
+
+      /// <summary>
+      /// Enumerate dates that this event spans.
+      /// </summary>
+      /// <param name="evt"></param>
+      /// <returns></returns>
+      public IEnumerable<DateTime> GetEventDates() {
+         var dt = StartTime.Date;
+         
+         do {
+            yield return dt;
+            dt = dt.AddDays(1);
+         } while (dt < EndTime);
+
+         yield break;
       }
 
       #endregion
