@@ -30,27 +30,27 @@ namespace TDL_Explorer {
          this.textBox_StartRange = new System.Windows.Forms.TextBox();
          this.label2 = new System.Windows.Forms.Label();
          this.textBox_EndRange = new System.Windows.Forms.TextBox();
+         this.tabControl1 = new System.Windows.Forms.TabControl();
+         this.eventListTabPage = new System.Windows.Forms.TabPage();
          this.dataGridView_TimedEvents = new System.Windows.Forms.DataGridView();
+         this.calendarTabPage = new System.Windows.Forms.TabPage();
+         this.monthCalendar_Events = new System.Windows.Forms.MonthCalendar();
          this.toolStrip1 = new System.Windows.Forms.ToolStrip();
          this.toolStripButton_Parse = new System.Windows.Forms.ToolStripButton();
          this.insertExamplesToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
          this.statusStrip1 = new System.Windows.Forms.StatusStrip();
          this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-         this.tabControl1 = new System.Windows.Forms.TabControl();
-         this.eventListTabPage = new System.Windows.Forms.TabPage();
-         this.calendarTabPage = new System.Windows.Forms.TabPage();
-         this.monthCalendar_Events = new System.Windows.Forms.MonthCalendar();
          ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
          this.splitContainer1.Panel1.SuspendLayout();
          this.splitContainer1.Panel2.SuspendLayout();
          this.splitContainer1.SuspendLayout();
          this.flowLayoutPanel1.SuspendLayout();
-         ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TimedEvents)).BeginInit();
-         this.toolStrip1.SuspendLayout();
-         this.statusStrip1.SuspendLayout();
          this.tabControl1.SuspendLayout();
          this.eventListTabPage.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TimedEvents)).BeginInit();
          this.calendarTabPage.SuspendLayout();
+         this.toolStrip1.SuspendLayout();
+         this.statusStrip1.SuspendLayout();
          this.SuspendLayout();
          // 
          // splitContainer1
@@ -130,6 +130,29 @@ namespace TDL_Explorer {
          this.textBox_EndRange.Size = new System.Drawing.Size(130, 20);
          this.textBox_EndRange.TabIndex = 2;
          // 
+         // tabControl1
+         // 
+         this.tabControl1.Controls.Add(this.eventListTabPage);
+         this.tabControl1.Controls.Add(this.calendarTabPage);
+         this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.tabControl1.Location = new System.Drawing.Point(0, 0);
+         this.tabControl1.Name = "tabControl1";
+         this.tabControl1.SelectedIndex = 0;
+         this.tabControl1.Size = new System.Drawing.Size(499, 201);
+         this.tabControl1.TabIndex = 1;
+         this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+         // 
+         // eventListTabPage
+         // 
+         this.eventListTabPage.Controls.Add(this.dataGridView_TimedEvents);
+         this.eventListTabPage.Location = new System.Drawing.Point(4, 22);
+         this.eventListTabPage.Name = "eventListTabPage";
+         this.eventListTabPage.Padding = new System.Windows.Forms.Padding(3);
+         this.eventListTabPage.Size = new System.Drawing.Size(491, 175);
+         this.eventListTabPage.TabIndex = 0;
+         this.eventListTabPage.Text = "Event List";
+         this.eventListTabPage.UseVisualStyleBackColor = true;
+         // 
          // dataGridView_TimedEvents
          // 
          this.dataGridView_TimedEvents.AllowUserToAddRows = false;
@@ -146,6 +169,25 @@ namespace TDL_Explorer {
          this.dataGridView_TimedEvents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
          this.dataGridView_TimedEvents.Size = new System.Drawing.Size(485, 169);
          this.dataGridView_TimedEvents.TabIndex = 0;
+         // 
+         // calendarTabPage
+         // 
+         this.calendarTabPage.Controls.Add(this.monthCalendar_Events);
+         this.calendarTabPage.Location = new System.Drawing.Point(4, 22);
+         this.calendarTabPage.Name = "calendarTabPage";
+         this.calendarTabPage.Padding = new System.Windows.Forms.Padding(3);
+         this.calendarTabPage.Size = new System.Drawing.Size(491, 175);
+         this.calendarTabPage.TabIndex = 1;
+         this.calendarTabPage.Text = "Calendar";
+         this.calendarTabPage.UseVisualStyleBackColor = true;
+         // 
+         // monthCalendar_Events
+         // 
+         this.monthCalendar_Events.CalendarDimensions = new System.Drawing.Size(2, 1);
+         this.monthCalendar_Events.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.monthCalendar_Events.Location = new System.Drawing.Point(3, 3);
+         this.monthCalendar_Events.Name = "monthCalendar_Events";
+         this.monthCalendar_Events.TabIndex = 0;
          // 
          // toolStrip1
          // 
@@ -193,47 +235,6 @@ namespace TDL_Explorer {
          this.toolStripStatusLabel1.Spring = true;
          this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
          // 
-         // tabControl1
-         // 
-         this.tabControl1.Controls.Add(this.eventListTabPage);
-         this.tabControl1.Controls.Add(this.calendarTabPage);
-         this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.tabControl1.Location = new System.Drawing.Point(0, 0);
-         this.tabControl1.Name = "tabControl1";
-         this.tabControl1.SelectedIndex = 0;
-         this.tabControl1.Size = new System.Drawing.Size(499, 201);
-         this.tabControl1.TabIndex = 1;
-         // 
-         // eventListTabPage
-         // 
-         this.eventListTabPage.Controls.Add(this.dataGridView_TimedEvents);
-         this.eventListTabPage.Location = new System.Drawing.Point(4, 22);
-         this.eventListTabPage.Name = "eventListTabPage";
-         this.eventListTabPage.Padding = new System.Windows.Forms.Padding(3);
-         this.eventListTabPage.Size = new System.Drawing.Size(491, 175);
-         this.eventListTabPage.TabIndex = 0;
-         this.eventListTabPage.Text = "Event List";
-         this.eventListTabPage.UseVisualStyleBackColor = true;
-         // 
-         // calendarTabPage
-         // 
-         this.calendarTabPage.Controls.Add(this.monthCalendar_Events);
-         this.calendarTabPage.Location = new System.Drawing.Point(4, 22);
-         this.calendarTabPage.Name = "calendarTabPage";
-         this.calendarTabPage.Padding = new System.Windows.Forms.Padding(3);
-         this.calendarTabPage.Size = new System.Drawing.Size(491, 175);
-         this.calendarTabPage.TabIndex = 1;
-         this.calendarTabPage.Text = "Calendar";
-         this.calendarTabPage.UseVisualStyleBackColor = true;
-         // 
-         // monthCalendar_Events
-         // 
-         this.monthCalendar_Events.CalendarDimensions = new System.Drawing.Size(2, 1);
-         this.monthCalendar_Events.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.monthCalendar_Events.Location = new System.Drawing.Point(3, 3);
-         this.monthCalendar_Events.Name = "monthCalendar_Events";
-         this.monthCalendar_Events.TabIndex = 0;
-         // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,14 +253,14 @@ namespace TDL_Explorer {
          this.splitContainer1.ResumeLayout(false);
          this.flowLayoutPanel1.ResumeLayout(false);
          this.flowLayoutPanel1.PerformLayout();
+         this.tabControl1.ResumeLayout(false);
+         this.eventListTabPage.ResumeLayout(false);
          ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TimedEvents)).EndInit();
+         this.calendarTabPage.ResumeLayout(false);
          this.toolStrip1.ResumeLayout(false);
          this.toolStrip1.PerformLayout();
          this.statusStrip1.ResumeLayout(false);
          this.statusStrip1.PerformLayout();
-         this.tabControl1.ResumeLayout(false);
-         this.eventListTabPage.ResumeLayout(false);
-         this.calendarTabPage.ResumeLayout(false);
          this.ResumeLayout(false);
          this.PerformLayout();
 

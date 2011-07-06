@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace TDL_Explorer {
    public partial class Form1 : Form {
+      private IEnumerable<TimedEvent> parsedEvents;
+      private IDictionary<string, bool> tabPopulateFlags = new Dictionary<string, bool>();
+
       public Form1() {
          InitializeComponent();
       }
@@ -69,6 +72,16 @@ namespace TDL_Explorer {
       }
 
       /// <summary>
+      /// Handle tab page change.
+      /// Ensure tab page is populated.
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
+      private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
+         PopulateCurrentTab();
+      }
+
+      /// <summary>
       /// Parse user input TDL and date range.
       /// Populate datagrid with generated TimedEvents.
       /// </summary>
@@ -96,12 +109,37 @@ namespace TDL_Explorer {
             // Parse TDL.
             var sched = TDLParser.Parse(textBox_TDL.Text);
 
-            var events = sched.GetRange(StartRange, EndRange)
+            parsedEvents = sched.GetRange(StartRange, EndRange)
                .Take(10000);
 
+            // Clear tab page populate flags.
+            tabPopulateFlags.Clear();
+
+            PopulateCurrentTab();
+
+            toolStripStatusLabel1.Text = string.Format("TDL parsed successfully.  Generated {0} events.", parsedEvents.Count());
+         }
+         catch {
+            toolStripStatusLabel1.Text = "Error parsing TDL.";
+            return;
+         }
+      }
+
+      /// <summary>
+      /// Populate the currently visible tab page.
+      /// Mark tab page as populated so that it is not repopulated again until TDL is reparsed.
+      /// </summary>
+      private void PopulateCurrentTab() {
+         var tabName = tabControl1.SelectedTab.Name;
+
+         // Check if tab is already populated since last parse.
+         if (tabPopulateFlags.Keys.Contains(tabName) && tabPopulateFlags[tabName]) return;
+
+         switch (tabName) {
+         case "eventListTabPage":
             // Populate datagrid view.
             var eventTexts =
-               events.Select(te => new {
+               parsedEvents.Select(te => new {
                   StartTime = ItineraryConvert.ToString(te.StartTime),
                   EndTime = ItineraryConvert.ToString(te.EndTime),
                   Duration = te.Duration.ToString()
@@ -113,19 +151,21 @@ namespace TDL_Explorer {
             dataGridView_TimedEvents.Columns[1].Width = 150;
             dataGridView_TimedEvents.Columns[2].Width = 125;
             dataGridView_TimedEvents.ResumeLayout();
+            break;
 
+         case "calendarTabPage":
             // Populate calendar view.
-            var eventDates = events.SelectMany(e => e.GetEventDates()).ToArray();
+            var eventDates = parsedEvents.SelectMany(e => e.GetEventDates()).ToArray();
             monthCalendar_Events.SuspendLayout();
             monthCalendar_Events.BoldedDates = eventDates;
             monthCalendar_Events.ResumeLayout();
-            
-            toolStripStatusLabel1.Text = string.Format("TDL parsed successfully.  Generated {0} events.", events.Count());
+            break;
+
+         default:
+            break;
          }
-         catch {
-            toolStripStatusLabel1.Text = "Error parsing TDL.";
-            return;
-         }
+
+         tabPopulateFlags[tabName] = true;
       }
 
       /// <summary>
