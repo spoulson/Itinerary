@@ -33,12 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e">
-      <HintPath>..\Expl.Itinerary.Quartz\bin\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging">
+      <HintPath>..\Expl.Itinerary.Quartz\lib\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Quartz, Version=1.0.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Expl.Itinerary.Quartz\bin\Quartz.dll</HintPath>
+      <HintPath>..\Expl.Itinerary.Quartz\lib\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

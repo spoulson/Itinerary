@@ -42,6 +42,9 @@ SYSTEM REQUIREMENTS
 ### Development requirements:
 * Visual Studio 2010 (Professional edition or better required for unit test execution).
 * Java SE JDK (optional, required to recompile ANTLR grammar).
+* Expl.Itinerary.Quartz project includes Quartz 1.0.3 and Common.Logging 2.0.  You may need to update references depending on your requirements.
+  * http://quartznet.sourceforge.net/
+  * https://github.com/net-commons/common-logging
 
 ### Runtime requirements:
 * .NET 4.0 Framework.

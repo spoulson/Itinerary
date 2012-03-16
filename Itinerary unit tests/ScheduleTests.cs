@@ -1624,112 +1624,133 @@ namespace Expl.Itinerary.Test {
       [TestMethod]
       public void CronTest() {
          ScheduleUnitTest[] tests = {
-            new ScheduleUnitTest("Monday by name",
-               new CronSchedule("0", "0", "*", "*", "Mon", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //new ScheduleUnitTest("Monday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Mon", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Tuesday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Tue", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 7, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Wednesday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Wed", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 1, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Thursday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Thu", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 2, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Friday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Fri", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 3, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Saturday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Sat", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 4, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Sunday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Sun", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 5, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Monday-Friday by name",
+            //   new CronSchedule("0", "0", "*", "*", "Mon-Fri", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 1, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 2, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 3, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 7, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("First Monday",
+            //   new CronSchedule("0", "0", "*", "*", "1#1", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Second Saturday",
+            //   new CronSchedule("0", "0", "*", "*", "6#2", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 11, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Fifth Thursday",
+            //   new CronSchedule("0", "0", "*", "*", "4#5", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 30, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("Fifth Friday (out of range, no matches)",
+            //   new CronSchedule("0", "0", "*", "*", "5#5", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+            //   new TimedEvent[0]
+            //),
+            //new ScheduleUnitTest("Third weekdays",
+            //   new CronSchedule("0", "0", "*", "*", "1-5#3", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 15, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 16, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 17, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 20, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 21, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            //new ScheduleUnitTest("First Monday and Saturday",
+            //   new CronSchedule("0", "0", "*", "*", "1,6#1", TimeSpan.Zero),
+            //   new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
+            //   new TimedEvent[] {
+            //      new TimedEvent(new DateTime(2011, 6, 4, 0, 0, 0), TimeSpan.Zero),
+            //      new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
+            //   }
+            //),
+            new ScheduleUnitTest("Last day of January - L syntax",
+               new CronSchedule("0", "0", "L", "1", "*", TimeSpan.Zero),
+               new DateTime(2011, 1, 1, 0, 0, 0), new DateTime(2011, 2, 1, 0, 0, 0),
                new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
+                  new TimedEvent(new DateTime(2011, 1, 31, 0, 0, 0), TimeSpan.Zero)
                }
             ),
-            new ScheduleUnitTest("Tuesday by name",
-               new CronSchedule("0", "0", "*", "*", "Tue", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            new ScheduleUnitTest("Last day of January - negative number syntax",
+               new CronSchedule("0", "0", "-1", "1", "*", TimeSpan.Zero),
+               new DateTime(2011, 1, 1, 0, 0, 0), new DateTime(2011, 2, 1, 0, 0, 0),
                new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 7, 0, 0, 0), TimeSpan.Zero)
+                  new TimedEvent(new DateTime(2011, 1, 31, 0, 0, 0), TimeSpan.Zero)
                }
             ),
-            new ScheduleUnitTest("Wednesday by name",
-               new CronSchedule("0", "0", "*", "*", "Wed", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
+            new ScheduleUnitTest("Second to last day of June",
+               new CronSchedule("0", "0", "-2", "6", "*", TimeSpan.Zero),
+               new DateTime(2011, 1, 1, 0, 0, 0), new DateTime(2012, 1, 1, 0, 0, 0),
                new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 1, 0, 0, 0), TimeSpan.Zero)
+                  new TimedEvent(new DateTime(2011, 6, 29, 0, 0, 0), TimeSpan.Zero)
                }
             ),
-            new ScheduleUnitTest("Thursday by name",
-               new CronSchedule("0", "0", "*", "*", "Thu", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 2, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Friday by name",
-               new CronSchedule("0", "0", "*", "*", "Fri", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 3, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Saturday by name",
-               new CronSchedule("0", "0", "*", "*", "Sat", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 4, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Sunday by name",
-               new CronSchedule("0", "0", "*", "*", "Sun", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 5, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Monday-Friday by name",
-               new CronSchedule("0", "0", "*", "*", "Mon-Fri", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 6, 8, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 1, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 2, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 3, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 7, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("First Monday",
-               new CronSchedule("0", "0", "*", "*", "1#1", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Second Saturday",
-               new CronSchedule("0", "0", "*", "*", "6#2", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 11, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Fifth Thursday",
-               new CronSchedule("0", "0", "*", "*", "4#5", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 30, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Fifth Friday (out of range, no matches)",
-               new CronSchedule("0", "0", "*", "*", "5#5", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
-               new TimedEvent[0]
-            ),
-            new ScheduleUnitTest("Third weekdays",
-               new CronSchedule("0", "0", "*", "*", "1-5#3", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 15, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 16, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 17, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 20, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 21, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("First Monday and Saturday",
-               new CronSchedule("0", "0", "*", "*", "1,6#1", TimeSpan.Zero),
-               new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
-               new TimedEvent[] {
-                  new TimedEvent(new DateTime(2011, 6, 4, 0, 0, 0), TimeSpan.Zero),
-                  new TimedEvent(new DateTime(2011, 6, 6, 0, 0, 0), TimeSpan.Zero)
-               }
-            ),
-            new ScheduleUnitTest("Last Monday - L syntax",
+            new ScheduleUnitTest("Last Monday - L index syntax",
                new CronSchedule("0", "0", "*", "*", "1#L", TimeSpan.Zero),
                new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
                new TimedEvent[] {
@@ -1788,7 +1809,8 @@ namespace Expl.Itinerary.Test {
                new TimedEvent[] {
                   new TimedEvent(new DateTime(2011, 6, 12, 0, 0, 0), TimeSpan.Zero)
                }
-            ),            new ScheduleUnitTest("Every minute",
+            ),
+            new ScheduleUnitTest("Every minute",
                new CronSchedule("*", "*", "*", "*", "*", TimeSpan.Zero),
                new DateTime(2008, 2, 7, 8, 0, 0), new DateTime(2008, 2, 7, 8, 15, 0),
                new TimedEvent[] {

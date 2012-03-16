@@ -84,21 +84,30 @@ namespace Expl.Itinerary {
 
          for (int Year = IterateStart.Year; Year <= RangeEnd.Year; Year++) {
 
-            foreach (int Month in _MonthLookup.PickList.Where(x => MonthStart.HasValue ? x >= MonthStart.Value : true)) {
+            var Months = _MonthLookup.PickList
+               .Where(x => MonthStart.HasValue ? x >= MonthStart.Value : true);
+
+            foreach (int Month in Months) {
                var DOWCounter = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+               var MonthDays = Calendar.GetMonthDays(Year, Month);
+               var Days = _DayLookup.PickList
+                  .Select(x => x < 0 ? MonthDays + x + 1 : x)
+                  .Where(x => (DayStart.HasValue ? x >= DayStart.Value : true) && x <= MonthDays);
+
                if (MonthStart.HasValue && Month != MonthStart.Value)
                   MonthStart = DayStart = HourStart = MinuteStart = null;
-                  
-               int MonthDays = Calendar.GetMonthDays(Year, Month);
 
-               foreach (int Day in _DayLookup.PickList.Where(x => (DayStart.HasValue ? x >= DayStart.Value : true) && x <= MonthDays)) {
+               foreach (int DayIndex in Days) {
+                  // Resolve negative Day as index from last day of the month.
+                  int Day = DayIndex < 0 ? MonthDays + DayIndex + 1 : DayIndex;
+
                   if (DayStart.HasValue && Day != DayStart.Value)
                      DayStart = HourStart = MinuteStart = null;
 
                   // Compute day of week.
                   int DOW = (int)new DateTime(Year, Month, Day).DayOfWeek;
 
-                  // Skip this daBy if DOW doesn't match
+                  // Skip this day if DOW doesn't match
                   if (!_DayOfWeekLookup[DOW]) continue;
                   DOWCounter[DOW]++;
                   if (_DayOfWeekLookup.OccurranceIndex.HasValue) {
@@ -112,11 +121,17 @@ namespace Expl.Itinerary {
                      if (occuranceIndex != DOWCounter[DOW] - 1) continue;
                   }
 
-                  foreach (int Hour in _HourLookup.PickList.Where(x => HourStart.HasValue ? x >= HourStart.Value : true)) {
+                  var Hours = _HourLookup.PickList
+                     .Where(x => HourStart.HasValue ? x >= HourStart.Value : true);
+
+                  foreach (int Hour in Hours) {
                      if (HourStart.HasValue && Hour != HourStart.Value)
                         HourStart = MinuteStart = null;
 
-                     foreach (int Minute in _MinuteLookup.PickList.Where(x => MinuteStart.HasValue ? x >= MinuteStart.Value : true)) {
+                     var Minutes = _MinuteLookup.PickList
+                        .Where(x => MinuteStart.HasValue ? x >= MinuteStart.Value : true);
+
+                     foreach (int Minute in Minutes) {
                         DateTime Next = new DateTime(Year, Month, Day, Hour, Minute, 0);
                         if (Next >= RangeEnd) yield break;
                         TimedEvent ReturnEvent = new TimedEvent(Next, _Duration);
@@ -188,13 +203,13 @@ namespace Expl.Itinerary {
       private int _Min, _Max;
       private Func<string, string> _XlatFunc;
       private string _CronSpec;
-      private bool[] _Lookup;
+      private bool[,] _Lookup;   // 2D array: lookup idx,signed flag
       private List<int> _PickList;
       private int? _OccurranceIndex;
-      private static readonly Regex _RegexStep = new Regex("/(\\w+)$");
-      private static readonly Regex _RegexSingle = new Regex("^\\w+$");
-      private static readonly Regex _RegexRange = new Regex("^(\\w+)-(\\w+)$");
-      private static readonly Regex _RegexMinMaxRange = new Regex("^([<>])(\\w+)$");
+      private static readonly Regex _RegexStep = new Regex(@"/(\w+)$");
+      private static readonly Regex _RegexSingle = new Regex(@"^-?\w+$");
+      private static readonly Regex _RegexRange = new Regex(@"^(\w+)-(\w+)$");
+      private static readonly Regex _RegexMinMaxRange = new Regex(@"^([<>])(\w+)$");
 
       public CronField(string CronSpec, int Min, int Max)
          : this(CronSpec, Min, Max, x => x) { }
@@ -204,7 +219,7 @@ namespace Expl.Itinerary {
          _Max = Max;
          _XlatFunc = XlatFunc;
          var Length = _Max - Min + 1;
-         _Lookup = new bool[Length];
+         _Lookup = new bool[Length,2];
          Array.Clear(_Lookup, 0, Length);
 
          _CronSpec = CronSpec;
@@ -245,12 +260,13 @@ namespace Expl.Itinerary {
       /// </summary>
       /// <param name="Value"></param>
       /// <returns></returns>
-      public bool this[int Value] {
+      public bool this[int Index] {
          get {
-            if (Value < _Min) throw new ArgumentOutOfRangeException("Argument is below the minimum");
-            if (Value > _Max) throw new ArgumentOutOfRangeException("Argument is greater than the maximum");
-            int ArrayIndex = Value - _Min;
-            return _Lookup[ArrayIndex];
+            if (Index < _Min) throw new ArgumentOutOfRangeException("Argument is below the minimum");
+            if (Index > _Max) throw new ArgumentOutOfRangeException("Argument is greater than the maximum");
+            int ArrayIndex = Index - _Min;
+            int SignedIndex = (Index >= 0) ? 1 : 0;
+            return _Lookup[ArrayIndex, SignedIndex];
          }
       }
 
@@ -262,8 +278,9 @@ namespace Expl.Itinerary {
       }
 
       private void Set(int Index, bool Value) {
-         int ArrayIndex = Index - _Min;
-         _Lookup[ArrayIndex] = Value;
+         int ArrayIndex = Math.Abs(Index) - _Min;
+         int SignedIndex = (Index >= 0) ? 1 : 0;
+         _Lookup[ArrayIndex, SignedIndex] = Value;
       }
 
       /// <summary>
@@ -274,6 +291,9 @@ namespace Expl.Itinerary {
          List<int> TallyList = new List<int>();
          List<int> NotList = new List<int>();
          Match RegMatch;
+
+         // Translate aliases.
+         if (Cron == "L") Cron = "-1";
 
          // Parse occurrance index.
          string[] CronIndexParts = Cron.Split('#');
@@ -368,9 +388,20 @@ namespace Expl.Itinerary {
          // Transfer _Lookup true's to _PickList
          {
             int Index = _Min;
-            _PickList = new List<int>(
-               _Lookup.Where<bool>(x => { Index++; return x; }).Select<bool, int>(x => Index - 1)
-            );
+            _PickList = new List<int>(GetLookupSequence());
+               //_Lookup.Cast<object>()
+               //   .Select(object, object)(o => o)
+               //   .Where<bool>(x => { Index++; return x; }).Select<bool, int>(x => Index - 1)
+            //);
+         }
+      }
+
+      private IEnumerable<int> GetLookupSequence() {
+         for (int idx = 0; idx < _Lookup.Length / 2; idx++) {
+            if (_Lookup[idx, 0]) yield return -idx - _Min;
+         }
+         for (int idx = 0; idx < _Lookup.Length / 2; idx++) {
+            if (_Lookup[idx, 1]) yield return idx + _Min;
          }
       }
 
