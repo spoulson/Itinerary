@@ -389,10 +389,6 @@ namespace Expl.Itinerary {
          {
             int Index = _Min;
             _PickList = new List<int>(GetLookupSequence());
-               //_Lookup.Cast<object>()
-               //   .Select(object, object)(o => o)
-               //   .Where<bool>(x => { Index++; return x; }).Select<bool, int>(x => Index - 1)
-            //);
          }
       }
 
