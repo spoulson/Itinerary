@@ -161,10 +161,17 @@ namespace Expl.Itinerary {
       /// <param name="Month"></param>
       /// <param name="DOW"></param>
       /// <returns></returns>
-      private int ComputeLastDOWOccurance(int Year, int Month, int DOW) {
-         var A = new DateTime(Year, Month, 1).AddDays(DOW);
-         var B = new DateTime(Year, Month + 1, 1).AddDays(-1);
-         return ((int)A.DayOfWeek + B.Day) / 7 - 1;
+      private int ComputeLastDOWOccurance(int Year, int Month, int DOW)
+      {
+          var A = new DateTime(Year, Month, 1);
+          // Determine the first day in the month that occurs in a week which contains the DOW
+          A = (int)A.DayOfWeek <= DOW ? A : A.AddDays(7 - (int)A.DayOfWeek);
+
+          var B = new DateTime(Year, Month, 1).AddMonths(1).AddDays(-1);
+          // Determine the date of the last instace of the DOW
+          B = (int)B.DayOfWeek >= DOW ? B.AddDays(-((int)B.DayOfWeek - DOW)) :
+                                        B.AddDays(-(int)B.DayOfWeek).AddDays(-(7 - DOW));
+          return (B.Day - A.Day) / 7;
       }
 
       /// <summary>
