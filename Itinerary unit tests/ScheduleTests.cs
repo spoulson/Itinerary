@@ -1750,6 +1750,28 @@ namespace Expl.Itinerary.Test {
                   new TimedEvent(new DateTime(2011, 6, 29, 0, 0, 0), TimeSpan.Zero)
                }
             ),
+            new ScheduleUnitTest("Last Friday of every month",
+                new CronSchedule("0", "0", "*", "*", "FRI#L", TimeSpan.Zero),
+                new DateTime(2012, 1, 1, 0, 0, 0), new DateTime(2012, 6, 1, 0, 0, 0),
+                new TimedEvent[] {
+                    new TimedEvent(new DateTime(2012, 1, 27, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 2, 24, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 3, 30, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 4, 27, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 5, 25, 0, 0, 0), TimeSpan.Zero)
+                }
+            ),
+            new ScheduleUnitTest("Last Monday of every month",
+                new CronSchedule("0", "0", "*", "*", "MON#L", TimeSpan.Zero),
+                new DateTime(2012, 1, 1, 0, 0, 0), new DateTime(2012, 6, 1, 0, 0, 0),
+                new TimedEvent[] {
+                    new TimedEvent(new DateTime(2012, 1, 30, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 2, 27, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 3, 26, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 4, 30, 0, 0, 0), TimeSpan.Zero),
+                    new TimedEvent(new DateTime(2012, 5, 28, 0, 0, 0), TimeSpan.Zero)
+                }
+            ),
             new ScheduleUnitTest("Last Monday - L index syntax",
                new CronSchedule("0", "0", "*", "*", "1#L", TimeSpan.Zero),
                new DateTime(2011, 6, 1, 0, 0, 0), new DateTime(2011, 7, 1, 0, 0, 0),
