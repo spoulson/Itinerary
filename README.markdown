@@ -1,7 +1,7 @@
 Itinerary: Lazy time scheduling toolset for .NET
 ================================================
 
-Release 1.0, 2011-06-23  
+Release 1.1, 2015-05-05  
 GitHub repo: https://github.com/spoulson/Itinerary  
 Shawn Poulson, http://explodingcoder.com
 
@@ -18,7 +18,7 @@ INTRODUCTION
 
 ### What *doesn't* Itinerary do?
  - Does not actively run tasks on a schedule.  That's your job.  
-   For that, check out [Quartz.NET](http://quartznet.sf.net) and the `ItineraryTrigger` class in the solution.
+   For that, check out [Quartz.NET](http://quartznet.sf.net) and the provided `ScheduleTests` unit test class.
  - Does not perform timezone interpretation or computation.  All date/times are timezone agnostic.
 
 ### Why use Itinerary?
@@ -40,13 +40,12 @@ SYSTEM REQUIREMENTS
 -------------------
 
 ### Development requirements:
-* Visual Studio 2010 (Professional edition or better required for unit test execution).
+* Visual Studio 2013 (Professional edition or better required for unit test execution).
+* NUnit to run unit tests.  Typically, Visual Studio 2013 Professional + NUnit Test Adapter extension will do the job.
 * Java SE JDK (optional, required to recompile ANTLR grammar).
-* Expl.Itinerary.Quartz project includes Quartz 1.0.3 and Common.Logging 2.0.  You may need to update references depending on your requirements.
-  * http://quartznet.sourceforge.net/  (Build output contains Common.Logging assembly)
 
 ### Runtime requirements:
-* .NET 4.0 Framework.
+* .NET 4.5.1 Framework.
 
 KNOWN ISSUES
 ------------
